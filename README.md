@@ -1,6 +1,6 @@
 # 🧹 OpenRefine Eğitimi
 
-### *Adım adım, panik yapmadan kirli veri temizleme rehberi*
+### _Adım adım, panik yapmadan kirli veri temizleme rehberi_
 
 [![Site](https://img.shields.io/badge/Site-drmuammer.github.io%2Fopenrefine--pratik-14B8A6?style=for-the-badge)](https://drmuammer.github.io/openrefine-pratik/)
 [![License](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
@@ -86,7 +86,7 @@ Tüm içerik [**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/) altı
 
 **Önerilen atıf:**
 
-> Beslen, M. (2026). *OpenRefine Eğitimi: Adım adım kirli veri temizleme rehberi*. <https://drmuammer.github.io/openrefine-pratik/>
+> Beslen, M. (2026). _OpenRefine Eğitimi: Adım adım kirli veri temizleme rehberi_. <https://drmuammer.github.io/openrefine-pratik/>
 
 ## 📫 İletişim
 
@@ -96,4 +96,4 @@ Tüm içerik [**CC BY 4.0**](https://creativecommons.org/licenses/by/4.0/) altı
 
 ---
 
-*"Temiz veri, doğru kararın yarısıdır."*
+_"Temiz veri, doğru kararın yarısıdır."_
