@@ -1,0 +1,512 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "OpenRefine ile Kirli Veri Temizleme",
+    "section": "",
+    "text": "Hoş Geldin\nVeri analizinin en az sevilen ama en çok zaman alan kısmı veri temizleme’dir. Tablo açıyorsun, içeride bir kişinin adı üç farklı şekilde yazılmış, tarihler dört ayrı formatta, gelir kolonunda kimi 5500, kimi $5,500, kimi de 5.500 USD yazıyor. Bunları Excel’de elle düzeltmek mümkün ama sıkıcı, hata yapmaya açık ve en kötüsü: tekrarlanabilir değil. Yarın aynı tablo geldiğinde her şeyi baştan yaparsın.\nİşte OpenRefine tam burada devreye giriyor.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#openrefine-nedir",
+    "href": "index.html#openrefine-nedir",
+    "title": "OpenRefine ile Kirli Veri Temizleme",
+    "section": "0.1 OpenRefine Nedir?",
+    "text": "0.1 OpenRefine Nedir?\nAçık kaynaklı, ücretsiz bir veri temizleme aracı. Bilgisayarında çalışır, tarayıcı arayüzü kullanır ama hiçbir yere veri göndermez (bu konuyu sonraki bölümde detaylı konuşacağız). Excel’in yapamadığı şeyleri yapar:\n\nYazım varyantlarını gruplandırır (İstanbul / istanbul / İSTANBUL üçünü tek tıkla birleştirir).\nSütun bazında akıllı dönüşümler uygular (regex, GREL ifadeleri, tarih dönüşümleri).\nTüm yaptıklarını kaydeder — başka bir kirli dosyaya aynı işlemleri tek tıkla uygulayabilirsin.\nGeri al / ileri al sınırsız çalışır. Yanlış yaptın? Sorun değil, geri dön.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#bu-eğitimde-ne-yapacağız",
+    "href": "index.html#bu-eğitimde-ne-yapacağız",
+    "title": "OpenRefine ile Kirli Veri Temizleme",
+    "section": "0.2 Bu Eğitimde Ne Yapacağız?",
+    "text": "0.2 Bu Eğitimde Ne Yapacağız?\n35 satırlık, içine bilinçli olarak her türlü pislik bulaştırılmış bir müşteri veri seti üzerinde çalışacağız. Veri içinde:\n\nYazım, büyük/küçük harf, boşluk tutarsızlıkları\nBeş farklı tarih formatı\nBirden fazla para birimi ve sayı formatı\nBozuk telefon numaraları, eksik e-postalar\nYinelenen kayıtlar\nEksik veriler\n\nvar. Sen bitirdiğinde elinde temizlenmiş, analize hazır bir tablo olacak — ve daha önemlisi, herhangi bir kirli CSV ile karşılaştığında ne yapacağını biliyor olacaksın.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#ihtiyacın-olanlar",
+    "href": "index.html#ihtiyacın-olanlar",
+    "title": "OpenRefine ile Kirli Veri Temizleme",
+    "section": "0.3 İhtiyacın Olanlar",
+    "text": "0.3 İhtiyacın Olanlar\n\nBir bilgisayar (Windows, Mac, Linux fark etmez)\nJava (OpenRefine ile birlikte gelen sürüm yeterli)\n30-60 dakika boş zaman\nSabır — ama söz veriyorum, çok eğlenceli",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#bu-eğitim-kimin-için",
+    "href": "index.html#bu-eğitim-kimin-için",
+    "title": "OpenRefine ile Kirli Veri Temizleme",
+    "section": "0.4 Bu Eğitim Kimin İçin?",
+    "text": "0.4 Bu Eğitim Kimin İçin?\n\nVeri analizi öğrenenler için\nExcel’in yetmediği noktada takılan herkes için\nAkademik araştırmacılar, gazeteciler, veri gazetecileri için\n“Bana her hafta aynı pis CSV geliyor, bıktım” diyen herkes için\n\nHadi başlayalım. İlk durağımız: kurulum ve veri güvenliği — çünkü kirli verinin içinde bazen kimsenin görmemesi gereken bilgiler olur.\n\n\n\n\n\n\nTipEğitim akışı\n\n\n\nBölümleri sırayla takip etmeni öneririm. Her bölüm bir öncekinin üzerine bina ediyor. Ekranın bir yarısında bu eğitimi, diğer yarısında OpenRefine’ı açık tutarsan en iyi sonucu alırsın.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Önsöz</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html",
+    "href": "01-kurulum-ve-guvenlik.html",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "",
+    "text": "3 Kurulum\nOpenRefine’ı openrefine.org/download.html adresinden indirebilirsin. Kurulum sayfasında işletim sistemine uygun sürümü seç:\nOpenRefine Java ile yazılmış. Çoğu sürüm Java’yı kendi içinde getirir, ayrıca yüklemen gerekmez. Eski bir bilgisayar kullanıyorsan veya hata alırsan Java 11 ya da üstü kurman gerekebilir.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#ilk-açılış",
+    "href": "01-kurulum-ve-guvenlik.html#ilk-açılış",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "3.1 İlk Açılış",
+    "text": "3.1 İlk Açılış\nOpenRefine’ı çalıştırdığında şaşırma: yeni bir uygulama penceresi açılmaz. Bunun yerine bir terminal/komut penceresi açılır ve birkaç saniye sonra varsayılan tarayıcın http://127.0.0.1:3333 adresinde OpenRefine arayüzünü gösterir.\n\n\n\n\n\n\nNoteNeden tarayıcı?\n\n\n\nOpenRefine arka planda küçük bir yerel web sunucusu başlatıyor ve sen ona tarayıcıdan bağlanıyorsun. Bu sunucu sadece kendi makinende dinleme yapar (127.0.0.1 = senin bilgisayarın). Dışarıdan erişilemez, internete açık değildir. Sıradaki bölümde detayını konuşacağız.\n\n\nOpenRefine açıkken terminal penceresini kapatma — kapatırsan uygulama kapanır. İşin bittiğinde kapatabilirsin.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#varsayılanda-her-şey-yerel",
+    "href": "01-kurulum-ve-guvenlik.html#varsayılanda-her-şey-yerel",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "4.1 Varsayılanda Her Şey Yerel",
+    "text": "4.1 Varsayılanda Her Şey Yerel\nYüklediğin CSV dosyası, yaptığın tüm dönüşümler, oluşturduğun projeler — hepsi sadece senin bilgisayarında kalır. Şunlar tamamen yerel çalışır:\n\nDosya yükleme ve dışa aktarma\nTüm GREL dönüşümleri (replace, toDate, toNumber vb.)\nFacet, filtreleme, kümeleme (clustering)\nGeri al / ileri al\nProje kaydı\n\nYani normal bir temizlik akışında verin bilgisayarından çıkmaz.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#veriyi-dışarı-gönderen-özellikler",
+    "href": "01-kurulum-ve-guvenlik.html#veriyi-dışarı-gönderen-özellikler",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "4.2 Veriyi Dışarı Gönderen Özellikler",
+    "text": "4.2 Veriyi Dışarı Gönderen Özellikler\nŞu özellikleri kullandığında veri kendi makinenin dışına gider. Hassas veri (kişisel bilgi, sağlık, finansal, gizli) ile çalışıyorsan dikkat et:\n\n\n\n\n\n\nWarningDikkat edilmesi gereken özellikler\n\n\n\n1. Reconciliation (Eşleştirme)\nEdit column → Reconcile → Start reconciling menüsü. Bir kolonu Wikidata, GeoNames, VIAF gibi dış servislerle eşleştirir. Bu işlemde kolondaki tüm değerler ilgili servisin sunucusuna gönderilir. Yani müşteri isimlerini Wikidata ile eşleştirmeye kalkarsan, isimlerin Wikidata sunucularına gönderilir.\n2. Add column by fetching URLs\nEdit column → Add column by fetching URLs menüsü. Her satır için bir URL ister, o URL’leri açar. Açıkça internete istek atan bir özellik. Hassas veri yoksa sorun değil, ama kullandığın URL servisinin loglarında verin görünür.\n3. Add column from web service\nURL fetch’in benzeri ama API çağrıları için. Yine veri dış sunuculara gider.\n4. Wikibase / Wikidata Upload\nVeriyi açıkça Wikidata’ya yüklemek için. Adı zaten “upload”, her şey açık.\n5. Google Sheets entegrasyonu\nOpen / Create Project → Google Data menüsü. Google hesabınla bağlanır, verini Google Sheets’e gönderir. OAuth ile yetki istediği için yanlışlıkla tetiklenmesi zor, ama dikkat.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#otomatik-güncelleme-kontrolü",
+    "href": "01-kurulum-ve-guvenlik.html#otomatik-güncelleme-kontrolü",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "4.3 Otomatik Güncelleme Kontrolü",
+    "text": "4.3 Otomatik Güncelleme Kontrolü\nOpenRefine açılışta openrefine.org adresine bağlanıp yeni sürüm var mı diye bakar. Sadece sürüm bilgisi gönderir, verin gönderilmez. Yine de hassas/izole ortamlarda bunu kapatmak isteyebilirsin.\nKapatmak için OpenRefine başlatma argümanlarına şunu ekle:\n-Drefine.headless=true\nVeya refine.ini dosyasında ilgili ayarı kapat. Detay için OpenRefine FAQ.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#hassas-veri-için-en-iyi-pratikler",
+    "href": "01-kurulum-ve-guvenlik.html#hassas-veri-için-en-iyi-pratikler",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "4.4 Hassas Veri İçin En İyi Pratikler",
+    "text": "4.4 Hassas Veri İçin En İyi Pratikler\n\n\n\n\n\n\nImportantKVKK / GDPR kapsamındaki verilerle çalışıyorsan\n\n\n\n\nİnterneti kapat. OpenRefine’ı temizlik için kullanıyorsan, açık olmasına gerek yok. Wifi’yi kapat ya da bilgisayarın ağ bağlantısını kes.\nReconciliation ve URL fetch özelliklerini kullanma. Bu özelliklere ihtiyacın varsa, önce veriyi anonimleştir.\nProje dosyaları yerelde saklanır. OpenRefine projeleri varsayılan olarak ~/openrefine-workspace/ (Mac/Linux) veya %APPDATA%\\OpenRefine\\ (Windows) içinde tutulur. Disk şifrelemen yoksa, bu klasörü düşün.\nİş bittiğinde projeyi sil. Sadece temizlenmiş CSV’yi sakla. OpenRefine içinde projeleri sağ üstten silebilirsin.\nKolonları gizleme yetmez. OpenRefine içinde “hide column” yapsan da veri dosyada durur. Gerçekten silmek için kolonu Edit columns → Reorder/remove ile kaldır.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "01-kurulum-ve-guvenlik.html#hızlı-özet",
+    "href": "01-kurulum-ve-guvenlik.html#hızlı-özet",
+    "title": "2  Kurulum ve Veri Güvenliği",
+    "section": "4.5 Hızlı Özet",
+    "text": "4.5 Hızlı Özet\n\n\n\nÖzellik\nVeri çıkar mı?\n\n\n\n\nDosya yükleme, dönüşüm, facet, cluster, export\n❌ Hayır\n\n\nReconcile (Wikidata vs.)\n✅ Evet\n\n\nAdd column by fetching URLs\n✅ Evet\n\n\nAdd column from web service\n✅ Evet\n\n\nWikibase upload\n✅ Evet\n\n\nGoogle Sheets / Drive\n✅ Evet\n\n\nSürüm güncelleme kontrolü\n⚠️ Sadece sürüm bilgisi\n\n\n\nBu kısa kılavuzu kafanın bir köşesinde tut. Eğitimin geri kalanında sadece yerel özellikler kullanacağız — verin asla bilgisayarından çıkmayacak.\nSıradaki bölüm: veriyi yükleyip ilk bakışı atalım.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Kurulum ve Veri Güvenliği</span>"
+    ]
+  },
+  {
+    "objectID": "02-baslangic.html",
+    "href": "02-baslangic.html",
+    "title": "3  Veriyi Tanıyalım",
+    "section": "",
+    "text": "4 Veri Setini İndir\nBu eğitimde kullanacağımız kirli veri setini data/customers_dirty.csv dosyasından indir. 35 satır, 13 kolondan oluşan uydurma müşteri verisi:\n\n\n\nKolon\nİçerik\n\n\n\n\nid\nSıra numarası\n\n\nfull_name\nAd soyad\n\n\nemail\nE-posta\n\n\nphone\nTelefon\n\n\ncity, country\nŞehir ve ülke\n\n\nbirth_date, registration_date\nTarihler\n\n\ngender\nCinsiyet\n\n\noccupation\nMeslek\n\n\nincome\nGelir\n\n\nsubscriber\nAbone mi?\n\n\nscore\nPuan (1-5 arası)\n\n\n\nİlk birkaç satıra göz at — büyük olasılıkla derin bir nefes vermen gerekecek. Sorun yok, biraz sonra hepsi temizlenecek.\n\n\n5 Yeni Proje Oluştur\nOpenRefine açıkken sol panelde Create Project sekmesine tıkla.\n\nThis Computer seçili olsun.\nBrowse… ile indirdiğin customers_dirty.csv dosyasını seç.\nNext → butonuna bas.\n\nAçılan ekranda OpenRefine sana dosyayı nasıl ayrıştıracağını soruyor. Önemli ayarlar:\n\nCharacter encoding: UTF-8 (Türkçe ve uluslararası karakterler için).\nColumns are separated by: commas (CSV) seçili olsun.\nParse next 1 line(s) as column headers: İşaretli olmalı (ilk satır başlık).\nTrim leading & trailing whitespace from strings: İşaretleme! — Boşlukları biz bilerek temizleyeceğiz.\nParse cell text into numbers, dates, …: İşaretleme! — OpenRefine’ın otomatik tip tahmini bizim öğrenmek istediğimiz şeyi atlar.\n\n\n\n\n\n\n\nTipNeden otomatik tipleri kapatıyoruz?\n\n\n\nEğitim amaçlı. Gerçek hayatta bu işaretleri açabilirsin — ama o zaman OpenRefine senin yerine bazı işleri yapar ve sen ne yaptığını öğrenemezsin. Şu an tüm değerlerin string olarak içeri girmesini istiyoruz.\n\n\nSağ üstte projenin adını yaz: customers cleaning gibi. Sonra Create Project » butonuna bas.\n\n\n6 İlk Bakış\nKarşına 35 satırlık tablo gelmeli. Hızlıca sorunlara bak:\n\ngender kolonunda M, F, Male, Female, m, male, female karışık.\nsubscriber kolonunda Yes, No, 1, Y, N, n, yes karışık.\ncountry kolonunda USA, United States, FR, France, México, Mexico gibi tutarsızlıklar.\ncity kolonunda büyük/küçük harf karmaşası ve başında/sonunda boşluk.\nbirth_date ve registration_date kolonlarında 5+ farklı format.\nincome kolonunda farklı para birimleri ve sayı formatları.\nphone kolonunda telefon numarası ne kadar farklı yazılabilirse.\nemail kolonunda eksik alanlar, çift @, eksik domain.\nBazı satırlar yinelenen (duplicate) kayıtlar.\n\nYapacağımız iş bu listeyi sırayla bitirmek.\n\n\n7 Arayüzü Tanıyalım\nBirkaç noktaya dikkat çekeyim, çünkü bunları sürekli kullanacağız:\nSol panel — Facet / Filter: Burada açtığımız her facet (filtre, gruplama) görünür. Bir kolonun tüm değerlerini sayılarıyla gözden geçirmek için kullanırız.\nÜst sol — Undo / Redo: Yaptığın her işlem buraya kaydedilir. İstediğin adıma geri dönebilirsin. Bu OpenRefine’ın süper gücü.\nHer kolon başlığında ▼ üçgen: Tıkladığında kolonla yapabileceğin her şeyin menüsü açılır:\n\nFacet: Filtre oluşturma\nEdit cells: Hücre içeriklerini değiştirme (en çok kullanacağımız menü)\nEdit column: Kolonu yeniden adlandırma, taşıma, silme\nSort: Sıralama\n\nÜst sağ — Export: İşin bittiğinde temizlenmiş veriyi indirme.\n\n\n\n\n\n\nNoteHücre tipleri renkten anlaşılır\n\n\n\n\nSiyah, sola yaslı metin: String (metin)\nYeşil, sağa yaslı metin: Number (sayı) veya Date (tarih)\n\nBir kolonu sayıya çevirdiğinde renginin değiştiğini göreceksin. Bu görsel ipucu, dönüşümün başarılı olduğunu hızlıca anlamak için çok değerli.\n\n\n\n\n8 Çalışma Stratejimiz\nVeri temizlerken takip edeceğimiz sıra:\n\nKategorik kolonlar (cinsiyet, abone, ülke, şehir) — kolay başlangıç\nSayısal kolonlar (puan, gelir) — GREL ifadelerini öğreniriz\nTelefon — regex pratiği\nTarih — toDate ile çoklu format\nE-posta — geçersiz kayıt tespiti\nYinelenen kayıtlar — en son, çünkü diğer alanlar temizlendikten sonra duplicate’ler doğru görünür\n\n\n\n\n\n\n\nTipBu sıralama önemli\n\n\n\nDuplicate temizliğini en sona bırakmamızın sebebi şu: başlangıçta RAJESH Kumar ve Rajesh Kumar farklı görünüyor — küçük/büyük harfler temizlenmediği için duplicate facet onları yakalayamaz. Önce isimleri standartlaştırıp sonra duplicate aramak çok daha verimli.\n\n\nHadi ilk kategoriye geçelim.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Veriyi Tanıyalım</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html",
+    "href": "03-kategorik-kolonlar.html",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "",
+    "text": "5 gender — Cinsiyet\nBu bölümde dört kolonu sırayla temizleyeceğiz: gender, subscriber, country, city. Hepsi sınırlı sayıda olası değere sahip — yani kategorik. Mantığımız aynı: önce mevcut değerleri görelim (Text Facet), sonra varyantları birleştirelim.\nVeride M, F, Male, Female, male, female, m gibi varyantlar var. Hepsini Male ve Female olarak iki değere indireceğiz.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#mevcut-durumu-gör",
+    "href": "03-kategorik-kolonlar.html#mevcut-durumu-gör",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "5.1 1. Mevcut Durumu Gör",
+    "text": "5.1 1. Mevcut Durumu Gör\ngender kolonunun başlığındaki ▼ üçgene tıkla:\nFacet → Text facet\nSol panelde tüm benzersiz değerlerin listesi sayılarıyla beraber görünecek. Yaklaşık şuna benzer:\nFemale  9\nF       7\nMale    9\nM       6\nfemale  1\nmale    2\nm       1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#cluster-ile-toplu-birleştir",
+    "href": "03-kategorik-kolonlar.html#cluster-ile-toplu-birleştir",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "5.2 2. Cluster ile Toplu Birleştir",
+    "text": "5.2 2. Cluster ile Toplu Birleştir\ngender ▼ → Edit cells → Cluster and edit…\nAçılan pencerede:\n\nMethod: key collision\nKeying Function: fingerprint\n\nMale, male, m, M aynı kümede toplanır (fingerprint büyük/küçük harfi yok sayar). Female, female, F aynı şekilde.\n\n\n\n\n\n\nTipCluster nasıl çalışıyor?\n\n\n\nFingerprint algoritması her değeri normalleştiriyor: küçük harfe çeviriyor, noktalama temizliyor, kelimeleri alfabetik sıralıyor. Sonuçta Male ve male aynı “parmak izi”ne sahip oluyor. Yazım farklılıkları olan kelimeleri yakalamada çok güçlü.\n\n\nHer grubun yanındaki New Cell Value kutusuna doğru yazımı gir (Male, Female), Merge selected kutusunu işaretle, Merge Selected & Re-Cluster butonuna bas.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#clustera-takılmayanları-hallet",
+    "href": "03-kategorik-kolonlar.html#clustera-takılmayanları-hallet",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "5.3 3. Cluster’a Takılmayanları Hallet",
+    "text": "5.3 3. Cluster’a Takılmayanları Hallet\nCluster genelde tek harfli kodları (M, F) kaçırır çünkü string benzerliği zayıf kalır. Bu durumda Text Facet’e dön:\n\nM değerinin yanındaki edit linkine tıkla → Male yaz → Apply.\nF için aynısını yap → Female yaz → Apply.\n\n\n\n\n\n\n\nNoteTek harfli kodlar neden cluster’a düşmez?\n\n\n\nCluster algoritmaları kelime benzerliğine bakar. M ve Male aynı baş harfi paylaşsa da string olarak çok farklı: biri 1 karakter, diğeri 4. Algoritma “bunlar aynı şey olabilir” diye karar veremez. Tek harfli kodları her zaman elle düzeltmek gerekir.\n\n\nBittiğinde Text Facet’te sadece iki değer kalmalı: Female ve Male.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#önce-hızlı-temizlik",
+    "href": "03-kategorik-kolonlar.html#önce-hızlı-temizlik",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "7.1 1. Önce Hızlı Temizlik",
+    "text": "7.1 1. Önce Hızlı Temizlik\nCommon Transforms ile başla:\ncountry ▼ → Edit cells → Common transforms → Trim leading and trailing whitespace\nBu, Berlin (sonunda boşluk var) gibi değerlerdeki gereksiz boşlukları siler.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#cluster",
+    "href": "03-kategorik-kolonlar.html#cluster",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "7.2 2. Cluster",
+    "text": "7.2 2. Cluster\ncountry ▼ → Edit cells → Cluster and edit…\n\nfingerprint ile başla → JAPAN / Japan, russia / Russia, ireland / Ireland gibi büyük/küçük harf farkları yakalanır.\nSonra ngram fingerprint ve metaphone3 dene → kalanları yakalar.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#kısaltmalar-için-manuel-eşleştirme",
+    "href": "03-kategorik-kolonlar.html#kısaltmalar-için-manuel-eşleştirme",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "7.3 3. Kısaltmalar İçin Manuel Eşleştirme",
+    "text": "7.3 3. Kısaltmalar İçin Manuel Eşleştirme\nCluster USA ile United States’i otomatik eşleştiremez (farklı kelimeler). Text Facet’ten elle düzelt:\n\nFR → France\nJAPAN → Japan (cluster yapmadıysan)\nMéxico → Mexico (özel karakter)\nSG → Singapore\nUK → United Kingdom\nUSA → United States (ya da USA’yı tutup United States’i değiştir — tercih sana kalmış)\n\nİş bittiğinde Text Facet’te tek tek farklı ülke isimleri görmelisin, varyant kalmamalı.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#boşlukları-temizle",
+    "href": "03-kategorik-kolonlar.html#boşlukları-temizle",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "8.1 1. Boşlukları Temizle",
+    "text": "8.1 1. Boşlukları Temizle\ncity ▼ → Edit cells → Common transforms → Trim leading and trailing whitespace\nBerlin, Warsaw, Milan gibi değerler bu adımda düzelir.\nID 32’deki Liam O’Brien kaydında şehir alanı sadece bir boşluktan ibaret. Trim sonrası bu hücre null (boş) olur.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#title-case",
+    "href": "03-kategorik-kolonlar.html#title-case",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "8.2 2. Title Case",
+    "text": "8.2 2. Title Case\ncity ▼ → Edit cells → Common transforms → To titlecase\nMUMBAI → Mumbai, chicago → Chicago, madrid → Madrid, mexico city → Mexico City, berlin → Berlin olur.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#cluster-1",
+    "href": "03-kategorik-kolonlar.html#cluster-1",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "8.3 3. Cluster",
+    "text": "8.3 3. Cluster\ncity ▼ → Edit cells → Cluster and edit…\nBu adıma çoğu zaten temizlenmiş gelecek, ama yine de fingerprint cluster bir-iki şey yakalayabilir.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "03-kategorik-kolonlar.html#boş-hücre-ne-olacak",
+    "href": "03-kategorik-kolonlar.html#boş-hücre-ne-olacak",
+    "title": "4  Kategorik Kolonları Standartlaştırma",
+    "section": "8.4 4. Boş Hücre Ne Olacak?",
+    "text": "8.4 4. Boş Hücre Ne Olacak?\nLiam O’Brien’ın şehri boş kaldı. Üç seçeneğin var:\n\nBoş bırak — en dürüstü. “Bilinmiyor” olduğunu kabul et.\nUnknown yaz — açık şekilde işaretle.\nTahmin etme. Diğer alanlardan tahmin yürütüp doldurmak veriyi bozar.\n\nÖnerim: boş bırak. Eksik veri, uydurma veriden iyidir.\n\n\n\n\n\n\nTipCommon Transforms cebinde olsun\n\n\n\nBu menüdeki seçenekler (trim, titlecase, lowercase, uppercase, to number, to date) sürekli kullanacağın hızlı temizlik araçları. GREL yazmadan tek tıkla iş halletmeni sağlarlar.\n\n\nİlk büyük dönüşüm tamam. Bir sonraki bölümde sayısal kolonlara geçeceğiz — burada GREL ile hafif programlama yapacağız.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Kategorik Kolonları Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html",
+    "href": "04-sayisal-kolonlar.html",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "",
+    "text": "6 score — Puan\nŞimdi iki sayısal kolonu temizleyeceğiz: önce kolay olan score, sonra zorlu olan income. Bu bölümde GREL (General Refine Expression Language — OpenRefine’ın kendi formül dili) ile tanışacağız.\nVeride çoğu puan 4.5, 3.8 gibi nokta ondalıklı. Ama bazıları virgül ondalıklı (\"4,2\", \"3,5\") ve birkaç hücre boş. Hedef: hepsini noktalı ondalık yapıp sayı tipine çevirmek.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#virgülleri-noktaya-çevir",
+    "href": "04-sayisal-kolonlar.html#virgülleri-noktaya-çevir",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "6.1 1. Virgülleri Noktaya Çevir",
+    "text": "6.1 1. Virgülleri Noktaya Çevir\nscore ▼ → Edit cells → Transform…\nAçılan kutuya şunu yaz:\nvalue.replace(\",\", \".\")\nBu kod ne yapıyor?\n\nvalue — şu anki hücrenin içeriği (örneğin \"4,2\").\n.replace(\",\", \".\") — string içindeki tüm virgülleri nokta yapar.\nSonuç: \"4,2\" → \"4.2\".\n\nÖnizleme penceresinde sağ tarafta yeni değerleri göreceksin.\n\n\n\n\n\n\nTipHata mesajı görürsen panik yapma\n\n\n\nBoş hücreler için OpenRefine “replace expects three strings…” gibi bir uyarı verebilir. Bu uyarı sadece o satırlar için, ve kutunun altındaki On error: keep original seçeneği işaretli olduğu sürece sorun değil. Boş hücre boş kalır.\nDaha temiz görmek istersen şu alternatif ifadeyi kullanabilirsin:\nif(isBlank(value), value, value.replace(\",\", \".\"))\nBu önce hücre boş mu diye kontrol eder, boşsa dokunmaz, doluysa replace yapar. Sonuç aynı, sadece hata mesajı görünmez.\n\n\nOK bas. Tüm virgüller noktaya dönüşür.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#sayıya-çevir",
+    "href": "04-sayisal-kolonlar.html#sayıya-çevir",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "6.2 2. Sayıya Çevir",
+    "text": "6.2 2. Sayıya Çevir\nŞimdi değerler hâlâ string (metin) tipinde. Sayıya çevirelim:\nscore ▼ → Edit cells → Common transforms → To number\nHücreler yeşile dönüp sağa yaslandığında dönüşüm başarılıdır.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#kontrol",
+    "href": "04-sayisal-kolonlar.html#kontrol",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "6.3 3. Kontrol",
+    "text": "6.3 3. Kontrol\nscore ▼ → Facet → Numeric facet\nAçılan histogram’da puanların 2.5 - 5.0 arasında dağılması lazım. Boş hücreler “Blank” sayacında görünür (üç hücre — ID 7, 20, 28).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#önce-nan-ve-para-birimi-outlierlarını-hallet",
+    "href": "04-sayisal-kolonlar.html#önce-nan-ve-para-birimi-outlierlarını-hallet",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "7.1 1. Önce nan ve Para Birimi Outlier’larını Hallet",
+    "text": "7.1 1. Önce nan ve Para Birimi Outlier’larını Hallet\nText Facet ile farklı değerleri görelim:\nincome ▼ → Facet → Text facet\nnan değerinin yanındaki edit linkine tıkla, kutuyu boşalt, Apply. Hücre null olur.\nŞimdi farklı para birimi olan satırları bul (3 row var): - 3500 EUR, 9500€ — Euro - £3500 — Pound\n\n\n\n\n\n\nImportantPara birimi dönüşümü = veri kararı\n\n\n\nFarklı para birimlerini USD’ye çevirmek kur kabul etmek demektir. Gerçek hayatta:\n\nHangi günün kuru? Kayıt günü mü, bugün mü?\nResmi kur mu, piyasa kuru mu?\n\nBu kararı veriyi sahibine sormadan vermek tehlikeli. Bu eğitim için sabit kabul ediyoruz: 1 EUR ≈ 1.1 USD, 1 GBP ≈ 1.25 USD.\n\n3500 EUR → 3850\n9500€ → 10450\n£3500 → 4375\n\nText Facet’ten her birini elle düzelt.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#para-birimi-eklerini-tek-hamlede-temizle",
+    "href": "04-sayisal-kolonlar.html#para-birimi-eklerini-tek-hamlede-temizle",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "7.2 2. Para Birimi Eklerini Tek Hamlede Temizle",
+    "text": "7.2 2. Para Birimi Eklerini Tek Hamlede Temizle\nŞimdi geriye sadece USD değerleri kaldı. Hepsindeki USD ekleri ve binlik nokta ayraçlarını silelim:\nincome ▼ → Edit cells → Transform…\nvalue.replace(\"$\", \"\").replace(\"USD\", \"\").replace(\".\", \"\").replace(\" \", \"\")\nBu kod ne yapıyor?\nreplace fonksiyonlarını birbirine zincirledik. Sırayla:\n\n.replace(\"$\", \"\") — Dolar sembolünü siler. $5500 → 5500.\n.replace(\"USD\", \"\") — USD kodunu siler. 2500 USD → 2500.\n.replace(\".\", \"\") — Binlik ayraç olan noktayı siler. 7.500 → 7500.\n.replace(\" \", \"\") — Geriye kalan boşlukları siler. 2500 → 2500.\n\nSıra çok önemli — replace’ler soldan sağa çalışır.\n\n\n\n\n\n\nWarningSıra hatası nelere yol açar?\n\n\n\nBu adımı atlayıp doğrudan To number yaparsan, OpenRefine 12.500 değerini “on iki nokta beş” olarak okur ve 12.5 yapar. Yani 35.000 dolarlık gelir aniden 35 dolara döner. Mutlaka önce binlik noktayı sil, sonra sayıya çevir.\n\n\nOK bas.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#sayıya-çevir-1",
+    "href": "04-sayisal-kolonlar.html#sayıya-çevir-1",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "7.3 3. Sayıya Çevir",
+    "text": "7.3 3. Sayıya Çevir\nincome ▼ → Edit cells → Common transforms → To number\nYeşil renge dönmeli. Sağa yaslı ve hizalı görünüm.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "04-sayisal-kolonlar.html#kontrol-1",
+    "href": "04-sayisal-kolonlar.html#kontrol-1",
+    "title": "5  Sayısal Kolonları Düzenleme",
+    "section": "7.4 4. Kontrol",
+    "text": "7.4 4. Kontrol\nincome ▼ → Facet → Numeric facet\nHistogram açılır. Veride en küçük gelir 1800 (Liam O’Brien, intern), en yüksek 11000 (Michael White, doktor). 1800-11000 arasında bir dağılım görüyorsan dönüşüm temiz.\n\n\n\n\n\n\nTipNumeric facet süper kullanışlı\n\n\n\nHistogram’ın iki ucundaki kaydırıcılarla aralık seçebilirsin. Mesela “10000’den büyük gelirler” diye filtreleyip o satırları görmek istersen — sol kaydırıcıyı 10000’e çek, sadece o satırlar tabloda görünür.\nAykırı değerleri (outlier) bulmak için bulunmaz fırsat.\n\n\nİki sayısal kolonu da hallettik. Bir sonraki bölümde regex ile telefon numaralarına geçeceğiz — bu işin biraz daha eğlenceli kısmı.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sayısal Kolonları Düzenleme</span>"
+    ]
+  },
+  {
+    "objectID": "05-telefon.html",
+    "href": "05-telefon.html",
+    "title": "6  Telefon Numaraları (Regex Pratiği)",
+    "section": "",
+    "text": "phone kolonunda neredeyse her satır farklı formatta. Bu sefer regex (düzenli ifadeler) ile sadece rakamları bırakıp tek formata indireceğiz.\n\n7 Mevcut Durum\nVeride şu formatlar var:\n\n+1-555-123-4567\n(555) 234 5678\n+33 1 23 45 67 89\n5556789012 (zaten temiz)\n555-345-67-89\n+81(3)5559876\n0 (555) 111 22 33\n0215551122\n(216)5556677\n- (geçersiz, sadece tire)\n\nHepsini sadece rakamlardan oluşan, standart bir formata çevireceğiz.\n\n\n8 1. Tüm Rakam-Olmayan Karakterleri Sil\nphone ▼ → Edit cells → Transform…\nvalue.replace(/\\D/, \"\")\nBu kod ne yapıyor?\n\n/\\D/ — bu bir regex (düzenli ifade) ifadesi. \\D “rakam olmayan herhangi bir karakter” demektir (D = Digit’in zıttı).\n.replace(/\\D/, \"\") — değer içindeki tüm rakam olmayan karakterleri (boşluk, parantez, tire, artı, harf…) silip yerine boş string koyar.\n\nSonuç:\n\n\n\nÖnce\nSonra\n\n\n\n\n+1-555-123-4567\n15551234567\n\n\n(555) 234 5678\n5552345678\n\n\n+33 1 23 45 67 89\n33123456789\n\n\n0 (555) 111 22 33\n05551112233\n\n\n-\n`` (boş)\n\n\n\n\n\n\n\n\n\nTipRegex hızlı not\n\n\n\nRegex, metin desenlerini tarif etmenin standart yolu. Bilmen gereken birkaç sembol:\n\n\\d — herhangi bir rakam (0-9)\n\\D — rakam olmayan herhangi bir karakter\n\\s — boşluk karakteri\n\\S — boşluk olmayan\n+ — bir veya daha fazla\n* — sıfır veya daha fazla\n\n/\\D/ ile yazdığımız ifadenin başındaki/sonundaki /’ler regex sınırını işaretler — GREL’e “bu bir regex ifadesi” diyor.\n\n\nOK bas.\n\n\n9 2. Ülke Kodu Tekdüzeleştirme\nŞimdi telefonlar farklı uzunluklarda. Bazıları:\n\n10 hane (5556789012) — ülke kodu yok\n11 hane (05551112233) — başında 0 var\n11-13 hane — başında 1 (ABD), 33 (FR), 81 (JP), 90 vb. ülke kodları var\n\nStrateji: hepsini 10 haneli, başında 0 ya da ülke kodu olmayan formata indir.\nphone ▼ → Edit cells → Transform…\nif(value.length() == 11 && value.startsWith(\"0\"),\n   value.substring(1),\n   if(value.length() &gt; 10,\n      value.substring(value.length() - 10),\n      value))\nBu kod ne yapıyor?\nİki iç içe if ifadesi:\n\nDış if: Eğer değer 11 haneliyse ve 0 ile başlıyorsa, ilk karakteri at (substring(1) = 1. karakterden sonrasını al). 05551112233 → 5551112233.\nİç if: Yukarı uymadıysa ama değer 10 haneden uzunsa, son 10 karakteri al (substring(value.length() - 10)). Bu, başındaki ülke kodunu kırpar. 15551234567 → 5551234567, 33123456789 → 3123456789 (dikkat — bu durumda son 10 hane Fransız iç hat numarasını verir, ülke kodu kalkmış olur).\nHiçbiri uymadıysa (zaten 10 haneli ya da boş): değeri olduğu gibi bırak.\n\n\n\n\n\n\n\nWarningBu yaklaşımın kusuru\n\n\n\n“Son 10 haneyi al” yöntemi her ülke için doğru çalışmayabilir — bazı ülkelerin iç hat numaraları farklı uzunlukta olur. Bu eğitim için yeterli ama gerçek hayatta uluslararası numaralarla çalışıyorsan libphonenumber gibi özel bir kütüphane kullanmalısın.\nOpenRefine içinde uluslararası telefon doğrulaması için iyi yol, telefon numarasını ülke koduyla birlikte ayrı kolonda saklamaktır. Bu eğitimde tek formata indirmekle yetiniyoruz.\n\n\nOK bas.\n\n\n10 3. Boş Kalanları Kontrol Et\nID 26’daki Alex Johnson’ın telefonu sadece - idi, ilk replace’ten sonra boş kaldı. Bu beklenen bir durum — gerçek hayatta veri eksikse boş bırakırsın.\nphone ▼ → Facet → Customized facets → Facet by blank ile boş hücreleri filtreleyebilirsin. Sadece 1 boş hücre olmalı.\n\n\n11 4. (Opsiyonel) Okunaklı Format\nEğer telefonları okuması daha kolay göstermek istersen, GREL ile formatlayabiliriz:\nphone ▼ → Edit cells → Transform…\nif(value.length() == 10,\n   value[0,3] + \" \" + value[3,6] + \" \" + value[6,8] + \" \" + value[8,10],\n   value)\nBu kod ne yapıyor?\n\nvalue[0,3] — değerin 0-3 indeksleri arası (yani ilk 3 karakter, “555”).\nvalue[3,6] — 3-6 indeksleri (sonraki 3 karakter).\nVe benzeri.\nSonuç: 5551234567 → 555 123 45 67.\n\nif kontrolü ile sadece tam 10 haneli olanlara format uyguluyoruz, boş ve farklı uzunluklara dokunmuyoruz.\n\n\n\n\n\n\nNoteFormat uygulamak gerekli mi?\n\n\n\nVeritabanı dünyasında telefonlar genelde ham rakam dizisi olarak saklanır, görsel format kullanıcıya gösterilirken uygulanır. Eğer veriyi başka bir sistemle entegre edeceksen formatlamadan bırakman daha iyi olabilir.\nBu eğitim için iki yol da kabul edilebilir.\n\n\nTelefon kolonu tamam. Şimdi tarihlere geçiyoruz — orada da ilginç sürprizler var.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Telefon Numaraları (Regex Pratiği)</span>"
+    ]
+  },
+  {
+    "objectID": "06-tarih.html",
+    "href": "06-tarih.html",
+    "title": "7  Tarihleri Standartlaştırma",
+    "section": "",
+    "text": "8 birth_date — Doğum Tarihi\nbirth_date ve registration_date kolonlarında 5+ farklı tarih formatı, geçersiz değerler (N/A, ??) ve sadece yıl bilgisi içeren satırlar var. Bunları gerçek tarih tipine çevirmek istiyoruz, çünkü tarih tipinde olduktan sonra:\nVeride şu formatlar var:",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Tarihleri Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "06-tarih.html#önce-geçersiz-değerleri-temizle",
+    "href": "06-tarih.html#önce-geçersiz-değerleri-temizle",
+    "title": "7  Tarihleri Standartlaştırma",
+    "section": "8.1 1. Önce Geçersiz Değerleri Temizle",
+    "text": "8.1 1. Önce Geçersiz Değerleri Temizle\nbirth_date ▼ → Facet → Text facet\nSol panelde tüm değerler listelenir. N/A ve ?? değerlerini bulup edit linki ile kutuyu boşalt, Apply.\nSadece yıl olan değerleri (1995, 1989) ne yapacağına karar ver:\n\nBoş bırak (önerilen — eksik veri olarak işaretle)\n1995-07-01 gibi yılın ortasına ata — bu sahte hassasiyet yaratır, gerçek hayatta tehlikelidir.\n\nÖnerim: boş bırak.\n\n\n\n\n\n\nTip“Boş bırak” en sağlıklı seçim\n\n\n\nVeri analizinde bilmediğin bir şeyi tahminle doldurmak, “veriyi temizlemek” değil “veriyi bozmaktır”. İstatistiksel modellerde eksik veri için özel teknikler var (imputation), ama bunları rastgele uygulamak yanlış sonuç çıkarır.\nŞüphedeysen: eksik bırak.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Tarihleri Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "06-tarih.html#otomatik-tarih-dönüşümü",
+    "href": "06-tarih.html#otomatik-tarih-dönüşümü",
+    "title": "7  Tarihleri Standartlaştırma",
+    "section": "8.2 2. Otomatik Tarih Dönüşümü",
+    "text": "8.2 2. Otomatik Tarih Dönüşümü\nbirth_date ▼ → Edit cells → Common transforms → To date\nOpenRefine ISO formatını (1985-03-12) ve birçok yaygın formatı otomatik tanır. Çoğu hücre yeşile döner, sağa yaslanır.\n\n\n\n\n\n\nNote“Bu nasıl bir görüntü?”\n\n\n\nTarih hücreleri 1985-03-12T00:00:00Z gibi görünmeye başlar. Endişe etme — bu, tarih tipinin iç gösterimi:\n\nT00:00:00 — günün saati (gece yarısı)\nZ — UTC zaman dilimi (Zulu time)\n\nSaat bilgisi senin için anlamsız ama OpenRefine tarih tipini hep timestamp olarak tutar. Görsel kalabalık, içerik doğru. Export ederken istediğin formatta dışarı alabiliriz.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Tarihleri Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "06-tarih.html#takılan-formatları-düzelt",
+    "href": "06-tarih.html#takılan-formatları-düzelt",
+    "title": "7  Tarihleri Standartlaştırma",
+    "section": "8.3 3. Takılan Formatları Düzelt",
+    "text": "8.3 3. Takılan Formatları Düzelt\nOpenRefine bazı formatları otomatik tanımaz, özellikle nokta ayraçlı Avrupa formatını (12.05.1990). Bu hücreler hâlâ siyah ve sola yaslı görünür — yani string olarak kaldılar.\nbirth_date ▼ → Edit cells → Transform…\nif(type(value) == \"date\",\n   value,\n   value.toDate(\"dd.MM.yyyy\", \"dd/MM/yyyy\", \"dd-MMM-yyyy\", \"yyyy/MM/dd\", \"dd-MM-yyyy\"))\nBu kod ne yapıyor?\n\ntype(value) == \"date\" — değer zaten tarih tipinde mi? Eğer tarihse, dokunma (if’in 2. argümanı: value).\nDeğilse, birden fazla format dene: dd.MM.yyyy, dd/MM/yyyy vb. OpenRefine ilk uyan formatla çevirir.\ndd-MMM-yyyy formatı 03-Mar-1992 gibi yazıyla yazılmış ay isimlerini yakalar. Locale İngilizce olmalı — Mar, Aug gibi.\n\n\n\n\n\n\n\nTipFormat kodları cebinde olsun\n\n\n\n\nyyyy — 4 haneli yıl (1985)\nyy — 2 haneli yıl (85)\nMM — ay numarası, sıfır dolgulu (03)\nMMM — ay kısaltması (Mar)\nMMMM — ay tam adı (March)\ndd — gün numarası (12)\nHH:mm:ss — saat:dakika:saniye\n\nBunlar ISO 8601 ve Java tarih formatlama standartları. OpenRefine bunları kullanır.\n\n\nOK bas.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Tarihleri Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "06-tarih.html#kontrol-timeline-facet",
+    "href": "06-tarih.html#kontrol-timeline-facet",
+    "title": "7  Tarihleri Standartlaştırma",
+    "section": "8.4 4. Kontrol — Timeline Facet",
+    "text": "8.4 4. Kontrol — Timeline Facet\nbirth_date ▼ → Facet → Timeline facet\nSol panelde zaman çizelgesi açılır. Doğum tarihleri 1980-1997 arasına yayılmış olmalı. Eğer aşırı eski (1900) ya da gelecek (2090) tarih görüyorsan, format yanlış yorumlanmıştır — tek tek bul ve düzelt.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Tarihleri Standartlaştırma</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html",
+    "href": "07-email-ve-yinelenenler.html",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "",
+    "text": "9 email — E-posta Doğrulama\nSon iki büyük temizlik işi: e-postaları doğrulamak ve yinelenen (duplicate) kayıtları silmek. Bu sırada önemli — duplicate’leri en sona bıraktık çünkü diğer alanlar temizlenmeden duplicate algoritması doğru çalışmaz.\nE-postada problem “düzeltmek” değil, geçersizleri tespit edip karar vermek. Çünkü pedro@ gibi yarım bir e-postada eksik kısmı bilemeyiz — gmail.com mı, hotmail.com mı?",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#standartlaştırma",
+    "href": "07-email-ve-yinelenenler.html#standartlaştırma",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "9.1 1. Standartlaştırma",
+    "text": "9.1 1. Standartlaştırma\nÖnce küçük harfe çevirip boşlukları temizle:\nemail ▼ → Edit cells → Common transforms → To lowercase\n\n\n\n\n\n\nNoteE-postalar büyük/küçük harfe duyarsız\n\n\n\nAYSE@HOTMAIL.COM ile ayse@hotmail.com aynı adres. Ama bilgisayar string karşılaştırmasında bunları farklı görür. Standart: hep küçük harfe çevir.\n\n\nemail ▼ → Edit cells → Common transforms → Trim leading and trailing whitespace\nBu, ID 2’deki MARIA.GARCIA@HOTMAIL.COM (başında/sonunda boşluk) gibi değerleri temizler.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#geçerlilik-kontrolü",
+    "href": "07-email-ve-yinelenenler.html#geçerlilik-kontrolü",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "9.2 2. Geçerlilik Kontrolü",
+    "text": "9.2 2. Geçerlilik Kontrolü\nE-postaların geçerli olup olmadığını anlamak için Custom Text Facet ile akıllı bir kontrol kuralım:\nemail ▼ → Facet → Custom text facet…\nif(isBlank(value),\n   \"BOŞ\",\n   if(value.match(/[^@]+@[^@]+\\.[^@]+/) != null,\n      \"GEÇERLİ\",\n      \"GEÇERSİZ\"))\nBu kod ne yapıyor?\nİki katmanlı if:\n\nisBlank(value) — Hücre boş mu? Boşsa \"BOŞ\" etiketi.\nvalue.match(/[^@]+@[^@]+\\.[^@]+/) — Regex ile e-posta deseni eşleşmesi var mı?\n\n[^@]+ — @ olmayan bir veya daha fazla karakter (kullanıcı adı kısmı)\n@ — bir adet @ işareti\n[^@]+ — yine @ olmayan karakterler (domain ismi)\n\\. — bir adet . (kaçışlı, çünkü regex’te . özel anlamlı)\n[^@]+ — uzantı (com, org vb.)\n\nEşleşme varsa \"GEÇERLİ\", yoksa \"GEÇERSİZ\".\n\nOK bas. Sol panelde 3 etiket görünür:\nGEÇERLİ   ~28\nGEÇERSİZ  ~6\nBOŞ       ~1\nGEÇERSİZ etiketine tıkla — sadece bozuk e-postalar tabloda görünür.\n\n\n\n\n\n\nWarningBu basit bir regex\n\n\n\nGerçek e-posta doğrulaması RFC 5322 standardına göre yapılır ve çok daha karmaşıktır. Bizim regex’imiz birşey@birşey.uzantı formatına bakıyor — bu çoğu durum için yeterli ama kenar durumlarda yanılabilir. Sıkı doğrulama için sunucu tarafında mailgun, truemail gibi kütüphaneler vardır.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#geçersizleri-ne-yapacaksın",
+    "href": "07-email-ve-yinelenenler.html#geçersizleri-ne-yapacaksın",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "9.3 3. Geçersizleri Ne Yapacaksın?",
+    "text": "9.3 3. Geçersizleri Ne Yapacaksın?\nBu iş kararı, teknik karar değil. Üç yol var:\n\nDüzelt: Tahmin makulse düzelt. carlos@@gmail.com → carlos@gmail.com (çift @’tan birini sil), emma.johnson@gmail → emma.johnson@gmail.com (TLD ekle, gmail için makul tahmin).\nBoşalt: Domain’i tahmin etmek riskli olduğunda boş bırak. pedro@, henrik@, lisa.chen@, anna.schmidt@ için domain bilemiyoruz.\nİşaretle: INVALID: öneki ekle ve sonra ilgili kullanıcıya geri dön.\n\nÖnerim:\n\n\n\nE-posta\nKarar\n\n\n\n\ncarlos@@gmail.com\ncarlos@gmail.com (çift @ tek olur)\n\n\nemma.johnson@gmail\nemma.johnson@gmail.com (TLD ekle)\n\n\nanna.schmidt@, pedro@, lisa.chen@, henrik@\nBoşalt\n\n\n\nGEÇERSİZ facet seçiliyken her hücreye çift tıklayıp düzeltebilirsin.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#önce-full_name-kolonunu-standartlaştır",
+    "href": "07-email-ve-yinelenenler.html#önce-full_name-kolonunu-standartlaştır",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.1 1. Önce full_name Kolonunu Standartlaştır",
+    "text": "10.1 1. Önce full_name Kolonunu Standartlaştır\nfull_name kolonunda büyük/küçük harf karmaşası var (John Smith, maria garcia, RAJESH Kumar…). Cluster ve duplicate facet’in işe yaraması için önce Title Case yapalım:\nfull_name ▼ → Edit cells → Common transforms → To titlecase\nmaria garcia → Maria Garcia, RAJESH Kumar → Rajesh Kumar, François DUBOIS → François Dubois olur.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#isim-cluster",
+    "href": "07-email-ve-yinelenenler.html#isim-cluster",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.2 2. İsim Cluster",
+    "text": "10.2 2. İsim Cluster\nfull_name ▼ → Edit cells → Cluster and edit…\nfingerprint yöntemi ile başla. Bu adımda yazım varyantları (örneğin Olga Petrova ile Olga petrova) tek gruba düşer.\nHer grup için doğru yazımı seç ve Merge selected & Re-Cluster.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#duplicate-tespit-iki-yöntem",
+    "href": "07-email-ve-yinelenenler.html#duplicate-tespit-iki-yöntem",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.3 3. Duplicate Tespit — İki Yöntem",
+    "text": "10.3 3. Duplicate Tespit — İki Yöntem\n\n10.3.1 Yöntem A: E-posta Üzerinden Duplicate Facet\nemail ▼ → Facet → Customized facets → Duplicates facet\nSol panelde true / false çıkar:\n\ntrue → bu satırın e-postası tabloda birden fazla geçiyor (yani duplicate var)\nfalse → bu e-posta tek\n\ntrue’ya tıkla. Sadece duplicate satırlar görünür.\n\n\n\n\n\n\nWarningBu yöntemin sınırı\n\n\n\nE-posta her zaman doğru duplicate ölçütü olmayabilir — birden fazla kişi aynı e-postayı paylaşabilir (kurumsal hesap), ya da bazı satırlarda e-posta hiç yok (ID 13 boştu). Daha sağlam bir yöntem ad+doğum tarihi kombinasyonu.\n\n\n\n\n10.3.2 Yöntem B: Ad + Doğum Tarihi Kombosu (daha güvenli)\nCustom text facet açalım:\nfull_name ▼ → Facet → Custom text facet\nvalue + \"_\" + cells[\"birth_date\"].value\nBu kod ne yapıyor?\n\nvalue — şu anki kolonun değeri (full_name).\ncells[\"birth_date\"].value — aynı satırın birth_date hücresinin değeri.\nİki değeri _ ile birleştir, “isim_doğumtarihi” anahtarı oluştur.\n\nSol panelde her benzersiz “isim_tarih” kombinasyonu görünür. Yanında sayı varsa (örneğin John Smith_1985-03-12 (2)) birden fazla satır bu kombinasyona sahip — yani duplicate.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#hangi-satırı-silmeli",
+    "href": "07-email-ve-yinelenenler.html#hangi-satırı-silmeli",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.4 4. Hangi Satırı Silmeli?",
+    "text": "10.4 4. Hangi Satırı Silmeli?\nDuplicate çiftinden birini tutmak, diğerini silmek gerekiyor. Karar kuralları:\n\nDaha eksiksiz olanı tut (boş alan az olan).\nDaha tutarlı/standart olanı tut.\nEşitse: küçük ID’yi tut (önce kaydedilmiş, hem mantıklı hem keyfi).\n\nBu veri setindeki duplicate’ler:\n\n\n\n\n\n\n\n\nTutulan\nSilinen\nSebep\n\n\n\n\nID 1 (John Smith)\nID 14\nAynı bilgi, küçük ID\n\n\nID 6 (Carlos Reyes)\nID 5\nID 6 daha eksiksiz (tam doğum tarihi var)\n\n\nID 10 (Rajesh Kumar)\nID 24\nEş değer, küçük ID\n\n\nID 13 (Olga Petrova)\nID 34\nE-posta ID 34’te var ama ID 13’ün e-postası temizlenebilir\n\n\nID 4 (Anna Schmidt)\nID 31\nAynı bilgi, küçük ID",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#silme-işlemi-star-facet-by-star",
+    "href": "07-email-ve-yinelenenler.html#silme-işlemi-star-facet-by-star",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.5 5. Silme İşlemi (Star + Facet by Star)",
+    "text": "10.5 5. Silme İşlemi (Star + Facet by Star)\nOpenRefine’da seçili satırları toplu silmek için yıldız (star) yöntemi kullanılır:\nAdım 1: Silinecekleri yıldızla.\nTabloda her satırın solunda iki küçük sembol var: yıldız (★) ve bayrak (⚐). Silmek istediğin satırların yıldızına tek tek tıkla.\n\nBu örnekte silinecek ID’ler: 5, 14, 24, 31, 34.\n\nAdım 2: Yıldızlı satırları filtrele.\nSağ üstteki All ▼ → Facet → Facet by star\nSol panelde true / false çıkar. true’ya tıkla — sadece yıldızlı satırlar görünür.\nAdım 3: Sil.\nAll ▼ → Edit rows → Remove matching rows\n5 satır silinir. Tabloda 30 satır kalmalı.\n\n\n\n\n\n\nTip“Yanlışlıkla yanlış satırı sildim!”\n\n\n\nEndişelenme: Undo / Redo sekmesinden geri al. OpenRefine’ın en sevdiğim özelliklerinden biri, hiçbir işlem geri dönüşsüz değil.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "07-email-ve-yinelenenler.html#kontrol",
+    "href": "07-email-ve-yinelenenler.html#kontrol",
+    "title": "8  E-posta ve Yinelenen Kayıtlar",
+    "section": "10.6 6. Kontrol",
+    "text": "10.6 6. Kontrol\nemail ▼ → Facet → Customized facets → Duplicates facet → true artık görünmemeli (ya da boş olmalı). Eğer hâlâ true çıkıyorsa, gözden kaçan duplicate var demektir.\nAynı kontrolü full_name üzerinde de yapabilirsin.\n\n\n\n\n\n\nWarningVeri silmek geri dönüşü olan ama büyük bir karar\n\n\n\nOpenRefine’da geri alabilirsin, ama dosyayı kapatınca geri dönüş zorlaşır. Şu prensibi her zaman uygula:\n\nOrijinal CSV’yi her zaman sakla. Üzerine yazma.\nTemizlenmiş veriyi yeni bir dosyaya export et.\nSilme işlemleri öncesi kaç satır olduğunu not al, sonrasında kontrol et.\n\nBu eğitimde 35 → 30 satıra inmesi beklenen bir sonuç. Eğer farklı sayı görüyorsan bir şey yanlış olmuş demektir.\n\n\nTüm temizlik bitti! Sonraki bölümde export ve işleminin tekrarlanabilir bir şekilde nasıl saklanacağını göreceğiz.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>E-posta ve Yinelenen Kayıtlar</span>"
+    ]
+  },
+  {
+    "objectID": "08-bitiris.html",
+    "href": "08-bitiris.html",
+    "title": "9  Export ve Tekrarlanabilirlik",
+    "section": "",
+    "text": "10 Son Kontrol Listesi\nTebrikler! 🎉 Veri temizlemenin baştan sona bir döngüsünü tamamladın. Şimdi sıra temiz veriyi dışarı aktarmakta ve daha da önemlisi, işlemleri başka bir veri setinde yeniden kullanabilmekte.\nExport’tan önce her kolonu hızlıca kontrol et:",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export ve Tekrarlanabilirlik</span>"
+    ]
+  },
+  {
+    "objectID": "08-bitiris.html#operasyon-geçmişini-çıkarmak",
+    "href": "08-bitiris.html#operasyon-geçmişini-çıkarmak",
+    "title": "9  Export ve Tekrarlanabilirlik",
+    "section": "12.1 Operasyon Geçmişini Çıkarmak",
+    "text": "12.1 Operasyon Geçmişini Çıkarmak\nSol üstte Undo / Redo sekmesine tıkla.\nListede tüm yaptığın işlemler görünür: cluster, transform, common transform, vb. Liste sayfasının altında Extract… butonu var, ona tıkla.\nAçılan pencerede tüm işlemlerin JSON formatında listesini göreceksin. Onay kutuları işaretli olanlar dışa aktarılacak. Şuna benzer:\n[\n  {\n    \"op\": \"core/text-transform\",\n    \"engineConfig\": {...},\n    \"columnName\": \"score\",\n    \"expression\": \"grel:value.replace(\\\",\\\", \\\".\\\")\",\n    \"onError\": \"keep-original\",\n    ...\n  },\n  {\n    \"op\": \"core/mass-edit\",\n    \"columnName\": \"gender\",\n    \"expression\": \"value\",\n    \"edits\": [\n      {\"from\": [\"M\", \"m\"], \"to\": \"Male\", ...},\n      ...\n    ]\n  },\n  ...\n]\nBu JSON’u kopyala ve operations.json gibi bir adla kaydet.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export ve Tekrarlanabilirlik</span>"
+    ]
+  },
+  {
+    "objectID": "08-bitiris.html#aynı-işlemleri-yeni-veriye-uygulama",
+    "href": "08-bitiris.html#aynı-işlemleri-yeni-veriye-uygulama",
+    "title": "9  Export ve Tekrarlanabilirlik",
+    "section": "12.2 Aynı İşlemleri Yeni Veriye Uygulama",
+    "text": "12.2 Aynı İşlemleri Yeni Veriye Uygulama\nYarın aynı kaynaktan yeni bir kirli CSV geldi. Aynı temizliği baştan yapmak yerine:\n\nYeni projeyi oluştur (yeni CSV ile).\nUndo / Redo → Apply… butonuna bas.\nKaydettiğin operations.json içeriğini yapıştır.\nPerform Operations bas.\n\nTüm temizlik otomatik uygulanır. 30 dakikalık iş 5 saniyede biter.\n\n\n\n\n\n\nTipTekrarlanabilirlik = veri analizi disiplini\n\n\n\nBu özellik OpenRefine’ın Excel’e karşı en büyük avantajıdır. Excel’de elle yapılan her temizlik, yarın gelecek veriyle tekrar yapılması gereken iştir. OpenRefine’da bir kez yapıyorsun, sonsuza kadar kullanıyorsun.\nVeri gazeteciliği, akademik araştırma, kurumsal raporlama — tüm bu alanlarda tekrarlanabilirlik profesyonelliğin işareti.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Export ve Tekrarlanabilirlik</span>"
+    ]
+  }
+]
