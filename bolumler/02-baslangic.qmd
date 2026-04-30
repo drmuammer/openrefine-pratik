@@ -1,0 +1,110 @@
+---
+title: "Veriyi Tanıyalım"
+---
+
+# Veri Setini İndir
+
+Bu eğitimde kullanacağımız kirli veri setini [`customers_dirty.csv`](../data/customers_dirty.csv) dosyasından indir. 35 satır, 13 kolondan oluşan uydurma müşteri verisi:
+
+| Kolon | İçerik |
+|---|---|
+| `id` | Sıra numarası |
+| `full_name` | Ad soyad |
+| `email` | E-posta |
+| `phone` | Telefon |
+| `city`, `country` | Şehir ve ülke |
+| `birth_date`, `registration_date` | Tarihler |
+| `gender` | Cinsiyet |
+| `occupation` | Meslek |
+| `income` | Gelir |
+| `subscriber` | Abone mi? |
+| `score` | Puan (1-5 arası) |
+
+İlk birkaç satıra göz at — büyük olasılıkla derin bir nefes vermen gerekecek. Sorun yok, biraz sonra hepsi temizlenecek.
+
+# Yeni Proje Oluştur
+
+OpenRefine açıkken sol panelde **Create Project** sekmesine tıkla.
+
+1. **This Computer** seçili olsun.
+2. **Browse...** ile indirdiğin `customers_dirty.csv` dosyasını seç.
+3. **Next →** butonuna bas.
+
+Açılan ekranda OpenRefine sana dosyayı nasıl ayrıştıracağını soruyor. Önemli ayarlar:
+
+- **Character encoding:** `UTF-8` (Türkçe ve uluslararası karakterler için).
+- **Columns are separated by:** `commas (CSV)` seçili olsun.
+- **Parse next 1 line(s) as column headers:** İşaretli olmalı (ilk satır başlık).
+- **Trim leading & trailing whitespace from strings:** *İşaretleme!* — Boşlukları biz bilerek temizleyeceğiz.
+- **Parse cell text into numbers, dates, ...:** *İşaretleme!* — OpenRefine'ın otomatik tip tahmini bizim öğrenmek istediğimiz şeyi atlar.
+
+::: {.callout-tip}
+## Neden otomatik tipleri kapatıyoruz?
+Eğitim amaçlı. Gerçek hayatta bu işaretleri açabilirsin — ama o zaman OpenRefine senin yerine bazı işleri yapar ve sen ne yaptığını öğrenemezsin. Şu an tüm değerlerin **string olarak** içeri girmesini istiyoruz.
+:::
+
+Sağ üstte projenin adını yaz: `customers cleaning` gibi. Sonra **Create Project »** butonuna bas.
+
+# İlk Bakış
+
+Karşına 35 satırlık tablo gelmeli. Hızlıca sorunlara bak:
+
+- `gender` kolonunda `M`, `F`, `Male`, `Female`, `m`, `male`, `female` karışık.
+- `subscriber` kolonunda `Yes`, `No`, `1`, `Y`, `N`, `n`, `yes` karışık.
+- `country` kolonunda `USA`, `United States`, `FR`, `France`, `México`, `Mexico` gibi tutarsızlıklar.
+- `city` kolonunda büyük/küçük harf karmaşası ve başında/sonunda boşluk.
+- `birth_date` ve `registration_date` kolonlarında 5+ farklı format.
+- `income` kolonunda farklı para birimleri ve sayı formatları.
+- `phone` kolonunda telefon numarası ne kadar farklı yazılabilirse.
+- `email` kolonunda eksik alanlar, çift `@`, eksik domain.
+- Bazı satırlar yinelenen (duplicate) kayıtlar.
+
+Yapacağımız iş bu listeyi sırayla bitirmek.
+
+# Arayüzü Tanıyalım
+
+Birkaç noktaya dikkat çekeyim, çünkü bunları sürekli kullanacağız:
+
+**Sol panel — Facet / Filter:**
+Burada açtığımız her facet (filtre, gruplama) görünür. Bir kolonun tüm değerlerini sayılarıyla gözden geçirmek için kullanırız.
+
+**Üst sol — Undo / Redo:**
+Yaptığın her işlem buraya kaydedilir. **İstediğin adıma geri dönebilirsin.** Bu OpenRefine'ın süper gücü.
+
+**Her kolon başlığında ▼ üçgen:**
+Tıkladığında kolonla yapabileceğin her şeyin menüsü açılır:
+
+- **Facet:** Filtre oluşturma
+- **Edit cells:** Hücre içeriklerini değiştirme (en çok kullanacağımız menü)
+- **Edit column:** Kolonu yeniden adlandırma, taşıma, silme
+- **Sort:** Sıralama
+
+**Üst sağ — Export:**
+İşin bittiğinde temizlenmiş veriyi indirme.
+
+::: {.callout-note}
+## Hücre tipleri renkten anlaşılır
+
+- **Siyah, sola yaslı metin:** String (metin)
+- **Yeşil, sağa yaslı metin:** Number (sayı) veya Date (tarih)
+
+Bir kolonu sayıya çevirdiğinde renginin değiştiğini göreceksin. Bu görsel ipucu, dönüşümün başarılı olduğunu hızlıca anlamak için çok değerli.
+:::
+
+# Çalışma Stratejimiz
+
+Veri temizlerken takip edeceğimiz sıra:
+
+1. **Kategorik kolonlar** (cinsiyet, abone, ülke, şehir) — kolay başlangıç
+2. **Sayısal kolonlar** (puan, gelir) — GREL ifadelerini öğreniriz
+3. **Telefon** — regex pratiği
+4. **Tarih** — `toDate` ile çoklu format
+5. **E-posta** — geçersiz kayıt tespiti
+6. **Yinelenen kayıtlar** — en son, çünkü diğer alanlar temizlendikten sonra duplicate'ler doğru görünür
+
+::: {.callout-tip}
+## Bu sıralama önemli
+Duplicate temizliğini en sona bırakmamızın sebebi şu: başlangıçta `RAJESH Kumar` ve `Rajesh Kumar` farklı görünüyor — küçük/büyük harfler temizlenmediği için duplicate facet onları yakalayamaz. Önce isimleri standartlaştırıp sonra duplicate aramak çok daha verimli.
+:::
+
+Hadi ilk kategoriye geçelim.

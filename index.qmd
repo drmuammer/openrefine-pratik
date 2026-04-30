@@ -1,52 +1,113 @@
 ---
-title: "Önsöz"
+title: "OpenRefine Eğitimi"
+toc: false
 ---
 
-# Hoş Geldin {.unnumbered}
+::: {.hero-banner}
+# 🧹 OpenRefine Eğitimi
 
-Veri analizinin en az sevilen ama en çok zaman alan kısmı **veri temizleme**'dir. Tablo açıyorsun, içeride bir kişinin adı üç farklı şekilde yazılmış, tarihler dört ayrı formatta, gelir kolonunda kimi `5500`, kimi `$5,500`, kimi de `5.500 USD` yazıyor. Bunları Excel'de elle düzeltmek mümkün ama sıkıcı, hata yapmaya açık ve en kötüsü: **tekrarlanabilir değil**. Yarın aynı tablo geldiğinde her şeyi baştan yaparsın.
-
-İşte [OpenRefine](https://openrefine.org/) tam burada devreye giriyor.
-
-## OpenRefine Nedir?
-
-Açık kaynaklı, ücretsiz bir veri temizleme aracı. Bilgisayarında çalışır, tarayıcı arayüzü kullanır ama hiçbir yere veri göndermez (bu konuyu sonraki bölümde detaylı konuşacağız). Excel'in yapamadığı şeyleri yapar:
-
-- **Yazım varyantlarını gruplandırır** (`İstanbul` / `istanbul` / `İSTANBUL` üçünü tek tıkla birleştirir).
-- **Sütun bazında akıllı dönüşümler** uygular (regex, GREL ifadeleri, tarih dönüşümleri).
-- **Tüm yaptıklarını kaydeder** — başka bir kirli dosyaya aynı işlemleri tek tıkla uygulayabilirsin.
-- **Geri al / ileri al** sınırsız çalışır. Yanlış yaptın? Sorun değil, geri dön.
-
-## Bu Eğitimde Ne Yapacağız?
-
-35 satırlık, içine bilinçli olarak her türlü pislik bulaştırılmış bir müşteri veri seti üzerinde çalışacağız. Veri içinde:
-
-- Yazım, büyük/küçük harf, boşluk tutarsızlıkları
-- Beş farklı tarih formatı
-- Birden fazla para birimi ve sayı formatı
-- Bozuk telefon numaraları, eksik e-postalar
-- Yinelenen kayıtlar
-- Eksik veriler
-
-var. Sen bitirdiğinde elinde temizlenmiş, analize hazır bir tablo olacak — ve daha önemlisi, herhangi bir kirli CSV ile karşılaştığında ne yapacağını biliyor olacaksın.
-
-## İhtiyacın Olanlar
-
-- Bir bilgisayar (Windows, Mac, Linux fark etmez)
-- Java (OpenRefine ile birlikte gelen sürüm yeterli)
-- 30-60 dakika boş zaman
-- Sabır — ama söz veriyorum, çok eğlenceli
-
-## Bu Eğitim Kimin İçin?
-
-- Veri analizi öğrenenler için
-- Excel'in yetmediği noktada takılan herkes için
-- Akademik araştırmacılar, gazeteciler, veri gazetecileri için
-- "Bana her hafta aynı pis CSV geliyor, bıktım" diyen herkes için
-
-Hadi başlayalım. İlk durağımız: kurulum ve **veri güvenliği** — çünkü kirli verinin içinde bazen kimsenin görmemesi gereken bilgiler olur.
-
-::: {.callout-tip}
-## Eğitim akışı
-Bölümleri sırayla takip etmeni öneririm. Her bölüm bir öncekinin üzerine bina ediyor. Ekranın bir yarısında bu eğitimi, diğer yarısında OpenRefine'ı açık tutarsan en iyi sonucu alırsın.
+### Adım adım, panik yapmadan kirli veri temizleme
 :::
+
+## 👋 Bu Eğitim Kimin İçin?
+
+Bu eğitim, **kirli CSV dosyalarıyla cebelleşen** herkes içindir. Hedefi: Excel'de iki saat sürecek, hata yapmaya açık, tekrarlanamaz temizlik işlerini OpenRefine ile yarım saatte ve **tekrarlanabilir** şekilde halletmeyi öğretmek.
+
+Hedef kitle:
+
+* Veri analizi öğrenenler
+* Akademik araştırmacılar, gazeteciler, tez yazanlar
+* "Bana her hafta aynı pis tablo geliyor" diyen kurumsal çalışanlar
+* Excel'in yetmediği noktada takılan herkes
+
+## 🎯 Neden OpenRefine?
+
+Veri temizleme analizinin **kalitesini en çok belirleyen adımdır**. "Garbage in, garbage out" — pis veri ile yapılan analiz pis sonuç verir. OpenRefine bu işi:
+
+* ✅ **Hızlandırır** — yazım varyantlarını tek tıkla gruplar (cluster)
+* ✅ **Dürüst tutar** — yaptığın her işlemi kaydeder, geri alabilirsin
+* ✅ **Tekrarlanabilir kılar** — operations.json ile aynı temizliği yarın gelen veriye uygulayabilirsin
+* ✅ **Yerel çalışır** — verin bilgisayarından çıkmaz (hassas veri için kritik)
+* ✅ **Ücretsiz ve açık kaynak**
+
+## 📚 İçerik
+
+### 1. Kurulum ve Veri Güvenliği
+
+OpenRefine nasıl kurulur, hangi özellikleri verini dış sunuculara gönderir, hassas veri ile nasıl güvenli çalışılır.
+
+[**Başla →**](bolumler/01-kurulum-ve-guvenlik.qmd){.btn-start}
+
+### 2. Veriyi Tanıyalım
+
+Veri setini yükle, ilk bakışta sorunları gör, OpenRefine arayüzünü tanı.
+
+[**Başla →**](bolumler/02-baslangic.qmd){.btn-start}
+
+### 3. Kategorik Kolonları Standartlaştırma
+
+Cinsiyet, abone, ülke, şehir kolonlarındaki yazım varyantlarını Text Facet ve Cluster ile birleştir.
+
+[**Başla →**](bolumler/03-kategorik-kolonlar.qmd){.btn-start}
+
+### 4. Sayısal Kolonları Düzenleme
+
+Puan ve gelir kolonlarını GREL ile temizle, locale farklarına dikkat et.
+
+[**Başla →**](bolumler/04-sayisal-kolonlar.qmd){.btn-start}
+
+### 5. Telefon Numaraları (Regex)
+
+Düzensiz telefon formatlarını tek hamlede regex ile standartlaştır.
+
+[**Başla →**](bolumler/05-telefon.qmd){.btn-start}
+
+### 6. Tarihleri Standartlaştırma
+
+5 farklı tarih formatını `toDate()` ile gerçek tarih tipine çevir.
+
+[**Başla →**](bolumler/06-tarih.qmd){.btn-start}
+
+### 7. E-posta ve Yinelenen Kayıtlar
+
+Geçersiz e-postaları regex ile yakala, duplicate'leri tespit edip sil.
+
+[**Başla →**](bolumler/07-email-ve-yinelenenler.qmd){.btn-start}
+
+### 8. Bitiriş
+
+Temiz veriyi export et, operations.json ile işlem geçmişini sakla, gelecek için tekrarlanabilir bir akış kur.
+
+[**Başla →**](bolumler/08-bitiris.qmd){.btn-start}
+
+## 📦 Çalışma Veri Seti
+
+Eğitimde kullandığımız [`customers_dirty.csv`](data/customers_dirty.csv) dosyasında 35 satır, 13 kolon var. İçinde:
+
+* Yazım, büyük/küçük harf, boşluk tutarsızlıkları
+* 5 farklı tarih formatı (`1985-03-12`, `12.05.1990`, `03-Mar-1992`, `1995`, `N/A` …)
+* Birden fazla para birimi ve sayı formatı (`$5500`, `7.500 USD`, `3500 EUR`, `£3500` …)
+* Bozuk telefon numaraları, eksik e-postalar
+* 5 yinelenen kayıt çifti
+
+İsimler uluslararası: John Smith, Yuki Tanaka, François Dubois, Anna Schmidt, Carlos Reyes, Olga Petrova...
+
+## 🌐 İlgili Kaynaklar
+
+* 🔐 **[Veri Güvenliği Rehberi](https://drmuammer.github.io/veri-seti-guvenligi/)** — Klinik araştırmacılar için kimliksizleştirme ve güvenlik
+* 🌍 **[OpenRefine resmi sitesi](https://openrefine.org/)** — Yazılımı buradan indir
+* 📖 **[GREL fonksiyon referansı](https://openrefine.org/docs/manual/grelfunctions)** — Tüm GREL fonksiyonları
+
+## 📜 Lisans ve Atıf
+
+Bu eğitim [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) altında paylaşılmaktadır. Kaynağı belirterek özgürce kullanabilir, dağıtabilir ve uyarlayabilirsiniz.
+
+**Önerilen atıf:**
+
+> Beslen, M. (2026). *OpenRefine Eğitimi: Adım adım kirli veri temizleme rehberi*. <https://drmuammer.github.io/openrefine-pratik/>
+
+Hata ya da öneri için [GitHub Issues](https://github.com/drmuammer/openrefine-pratik/issues) üzerinden ulaşabilirsiniz.
+
+---
+
+*"Temiz veri, doğru kararın yarısıdır."*

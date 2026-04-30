@@ -1,0 +1,134 @@
+---
+title: "Telefon Numaraları (Regex Pratiği)"
+---
+
+`phone` kolonunda neredeyse her satır farklı formatta. Bu sefer **regex** (düzenli ifadeler) ile sadece rakamları bırakıp tek formata indireceğiz.
+
+# Mevcut Durum
+
+Veride şu formatlar var:
+
+- `+1-555-123-4567`
+- `(555) 234 5678`
+- `+33 1 23 45 67 89`
+- `5556789012` (zaten temiz)
+- `555-345-67-89`
+- `+81(3)5559876`
+- `0 (555) 111 22 33`
+- `0215551122`
+- `(216)5556677`
+- `-` (geçersiz, sadece tire)
+
+Hepsini **sadece rakamlardan oluşan**, standart bir formata çevireceğiz.
+
+# 1. Tüm Rakam-Olmayan Karakterleri Sil
+
+`phone` ▼ → **Edit cells → Transform...**
+
+```js
+value.replace(/\D/, "")
+```
+
+**Bu kod ne yapıyor?**
+
+- `/\D/` — bu bir **regex** (düzenli ifade) ifadesi. `\D` "rakam olmayan herhangi bir karakter" demektir (`D` = Digit'in zıttı).
+- `.replace(/\D/, "")` — değer içindeki tüm rakam olmayan karakterleri (boşluk, parantez, tire, artı, harf...) silip yerine boş string koyar.
+
+Sonuç:
+
+| Önce | Sonra |
+|---|---|
+| `+1-555-123-4567` | `15551234567` |
+| `(555) 234 5678` | `5552345678` |
+| `+33 1 23 45 67 89` | `33123456789` |
+| `0 (555) 111 22 33` | `05551112233` |
+| `-` | `` (boş) |
+
+::: {.callout-tip}
+## Regex hızlı not
+Regex, metin desenlerini tarif etmenin standart yolu. Bilmen gereken birkaç sembol:
+
+- `\d` — herhangi bir rakam (0-9)
+- `\D` — rakam olmayan herhangi bir karakter
+- `\s` — boşluk karakteri
+- `\S` — boşluk olmayan
+- `+` — bir veya daha fazla
+- `*` — sıfır veya daha fazla
+
+`/\D/` ile yazdığımız ifadenin başındaki/sonundaki `/`'ler regex sınırını işaretler — GREL'e "bu bir regex ifadesi" diyor.
+:::
+
+**OK** bas.
+
+# 2. Ülke Kodu Tekdüzeleştirme
+
+Şimdi telefonlar farklı uzunluklarda. Bazıları:
+
+- 10 hane (`5556789012`) — ülke kodu yok
+- 11 hane (`05551112233`) — başında `0` var
+- 11-13 hane — başında `1` (ABD), `33` (FR), `81` (JP), `90` vb. ülke kodları var
+
+Strateji: hepsini **10 haneli, başında 0 ya da ülke kodu olmayan** formata indir.
+
+`phone` ▼ → **Edit cells → Transform...**
+
+```js
+if(value.length() == 11 && value.startsWith("0"),
+   value.substring(1),
+   if(value.length() > 10,
+      value.substring(value.length() - 10),
+      value))
+```
+
+**Bu kod ne yapıyor?**
+
+İki iç içe `if` ifadesi:
+
+1. **Dış if:** Eğer değer 11 haneliyse ve `0` ile başlıyorsa, ilk karakteri at (`substring(1)` = 1. karakterden sonrasını al). `05551112233` → `5551112233`.
+2. **İç if:** Yukarı uymadıysa ama değer 10 haneden uzunsa, son 10 karakteri al (`substring(value.length() - 10)`). Bu, başındaki ülke kodunu kırpar. `15551234567` → `5551234567`, `33123456789` → `3123456789` *(dikkat — bu durumda son 10 hane Fransız iç hat numarasını verir, ülke kodu kalkmış olur).*
+3. **Hiçbiri uymadıysa** (zaten 10 haneli ya da boş): değeri olduğu gibi bırak.
+
+::: {.callout-warning}
+## Bu yaklaşımın kusuru
+"Son 10 haneyi al" yöntemi her ülke için doğru çalışmayabilir — bazı ülkelerin iç hat numaraları farklı uzunlukta olur. **Bu eğitim için yeterli** ama gerçek hayatta uluslararası numaralarla çalışıyorsan [libphonenumber](https://github.com/google/libphonenumber) gibi özel bir kütüphane kullanmalısın.
+
+OpenRefine içinde uluslararası telefon doğrulaması için iyi yol, telefon numarasını ülke koduyla birlikte ayrı kolonda saklamaktır. Bu eğitimde tek formata indirmekle yetiniyoruz.
+:::
+
+**OK** bas.
+
+# 3. Boş Kalanları Kontrol Et
+
+ID 26'daki Alex Johnson'ın telefonu sadece `-` idi, ilk replace'ten sonra boş kaldı. Bu beklenen bir durum — gerçek hayatta veri eksikse boş bırakırsın.
+
+`phone` ▼ → **Facet → Customized facets → Facet by blank** ile boş hücreleri filtreleyebilirsin. Sadece 1 boş hücre olmalı.
+
+# 4. (Opsiyonel) Okunaklı Format
+
+Eğer telefonları okuması daha kolay göstermek istersen, GREL ile formatlayabiliriz:
+
+`phone` ▼ → **Edit cells → Transform...**
+
+```js
+if(value.length() == 10,
+   value[0,3] + " " + value[3,6] + " " + value[6,8] + " " + value[8,10],
+   value)
+```
+
+**Bu kod ne yapıyor?**
+
+- `value[0,3]` — değerin 0-3 indeksleri arası (yani ilk 3 karakter, "555").
+- `value[3,6]` — 3-6 indeksleri (sonraki 3 karakter).
+- Ve benzeri.
+- Sonuç: `5551234567` → `555 123 45 67`.
+
+`if` kontrolü ile sadece tam 10 haneli olanlara format uyguluyoruz, boş ve farklı uzunluklara dokunmuyoruz.
+
+::: {.callout-note}
+## Format uygulamak gerekli mi?
+Veritabanı dünyasında telefonlar genelde **ham rakam dizisi** olarak saklanır, görsel format kullanıcıya gösterilirken uygulanır. Eğer veriyi başka bir sistemle entegre edeceksen formatlamadan bırakman daha iyi olabilir.
+
+Bu eğitim için iki yol da kabul edilebilir.
+:::
+
+Telefon kolonu tamam. Şimdi tarihlere geçiyoruz — orada da ilginç sürprizler var.

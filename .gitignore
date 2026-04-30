@@ -1,8 +1,8 @@
 # Quarto çıktıları
 /.quarto/
-/_book/
-/_freeze/
 /_site/
+/_freeze/
+/_book/
 
 # Sistem dosyaları
 .DS_Store

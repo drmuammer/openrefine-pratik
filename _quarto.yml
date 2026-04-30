@@ -1,43 +1,92 @@
 project:
-  type: book
-  output-dir: _book
+  type: website
+  output-dir: _site
 
-book:
-  title: "OpenRefine ile Kirli Veri Temizleme"
-  subtitle: "Adım adım, panik yapmadan"
-  author: "Sizin Adınız"
-  date: today
-  date-format: "MMMM YYYY"
-  language: tr
-  search: true
-  reader-mode: true
+website:
+  title: "OpenRefine Eğitimi"
+  description: "Adım adım, panik yapmadan kirli veri temizleme rehberi"
+  site-url: https://drmuammer.github.io/openrefine-pratik/
+  repo-url: https://github.com/drmuammer/openrefine-pratik
+  repo-actions: [edit, issue]
+  page-navigation: true
+  back-to-top-navigation: true
+
+  navbar:
+    background: "#0F172A"
+    foreground: "#14B8A6"
+    title: "🧹 OpenRefine Eğitimi"
+    left:
+      - href: index.qmd
+        text: Ana Sayfa
+      - text: Bölümler
+        menu:
+          - bolumler/01-kurulum-ve-guvenlik.qmd
+          - bolumler/02-baslangic.qmd
+          - bolumler/03-kategorik-kolonlar.qmd
+          - bolumler/04-sayisal-kolonlar.qmd
+          - bolumler/05-telefon.qmd
+          - bolumler/06-tarih.qmd
+          - bolumler/07-email-ve-yinelenenler.qmd
+          - bolumler/08-bitiris.qmd
+    right:
+      - icon: github
+        href: https://github.com/drmuammer/openrefine-pratik
+        aria-label: GitHub
+      - icon: house
+        href: https://muammerbeslen.com
+        aria-label: Website
+
+  sidebar:
+    style: "docked"
+    search: true
+    background: light
+    contents:
+      - href: index.qmd
+        text: "🏠 Ana Sayfa"
+      - section: "📚 Bölümler"
+        contents:
+          - href: bolumler/01-kurulum-ve-guvenlik.qmd
+            text: "1. Kurulum ve Güvenlik"
+          - href: bolumler/02-baslangic.qmd
+            text: "2. Veriyi Tanıyalım"
+          - href: bolumler/03-kategorik-kolonlar.qmd
+            text: "3. Kategorik Kolonlar"
+          - href: bolumler/04-sayisal-kolonlar.qmd
+            text: "4. Sayısal Kolonlar"
+          - href: bolumler/05-telefon.qmd
+            text: "5. Telefon Numaraları"
+          - href: bolumler/06-tarih.qmd
+            text: "6. Tarihler"
+          - href: bolumler/07-email-ve-yinelenenler.qmd
+            text: "7. E-posta ve Yinelenenler"
+          - href: bolumler/08-bitiris.qmd
+            text: "8. Bitiriş"
 
   page-footer:
-    left: "OpenRefine Eğitimi"
-    right: "Quarto ile hazırlandı"
-
-  chapters:
-    - index.qmd
-    - 01-kurulum-ve-guvenlik.qmd
-    - 02-baslangic.qmd
-    - 03-kategorik-kolonlar.qmd
-    - 04-sayisal-kolonlar.qmd
-    - 05-telefon.qmd
-    - 06-tarih.qmd
-    - 07-email-ve-yinelenenler.qmd
-    - 08-bitiris.qmd
+    left: "© 2026 Muammer Beslen, MD · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
+    right:
+      - icon: github
+        href: https://github.com/drmuammer/openrefine-pratik
+      - text: muammerbeslen.com
+        href: https://muammerbeslen.com
 
 format:
   html:
     theme:
       light: cosmo
       dark: darkly
+    css: styles.css
     toc: true
     toc-depth: 3
-    toc-title: "Bu Bölümde"
+    toc-location: right
+    toc-title: "Bu Sayfada"
+    code-copy: true
     code-overflow: wrap
-    code-block-bg: true
-    code-block-border-left: "#31BAE9"
-    callout-appearance: simple
-    fig-align: center
     smooth-scroll: true
+    link-external-newwindow: true
+    anchor-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    highlight-style: github
+
+lang: tr
