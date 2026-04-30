@@ -1,0 +1,166 @@
+---
+title: "Sayısal Kolonları Düzenleme"
+---
+
+Şimdi iki sayısal kolonu temizleyeceğiz: önce kolay olan `score`, sonra zorlu olan `income`. Bu bölümde **GREL** (General Refine Expression Language — OpenRefine'ın kendi formül dili) ile tanışacağız.
+
+::: {.callout-note}
+## GREL nedir?
+OpenRefine'a özel, JavaScript'e benzer bir mini dil. Tek satırlık dönüşümler yazıp her hücreye uygulayabilirsin. Üç temel kavram:
+
+- `value` — şu anki hücrenin değeri.
+- `value.replace("a", "b")` — değerin içindeki tüm `a`'ları `b` ile değiştirir.
+- `if(koşul, doğruysa, yanlışsa)` — koşullu mantık.
+
+Tüm GREL özellikleri için: [OpenRefine GREL dokümanı](https://openrefine.org/docs/manual/grelfunctions).
+:::
+
+# `score` — Puan
+
+Veride çoğu puan `4.5`, `3.8` gibi nokta ondalıklı. Ama bazıları **virgül** ondalıklı (`"4,2"`, `"3,5"`) ve birkaç hücre boş. Hedef: hepsini noktalı ondalık yapıp **sayı tipine** çevirmek.
+
+::: {.callout-warning}
+## Locale farkı
+Türkiye, Almanya, Fransa gibi ülkelerde ondalık ayraç olarak **virgül** (`4,2`) kullanılır. ABD ve İngiltere'de **nokta** (`4.5`) kullanılır. CSV'lerde bu fark büyük baş ağrısıdır. OpenRefine sadece nokta-ondalık'ı sayı olarak tanır, dolayısıyla virgülleri noktaya çevirmemiz gerekiyor.
+:::
+
+## 1. Virgülleri Noktaya Çevir
+
+`score` ▼ → **Edit cells → Transform...**
+
+Açılan kutuya şunu yaz:
+
+```js
+value.replace(",", ".")
+```
+
+**Bu kod ne yapıyor?**
+
+- `value` — şu anki hücrenin içeriği (örneğin `"4,2"`).
+- `.replace(",", ".")` — string içindeki tüm virgülleri nokta yapar.
+- Sonuç: `"4,2"` → `"4.2"`.
+
+Önizleme penceresinde sağ tarafta yeni değerleri göreceksin.
+
+::: {.callout-tip}
+## Hata mesajı görürsen panik yapma
+Boş hücreler için OpenRefine *"replace expects three strings..."* gibi bir uyarı verebilir. Bu uyarı sadece o satırlar için, ve kutunun altındaki **On error: keep original** seçeneği işaretli olduğu sürece sorun değil. Boş hücre boş kalır.
+
+Daha temiz görmek istersen şu alternatif ifadeyi kullanabilirsin:
+
+```js
+if(isBlank(value), value, value.replace(",", "."))
+```
+
+Bu önce hücre boş mu diye kontrol eder, boşsa dokunmaz, doluysa replace yapar. Sonuç aynı, sadece hata mesajı görünmez.
+:::
+
+**OK** bas. Tüm virgüller noktaya dönüşür.
+
+## 2. Sayıya Çevir
+
+Şimdi değerler hâlâ string (metin) tipinde. Sayıya çevirelim:
+
+`score` ▼ → **Edit cells → Common transforms → To number**
+
+Hücreler **yeşile** dönüp **sağa yaslandığında** dönüşüm başarılıdır.
+
+## 3. Kontrol
+
+`score` ▼ → **Facet → Numeric facet**
+
+Açılan histogram'da puanların 2.5 - 5.0 arasında dağılması lazım. Boş hücreler "Blank" sayacında görünür (üç hücre — ID 7, 20, 28).
+
+# `income` — Gelir
+
+Bu kolon en zorlu olanı. Veride şu varyantlar var:
+
+- `$5500` (USD prefix sembolü)
+- `5500` (sade sayı)
+- `2500 USD` (USD kod ekli)
+- `7.500 USD` (period ile binlik ayraç + USD kod)
+- `5.800 USD` (period binlik)
+- `12.500` (period binlik, kod yok)
+- `3500 EUR` (Euro kodu)
+- `9500€` (Euro sembolü)
+- `£3500` (Pound)
+- `nan` (geçersiz)
+
+Stratejimiz: önce her şeyi USD baz alarak temizle, farklı para birimlerini ele al, sonra sayıya çevir.
+
+## 1. Önce `nan` ve Para Birimi Outlier'larını Hallet
+
+Text Facet ile farklı değerleri görelim:
+
+`income` ▼ → **Facet → Text facet**
+
+`nan` değerinin yanındaki **edit** linkine tıkla, kutuyu boşalt, Apply. Hücre null olur.
+
+Şimdi farklı para birimi olan satırları bul (3 row var):
+- `3500 EUR`, `9500€` — Euro
+- `£3500` — Pound
+
+::: {.callout-important}
+## Para birimi dönüşümü = veri kararı
+Farklı para birimlerini USD'ye çevirmek **kur kabul etmek** demektir. Gerçek hayatta:
+
+- Hangi günün kuru? Kayıt günü mü, bugün mü?
+- Resmi kur mu, piyasa kuru mu?
+
+Bu kararı veriyi sahibine sormadan vermek tehlikeli. **Bu eğitim için** sabit kabul ediyoruz: 1 EUR ≈ 1.1 USD, 1 GBP ≈ 1.25 USD.
+
+- `3500 EUR` → `3850`
+- `9500€` → `10450`
+- `£3500` → `4375`
+
+Text Facet'ten her birini elle düzelt.
+:::
+
+## 2. Para Birimi Eklerini Tek Hamlede Temizle
+
+Şimdi geriye sadece USD değerleri kaldı. Hepsindeki USD ekleri ve binlik nokta ayraçlarını silelim:
+
+`income` ▼ → **Edit cells → Transform...**
+
+```js
+value.replace("$", "").replace("USD", "").replace(".", "").replace(" ", "")
+```
+
+**Bu kod ne yapıyor?**
+
+`replace` fonksiyonlarını birbirine zincirledik. Sırayla:
+
+1. `.replace("$", "")` — Dolar sembolünü siler. `$5500` → `5500`.
+2. `.replace("USD", "")` — USD kodunu siler. `2500 USD` → `2500 `.
+3. `.replace(".", "")` — Binlik ayraç olan noktayı siler. `7.500` → `7500`.
+4. `.replace(" ", "")` — Geriye kalan boşlukları siler. `2500 ` → `2500`.
+
+Sıra çok önemli — `replace`'ler soldan sağa çalışır.
+
+::: {.callout-warning}
+## Sıra hatası nelere yol açar?
+Bu adımı atlayıp doğrudan **To number** yaparsan, OpenRefine `12.500` değerini "**on iki nokta beş**" olarak okur ve `12.5` yapar. Yani **35.000** dolarlık gelir aniden 35 dolara döner. Mutlaka önce binlik noktayı sil, sonra sayıya çevir.
+:::
+
+**OK** bas.
+
+## 3. Sayıya Çevir
+
+`income` ▼ → **Edit cells → Common transforms → To number**
+
+Yeşil renge dönmeli. Sağa yaslı ve hizalı görünüm.
+
+## 4. Kontrol
+
+`income` ▼ → **Facet → Numeric facet**
+
+Histogram açılır. Veride en küçük gelir 1800 (Liam O'Brien, intern), en yüksek 11000 (Michael White, doktor). 1800-11000 arasında bir dağılım görüyorsan dönüşüm temiz.
+
+::: {.callout-tip}
+## Numeric facet süper kullanışlı
+Histogram'ın iki ucundaki kaydırıcılarla aralık seçebilirsin. Mesela "10000'den büyük gelirler" diye filtreleyip o satırları görmek istersen — sol kaydırıcıyı 10000'e çek, sadece o satırlar tabloda görünür.
+
+Aykırı değerleri (outlier) bulmak için bulunmaz fırsat.
+:::
+
+İki sayısal kolonu da hallettik. Bir sonraki bölümde **regex** ile telefon numaralarına geçeceğiz — bu işin biraz daha eğlenceli kısmı.

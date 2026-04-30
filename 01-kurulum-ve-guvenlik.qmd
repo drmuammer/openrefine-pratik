@@ -1,0 +1,108 @@
+---
+title: "Kurulum ve Veri Güvenliği"
+---
+
+# Kurulum
+
+OpenRefine'ı [openrefine.org/download.html](https://openrefine.org/download.html) adresinden indirebilirsin. Kurulum sayfasında işletim sistemine uygun sürümü seç:
+
+- **Windows:** `.zip` dosyasını indir, herhangi bir klasöre çıkart, `openrefine.exe` dosyasına çift tıkla.
+- **Mac:** `.dmg` dosyasını indir, sürükle bırak ile Applications'a kopyala.
+- **Linux:** `.tar.gz` dosyasını indir, çıkart, içindeki `refine` betiğini çalıştır.
+
+OpenRefine Java ile yazılmış. Çoğu sürüm Java'yı kendi içinde getirir, ayrıca yüklemen gerekmez. Eski bir bilgisayar kullanıyorsan veya hata alırsan Java 11 ya da üstü kurman gerekebilir.
+
+## İlk Açılış
+
+OpenRefine'ı çalıştırdığında şaşırma: yeni bir uygulama penceresi açılmaz. Bunun yerine **bir terminal/komut penceresi** açılır ve birkaç saniye sonra **varsayılan tarayıcın** `http://127.0.0.1:3333` adresinde OpenRefine arayüzünü gösterir.
+
+::: {.callout-note}
+## Neden tarayıcı?
+OpenRefine arka planda küçük bir yerel web sunucusu başlatıyor ve sen ona tarayıcıdan bağlanıyorsun. **Bu sunucu sadece kendi makinende dinleme yapar** (`127.0.0.1` = senin bilgisayarın). Dışarıdan erişilemez, internete açık değildir. Sıradaki bölümde detayını konuşacağız.
+:::
+
+OpenRefine açıkken terminal penceresini kapatma — kapatırsan uygulama kapanır. İşin bittiğinde kapatabilirsin.
+
+# Veri Güvenliği — Önemli
+
+Burası eğitimin en az bilinen ama en kritik bölümü. **OpenRefine'ın varsayılan davranışı güvenlidir** ama bazı özellikler verini dış sunuculara gönderir. Hangi özelliklerin ne yaptığını bilmen gerekiyor.
+
+## Varsayılanda Her Şey Yerel
+
+Yüklediğin CSV dosyası, yaptığın tüm dönüşümler, oluşturduğun projeler — hepsi **sadece senin bilgisayarında** kalır. Şunlar tamamen yerel çalışır:
+
+- Dosya yükleme ve dışa aktarma
+- Tüm GREL dönüşümleri (`replace`, `toDate`, `toNumber` vb.)
+- Facet, filtreleme, kümeleme (clustering)
+- Geri al / ileri al
+- Proje kaydı
+
+Yani normal bir temizlik akışında verin **bilgisayarından çıkmaz**.
+
+## Veriyi Dışarı Gönderen Özellikler
+
+Şu özellikleri kullandığında veri kendi makinenin dışına gider. Hassas veri (kişisel bilgi, sağlık, finansal, gizli) ile çalışıyorsan **dikkat et**:
+
+::: {.callout-warning}
+## Dikkat edilmesi gereken özellikler
+
+**1. Reconciliation (Eşleştirme)**
+
+`Edit column → Reconcile → Start reconciling` menüsü. Bir kolonu Wikidata, GeoNames, VIAF gibi dış servislerle eşleştirir. Bu işlemde **kolondaki tüm değerler ilgili servisin sunucusuna gönderilir**. Yani müşteri isimlerini Wikidata ile eşleştirmeye kalkarsan, isimlerin Wikidata sunucularına gönderilir.
+
+**2. Add column by fetching URLs**
+
+`Edit column → Add column by fetching URLs` menüsü. Her satır için bir URL ister, o URL'leri açar. Açıkça internete istek atan bir özellik. Hassas veri yoksa sorun değil, ama kullandığın URL servisinin loglarında verin görünür.
+
+**3. Add column from web service**
+
+URL fetch'in benzeri ama API çağrıları için. Yine veri dış sunuculara gider.
+
+**4. Wikibase / Wikidata Upload**
+
+Veriyi açıkça Wikidata'ya yüklemek için. Adı zaten "upload", her şey açık.
+
+**5. Google Sheets entegrasyonu**
+
+`Open / Create Project → Google Data` menüsü. Google hesabınla bağlanır, verini Google Sheets'e gönderir. OAuth ile yetki istediği için yanlışlıkla tetiklenmesi zor, ama dikkat.
+:::
+
+## Otomatik Güncelleme Kontrolü
+
+OpenRefine açılışta `openrefine.org` adresine bağlanıp yeni sürüm var mı diye bakar. **Sadece sürüm bilgisi gönderir, verin gönderilmez.** Yine de hassas/izole ortamlarda bunu kapatmak isteyebilirsin.
+
+Kapatmak için OpenRefine başlatma argümanlarına şunu ekle:
+
+```bash
+-Drefine.headless=true
+```
+
+Veya `refine.ini` dosyasında ilgili ayarı kapat. Detay için [OpenRefine FAQ](https://openrefine.org/docs/manual/faq).
+
+## Hassas Veri İçin En İyi Pratikler
+
+::: {.callout-important}
+## KVKK / GDPR kapsamındaki verilerle çalışıyorsan
+
+1. **İnterneti kapat.** OpenRefine'ı temizlik için kullanıyorsan, açık olmasına gerek yok. Wifi'yi kapat ya da bilgisayarın ağ bağlantısını kes.
+2. **Reconciliation ve URL fetch özelliklerini kullanma.** Bu özelliklere ihtiyacın varsa, önce veriyi anonimleştir.
+3. **Proje dosyaları yerelde saklanır.** OpenRefine projeleri varsayılan olarak `~/openrefine-workspace/` (Mac/Linux) veya `%APPDATA%\OpenRefine\` (Windows) içinde tutulur. **Disk şifrelemen yoksa**, bu klasörü düşün.
+4. **İş bittiğinde projeyi sil.** Sadece temizlenmiş CSV'yi sakla. OpenRefine içinde projeleri sağ üstten silebilirsin.
+5. **Kolonları gizleme yetmez.** OpenRefine içinde "hide column" yapsan da veri dosyada durur. Gerçekten silmek için kolonu **Edit columns → Reorder/remove** ile kaldır.
+:::
+
+## Hızlı Özet
+
+| Özellik | Veri çıkar mı? |
+|---|---|
+| Dosya yükleme, dönüşüm, facet, cluster, export | ❌ Hayır |
+| Reconcile (Wikidata vs.) | ✅ Evet |
+| Add column by fetching URLs | ✅ Evet |
+| Add column from web service | ✅ Evet |
+| Wikibase upload | ✅ Evet |
+| Google Sheets / Drive | ✅ Evet |
+| Sürüm güncelleme kontrolü | ⚠️ Sadece sürüm bilgisi |
+
+Bu kısa kılavuzu kafanın bir köşesinde tut. Eğitimin geri kalanında **sadece yerel özellikler** kullanacağız — verin asla bilgisayarından çıkmayacak.
+
+Sıradaki bölüm: veriyi yükleyip ilk bakışı atalım.

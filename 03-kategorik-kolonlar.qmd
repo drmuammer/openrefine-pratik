@@ -1,0 +1,150 @@
+---
+title: "Kategorik Kolonları Standartlaştırma"
+---
+
+Bu bölümde dört kolonu sırayla temizleyeceğiz: `gender`, `subscriber`, `country`, `city`. Hepsi sınırlı sayıda olası değere sahip — yani **kategorik**. Mantığımız aynı: önce mevcut değerleri görelim (Text Facet), sonra varyantları birleştirelim.
+
+# `gender` — Cinsiyet
+
+Veride `M`, `F`, `Male`, `Female`, `male`, `female`, `m` gibi varyantlar var. Hepsini **Male** ve **Female** olarak iki değere indireceğiz.
+
+## 1. Mevcut Durumu Gör
+
+`gender` kolonunun başlığındaki ▼ üçgene tıkla:
+
+**Facet → Text facet**
+
+Sol panelde tüm benzersiz değerlerin listesi sayılarıyla beraber görünecek. Yaklaşık şuna benzer:
+
+```
+Female  9
+F       7
+Male    9
+M       6
+female  1
+male    2
+m       1
+```
+
+## 2. Cluster ile Toplu Birleştir
+
+`gender` ▼ → **Edit cells → Cluster and edit...**
+
+Açılan pencerede:
+
+- **Method:** `key collision`
+- **Keying Function:** `fingerprint`
+
+`Male`, `male`, `m`, `M` aynı kümede toplanır (fingerprint büyük/küçük harfi yok sayar). `Female`, `female`, `F` aynı şekilde.
+
+::: {.callout-tip}
+## Cluster nasıl çalışıyor?
+**Fingerprint** algoritması her değeri normalleştiriyor: küçük harfe çeviriyor, noktalama temizliyor, kelimeleri alfabetik sıralıyor. Sonuçta `Male` ve `male` aynı "parmak izi"ne sahip oluyor. Yazım farklılıkları olan kelimeleri yakalamada çok güçlü.
+:::
+
+Her grubun yanındaki **New Cell Value** kutusuna doğru yazımı gir (`Male`, `Female`), **Merge selected** kutusunu işaretle, **Merge Selected & Re-Cluster** butonuna bas.
+
+## 3. Cluster'a Takılmayanları Hallet
+
+Cluster genelde tek harfli kodları (`M`, `F`) kaçırır çünkü string benzerliği zayıf kalır. Bu durumda Text Facet'e dön:
+
+- `M` değerinin yanındaki **edit** linkine tıkla → `Male` yaz → Apply.
+- `F` için aynısını yap → `Female` yaz → Apply.
+
+::: {.callout-note}
+## Tek harfli kodlar neden cluster'a düşmez?
+Cluster algoritmaları kelime benzerliğine bakar. `M` ve `Male` aynı baş harfi paylaşsa da string olarak çok farklı: biri 1 karakter, diğeri 4. Algoritma "bunlar aynı şey olabilir" diye karar veremez. **Tek harfli kodları her zaman elle düzeltmek gerekir.**
+:::
+
+Bittiğinde Text Facet'te sadece iki değer kalmalı: `Female` ve `Male`.
+
+# `subscriber` — Abonelik
+
+Veride `Yes`, `No`, `1`, `Y`, `N`, `n`, `yes`, `YES` karışık. `1` aslında "evet" anlamına geliyor (klasik 1/0 ikili kodlaması). Hepsini `Yes` ve `No` olarak standartlaştıralım.
+
+`subscriber` ▼ → **Facet → Text facet**
+
+Mevcut değerleri gör, sonra:
+
+- `1`, `Y`, `y`, `yes`, `YES` → her birini **edit** ile `Yes` yap
+- `N`, `n` → `No` yap
+
+::: {.callout-warning}
+## "1" Yes mi, No mu?
+Veri sözlüğü olmadığında bu sorunun cevabı belirsiz. Bu eğitimde `1 = Yes` kabul ediyoruz çünkü standart kullanım bu. Gerçek hayatta veri kaynağına sormak gerekir — yanlış varsayım analizini bozar.
+:::
+
+Cluster da kullanabilirsin (`yes` / `Yes` / `YES` cluster'a düşer), ama tek harfli kodları yine elle düzelteceksin.
+
+# `country` — Ülke
+
+Burada da sorun yazım çeşitliliği: `USA`, `United States`, `FR`, `France`, `JAPAN`, `Japan`, `México`, `Mexico` vs.
+
+## 1. Önce Hızlı Temizlik
+
+Common Transforms ile başla:
+
+`country` ▼ → **Edit cells → Common transforms → Trim leading and trailing whitespace**
+
+Bu, `Berlin ` (sonunda boşluk var) gibi değerlerdeki gereksiz boşlukları siler.
+
+## 2. Cluster
+
+`country` ▼ → **Edit cells → Cluster and edit...**
+
+- **fingerprint** ile başla → `JAPAN` / `Japan`, `russia` / `Russia`, `ireland` / `Ireland` gibi büyük/küçük harf farkları yakalanır.
+- Sonra **ngram fingerprint** ve **metaphone3** dene → kalanları yakalar.
+
+## 3. Kısaltmalar İçin Manuel Eşleştirme
+
+Cluster `USA` ile `United States`'i otomatik eşleştiremez (farklı kelimeler). Text Facet'ten elle düzelt:
+
+- `FR` → `France`
+- `JAPAN` → `Japan` (cluster yapmadıysan)
+- `México` → `Mexico` (özel karakter)
+- `SG` → `Singapore`
+- `UK` → `United Kingdom`
+- `USA` → `United States` (ya da `USA`'yı tutup `United States`'i değiştir — tercih sana kalmış)
+
+İş bittiğinde Text Facet'te tek tek farklı ülke isimleri görmelisin, varyant kalmamalı.
+
+# `city` — Şehir
+
+`city` kolonunda hem boşluk hem büyük/küçük harf hem de tek bir boş hücre var. Strateji aynı:
+
+## 1. Boşlukları Temizle
+
+`city` ▼ → **Edit cells → Common transforms → Trim leading and trailing whitespace**
+
+`Berlin `, ` Warsaw`, `Milan ` gibi değerler bu adımda düzelir.
+
+ID 32'deki Liam O'Brien kaydında şehir alanı sadece bir boşluktan ibaret. Trim sonrası bu hücre **null** (boş) olur.
+
+## 2. Title Case
+
+`city` ▼ → **Edit cells → Common transforms → To titlecase**
+
+`MUMBAI` → `Mumbai`, `chicago` → `Chicago`, `madrid` → `Madrid`, `mexico city` → `Mexico City`, `berlin` → `Berlin` olur.
+
+## 3. Cluster
+
+`city` ▼ → **Edit cells → Cluster and edit...**
+
+Bu adıma çoğu zaten temizlenmiş gelecek, ama yine de fingerprint cluster bir-iki şey yakalayabilir.
+
+## 4. Boş Hücre Ne Olacak?
+
+Liam O'Brien'ın şehri boş kaldı. Üç seçeneğin var:
+
+- **Boş bırak** — en dürüstü. "Bilinmiyor" olduğunu kabul et.
+- **`Unknown` yaz** — açık şekilde işaretle.
+- **Tahmin etme.** Diğer alanlardan tahmin yürütüp doldurmak veriyi bozar.
+
+Önerim: **boş bırak**. Eksik veri, uydurma veriden iyidir.
+
+::: {.callout-tip}
+## Common Transforms cebinde olsun
+Bu menüdeki seçenekler (`trim`, `titlecase`, `lowercase`, `uppercase`, `to number`, `to date`) sürekli kullanacağın hızlı temizlik araçları. GREL yazmadan tek tıkla iş halletmeni sağlarlar.
+:::
+
+İlk büyük dönüşüm tamam. Bir sonraki bölümde sayısal kolonlara geçeceğiz — burada GREL ile hafif programlama yapacağız.

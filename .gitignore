@@ -1,0 +1,32 @@
+# Quarto çıktıları
+/.quarto/
+/_book/
+/_freeze/
+/_site/
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Editör
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OpenRefine workspace (yanlışlıkla repo'ya itmemek için)
+openrefine-workspace/
+*.openrefine.tar.gz
+
+# Çıktı / kaydedilmiş veriler
+*.bak
+customers_clean.csv
+operations.json
+
+# Python (eğer Quarto Python ile renderlamayı denersen)
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

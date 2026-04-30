@@ -1,0 +1,160 @@
+---
+title: "Tarihleri Standartlaştırma"
+---
+
+`birth_date` ve `registration_date` kolonlarında 5+ farklı tarih formatı, geçersiz değerler (`N/A`, `??`) ve sadece yıl bilgisi içeren satırlar var. Bunları **gerçek tarih tipine** çevirmek istiyoruz, çünkü tarih tipinde olduktan sonra:
+
+- Timeline facet açabiliriz (yaş dağılımı görmek için)
+- Tarihe göre filtreleyebiliriz
+- Tarih aritmetiği yapabiliriz (yaş hesaplama vs.)
+- Kronolojik sıralayabiliriz
+
+# `birth_date` — Doğum Tarihi
+
+Veride şu formatlar var:
+
+- `1985-03-12` (ISO standart)
+- `12.05.1990` (Avrupa, nokta ile)
+- `1988/07/22` (slash ile karışık)
+- `03-Mar-1992` (yazıyla ay)
+- `1995` (sadece yıl)
+- `22/11/1987` (Avrupa, slash ile)
+- `15.07.1986`
+- `12-03-1985`
+- `N/A`, `??` (geçersiz)
+
+## 1. Önce Geçersiz Değerleri Temizle
+
+`birth_date` ▼ → **Facet → Text facet**
+
+Sol panelde tüm değerler listelenir. `N/A` ve `??` değerlerini bulup **edit** linki ile kutuyu boşalt, Apply.
+
+Sadece yıl olan değerleri (`1995`, `1989`) ne yapacağına karar ver:
+
+- **Boş bırak** (önerilen — eksik veri olarak işaretle)
+- **`1995-07-01` gibi yılın ortasına ata** — bu **sahte hassasiyet** yaratır, gerçek hayatta tehlikelidir.
+
+Önerim: boş bırak.
+
+::: {.callout-tip}
+## "Boş bırak" en sağlıklı seçim
+Veri analizinde bilmediğin bir şeyi tahminle doldurmak, "veriyi temizlemek" değil "veriyi bozmaktır". İstatistiksel modellerde eksik veri için özel teknikler var (imputation), ama bunları rastgele uygulamak yanlış sonuç çıkarır.
+
+Şüphedeysen: **eksik bırak**.
+:::
+
+## 2. Otomatik Tarih Dönüşümü
+
+`birth_date` ▼ → **Edit cells → Common transforms → To date**
+
+OpenRefine ISO formatını (`1985-03-12`) ve birçok yaygın formatı otomatik tanır. Çoğu hücre yeşile döner, sağa yaslanır.
+
+::: {.callout-note}
+## "Bu nasıl bir görüntü?"
+Tarih hücreleri `1985-03-12T00:00:00Z` gibi görünmeye başlar. Endişe etme — bu, tarih tipinin **iç gösterimi**:
+
+- `T00:00:00` — günün saati (gece yarısı)
+- `Z` — UTC zaman dilimi (Zulu time)
+
+Saat bilgisi senin için anlamsız ama OpenRefine tarih tipini hep timestamp olarak tutar. Görsel kalabalık, içerik doğru. Export ederken istediğin formatta dışarı alabiliriz.
+:::
+
+## 3. Takılan Formatları Düzelt
+
+OpenRefine bazı formatları otomatik tanımaz, özellikle nokta ayraçlı Avrupa formatını (`12.05.1990`). Bu hücreler hâlâ siyah ve sola yaslı görünür — yani string olarak kaldılar.
+
+`birth_date` ▼ → **Edit cells → Transform...**
+
+```js
+if(type(value) == "date",
+   value,
+   value.toDate("dd.MM.yyyy", "dd/MM/yyyy", "dd-MMM-yyyy", "yyyy/MM/dd", "dd-MM-yyyy"))
+```
+
+**Bu kod ne yapıyor?**
+
+- `type(value) == "date"` — değer zaten tarih tipinde mi? Eğer tarihse, dokunma (`if`'in 2. argümanı: `value`).
+- Değilse, **birden fazla format** dene: `dd.MM.yyyy`, `dd/MM/yyyy` vb. OpenRefine ilk uyan formatla çevirir.
+- `dd-MMM-yyyy` formatı `03-Mar-1992` gibi yazıyla yazılmış ay isimlerini yakalar. **Locale İngilizce olmalı** — Mar, Aug gibi.
+
+::: {.callout-tip}
+## Format kodları cebinde olsun
+- `yyyy` — 4 haneli yıl (1985)
+- `yy` — 2 haneli yıl (85)
+- `MM` — ay numarası, sıfır dolgulu (03)
+- `MMM` — ay kısaltması (Mar)
+- `MMMM` — ay tam adı (March)
+- `dd` — gün numarası (12)
+- `HH:mm:ss` — saat:dakika:saniye
+
+Bunlar ISO 8601 ve Java tarih formatlama standartları. OpenRefine bunları kullanır.
+:::
+
+**OK** bas.
+
+## 4. Kontrol — Timeline Facet
+
+`birth_date` ▼ → **Facet → Timeline facet**
+
+Sol panelde zaman çizelgesi açılır. Doğum tarihleri 1980-1997 arasına yayılmış olmalı. Eğer aşırı eski (1900) ya da gelecek (2090) tarih görüyorsan, format yanlış yorumlanmıştır — tek tek bul ve düzelt.
+
+# `registration_date` — Kayıt Tarihi
+
+Mantık tamamen aynı, ama bu kolonda problem daha az. Geçersiz değer yok.
+
+Formatlar:
+
+- `2020-01-15`
+- `15/01/2020`
+- `2020.02.15`
+- `01-Mar-2020`
+- `2020/02/20`
+- `01.05.2020`
+- `01/03/2020`
+- `17.01.2020`
+
+Sırayla:
+
+1. `registration_date` ▼ → **Edit cells → Common transforms → To date**
+
+2. Takılan satırlar için (`15/01/2020`, `2020.02.15`, `17.01.2020` gibi):
+
+```js
+if(type(value) == "date",
+   value,
+   value.toDate("dd/MM/yyyy", "yyyy.MM.dd", "dd.MM.yyyy", "yyyy/MM/dd", "dd-MMM-yyyy"))
+```
+
+3. Kontrol: Timeline facet ile dağılımı incele. Tüm kayıtlar 2020 yılı içinde olmalı (Ocak-Mayıs aralığında).
+
+::: {.callout-warning}
+## Gün/Ay sırası belirsizliği
+`12.05.1990` formatı belirsiz: 12 Mayıs mı, 5 Aralık mı? Çoğu Avrupa locale'inde `dd.MM.yyyy` (gün önce) kullanılır, biz de bu kabulle gittik. ABD locale'inde `MM.dd.yyyy` (ay önce) yaygındır.
+
+**Veri kaynağına göre karar vermek gerek.** Yanlış yorum yapınca 5 Aralık'a ait bir kaydı 12 Mayıs sanırsın.
+:::
+
+# Bonus — Yaş Hesaplama
+
+Tarihler artık sayı gibi davranıyor. Eğitime girmiyor ama merak ediyorsan, doğum tarihinden yaş hesaplamak için:
+
+`birth_date` ▼ → **Edit column → Add column based on this column...**
+
+```js
+diff(value, now(), "years")
+```
+
+**Bu kod ne yapıyor?**
+
+- `value` — doğum tarihi.
+- `now()` — şu anki tarih ve saat.
+- `diff(a, b, "years")` — iki tarih arasındaki farkı yıl olarak verir.
+
+Yeni kolonun adına `age` yaz, OK. Tüm satırlarda yaş hesaplanır.
+
+::: {.callout-note}
+## Tarih tipinin gücü
+Bu işlemi string tarihler üzerinde yapamazdın. Önce tarihe çevirdiğin için artık aritmetik mümkün. **String → Date dönüşümü işin yarısı, gücün diğer yarısı tarih fonksiyonları.**
+:::
+
+İki tarih kolonu da temiz. Sıradaki: **e-posta doğrulama ve yinelenen kayıtlar**.

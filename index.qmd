@@ -1,0 +1,52 @@
+---
+title: "Önsöz"
+---
+
+# Hoş Geldin {.unnumbered}
+
+Veri analizinin en az sevilen ama en çok zaman alan kısmı **veri temizleme**'dir. Tablo açıyorsun, içeride bir kişinin adı üç farklı şekilde yazılmış, tarihler dört ayrı formatta, gelir kolonunda kimi `5500`, kimi `$5,500`, kimi de `5.500 USD` yazıyor. Bunları Excel'de elle düzeltmek mümkün ama sıkıcı, hata yapmaya açık ve en kötüsü: **tekrarlanabilir değil**. Yarın aynı tablo geldiğinde her şeyi baştan yaparsın.
+
+İşte [OpenRefine](https://openrefine.org/) tam burada devreye giriyor.
+
+## OpenRefine Nedir?
+
+Açık kaynaklı, ücretsiz bir veri temizleme aracı. Bilgisayarında çalışır, tarayıcı arayüzü kullanır ama hiçbir yere veri göndermez (bu konuyu sonraki bölümde detaylı konuşacağız). Excel'in yapamadığı şeyleri yapar:
+
+- **Yazım varyantlarını gruplandırır** (`İstanbul` / `istanbul` / `İSTANBUL` üçünü tek tıkla birleştirir).
+- **Sütun bazında akıllı dönüşümler** uygular (regex, GREL ifadeleri, tarih dönüşümleri).
+- **Tüm yaptıklarını kaydeder** — başka bir kirli dosyaya aynı işlemleri tek tıkla uygulayabilirsin.
+- **Geri al / ileri al** sınırsız çalışır. Yanlış yaptın? Sorun değil, geri dön.
+
+## Bu Eğitimde Ne Yapacağız?
+
+35 satırlık, içine bilinçli olarak her türlü pislik bulaştırılmış bir müşteri veri seti üzerinde çalışacağız. Veri içinde:
+
+- Yazım, büyük/küçük harf, boşluk tutarsızlıkları
+- Beş farklı tarih formatı
+- Birden fazla para birimi ve sayı formatı
+- Bozuk telefon numaraları, eksik e-postalar
+- Yinelenen kayıtlar
+- Eksik veriler
+
+var. Sen bitirdiğinde elinde temizlenmiş, analize hazır bir tablo olacak — ve daha önemlisi, herhangi bir kirli CSV ile karşılaştığında ne yapacağını biliyor olacaksın.
+
+## İhtiyacın Olanlar
+
+- Bir bilgisayar (Windows, Mac, Linux fark etmez)
+- Java (OpenRefine ile birlikte gelen sürüm yeterli)
+- 30-60 dakika boş zaman
+- Sabır — ama söz veriyorum, çok eğlenceli
+
+## Bu Eğitim Kimin İçin?
+
+- Veri analizi öğrenenler için
+- Excel'in yetmediği noktada takılan herkes için
+- Akademik araştırmacılar, gazeteciler, veri gazetecileri için
+- "Bana her hafta aynı pis CSV geliyor, bıktım" diyen herkes için
+
+Hadi başlayalım. İlk durağımız: kurulum ve **veri güvenliği** — çünkü kirli verinin içinde bazen kimsenin görmemesi gereken bilgiler olur.
+
+::: {.callout-tip}
+## Eğitim akışı
+Bölümleri sırayla takip etmeni öneririm. Her bölüm bir öncekinin üzerine bina ediyor. Ekranın bir yarısında bu eğitimi, diğer yarısında OpenRefine'ı açık tutarsan en iyi sonucu alırsın.
+:::

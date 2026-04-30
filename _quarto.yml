@@ -1,0 +1,43 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "OpenRefine ile Kirli Veri Temizleme"
+  subtitle: "Adım adım, panik yapmadan"
+  author: "Sizin Adınız"
+  date: today
+  date-format: "MMMM YYYY"
+  language: tr
+  search: true
+  reader-mode: true
+
+  page-footer:
+    left: "OpenRefine Eğitimi"
+    right: "Quarto ile hazırlandı"
+
+  chapters:
+    - index.qmd
+    - 01-kurulum-ve-guvenlik.qmd
+    - 02-baslangic.qmd
+    - 03-kategorik-kolonlar.qmd
+    - 04-sayisal-kolonlar.qmd
+    - 05-telefon.qmd
+    - 06-tarih.qmd
+    - 07-email-ve-yinelenenler.qmd
+    - 08-bitiris.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    toc-title: "Bu Bölümde"
+    code-overflow: wrap
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    callout-appearance: simple
+    fig-align: center
+    smooth-scroll: true
