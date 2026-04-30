@@ -328,55 +328,6 @@
     ]
   },
   {
-    "objectID": "01-kurulum-ve-guvenlik.html",
-    "href": "01-kurulum-ve-guvenlik.html",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "",
-    "text": "OpenRefine’ı openrefine.org/download.html adresinden indirebilirsin. Kurulum sayfasında işletim sistemine uygun sürümü seç:\n\nWindows: .zip dosyasını indir, herhangi bir klasöre çıkart, openrefine.exe dosyasına çift tıkla.\nMac: .dmg dosyasını indir, sürükle bırak ile Applications’a kopyala.\nLinux: .tar.gz dosyasını indir, çıkart, içindeki refine betiğini çalıştır.\n\nOpenRefine Java ile yazılmış. Çoğu sürüm Java’yı kendi içinde getirir, ayrıca yüklemen gerekmez. Eski bir bilgisayar kullanıyorsan veya hata alırsan Java 11 ya da üstü kurman gerekebilir.\n\n\nOpenRefine’ı çalıştırdığında şaşırma: yeni bir uygulama penceresi açılmaz. Bunun yerine bir terminal/komut penceresi açılır ve birkaç saniye sonra varsayılan tarayıcın http://127.0.0.1:3333 adresinde OpenRefine arayüzünü gösterir.\n\n\n\n\n\n\nNotNeden tarayıcı?\n\n\n\nOpenRefine arka planda küçük bir yerel web sunucusu başlatıyor ve sen ona tarayıcıdan bağlanıyorsun. Bu sunucu sadece kendi makinende dinleme yapar (127.0.0.1 = senin bilgisayarın). Dışarıdan erişilemez, internete açık değildir. Sıradaki bölümde detayını konuşacağız.\n\n\nOpenRefine açıkken terminal penceresini kapatma — kapatırsan uygulama kapanır. İşin bittiğinde kapatabilirsin."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#ilk-açılış",
-    "href": "01-kurulum-ve-guvenlik.html#ilk-açılış",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "",
-    "text": "OpenRefine’ı çalıştırdığında şaşırma: yeni bir uygulama penceresi açılmaz. Bunun yerine bir terminal/komut penceresi açılır ve birkaç saniye sonra varsayılan tarayıcın http://127.0.0.1:3333 adresinde OpenRefine arayüzünü gösterir.\n\n\n\n\n\n\nNotNeden tarayıcı?\n\n\n\nOpenRefine arka planda küçük bir yerel web sunucusu başlatıyor ve sen ona tarayıcıdan bağlanıyorsun. Bu sunucu sadece kendi makinende dinleme yapar (127.0.0.1 = senin bilgisayarın). Dışarıdan erişilemez, internete açık değildir. Sıradaki bölümde detayını konuşacağız.\n\n\nOpenRefine açıkken terminal penceresini kapatma — kapatırsan uygulama kapanır. İşin bittiğinde kapatabilirsin."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#varsayılanda-her-şey-yerel",
-    "href": "01-kurulum-ve-guvenlik.html#varsayılanda-her-şey-yerel",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "Varsayılanda Her Şey Yerel",
-    "text": "Varsayılanda Her Şey Yerel\nYüklediğin CSV dosyası, yaptığın tüm dönüşümler, oluşturduğun projeler — hepsi sadece senin bilgisayarında kalır. Şunlar tamamen yerel çalışır:\n\nDosya yükleme ve dışa aktarma\nTüm GREL dönüşümleri (replace, toDate, toNumber vb.)\nFacet, filtreleme, kümeleme (clustering)\nGeri al / ileri al\nProje kaydı\n\nYani normal bir temizlik akışında verin bilgisayarından çıkmaz."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#veriyi-dışarı-gönderen-özellikler",
-    "href": "01-kurulum-ve-guvenlik.html#veriyi-dışarı-gönderen-özellikler",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "Veriyi Dışarı Gönderen Özellikler",
-    "text": "Veriyi Dışarı Gönderen Özellikler\nŞu özellikleri kullandığında veri kendi makinenin dışına gider. Hassas veri (kişisel bilgi, sağlık, finansal, gizli) ile çalışıyorsan dikkat et:\n\n\n\n\n\n\nUyarıDikkat edilmesi gereken özellikler\n\n\n\n1. Reconciliation (Eşleştirme)\nEdit column → Reconcile → Start reconciling menüsü. Bir kolonu Wikidata, GeoNames, VIAF gibi dış servislerle eşleştirir. Bu işlemde kolondaki tüm değerler ilgili servisin sunucusuna gönderilir. Yani müşteri isimlerini Wikidata ile eşleştirmeye kalkarsan, isimlerin Wikidata sunucularına gönderilir.\n2. Add column by fetching URLs\nEdit column → Add column by fetching URLs menüsü. Her satır için bir URL ister, o URL’leri açar. Açıkça internete istek atan bir özellik. Hassas veri yoksa sorun değil, ama kullandığın URL servisinin loglarında verin görünür.\n3. Add column from web service\nURL fetch’in benzeri ama API çağrıları için. Yine veri dış sunuculara gider.\n4. Wikibase / Wikidata Upload\nVeriyi açıkça Wikidata’ya yüklemek için. Adı zaten “upload”, her şey açık.\n5. Google Sheets entegrasyonu\nOpen / Create Project → Google Data menüsü. Google hesabınla bağlanır, verini Google Sheets’e gönderir. OAuth ile yetki istediği için yanlışlıkla tetiklenmesi zor, ama dikkat."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#otomatik-güncelleme-kontrolü",
-    "href": "01-kurulum-ve-guvenlik.html#otomatik-güncelleme-kontrolü",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "Otomatik Güncelleme Kontrolü",
-    "text": "Otomatik Güncelleme Kontrolü\nOpenRefine açılışta openrefine.org adresine bağlanıp yeni sürüm var mı diye bakar. Sadece sürüm bilgisi gönderir, verin gönderilmez. Yine de hassas/izole ortamlarda bunu kapatmak isteyebilirsin.\nKapatmak için OpenRefine başlatma argümanlarına şunu ekle:\n-Drefine.headless=true\nVeya refine.ini dosyasında ilgili ayarı kapat. Detay için OpenRefine FAQ."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#hassas-veri-için-en-iyi-pratikler",
-    "href": "01-kurulum-ve-guvenlik.html#hassas-veri-için-en-iyi-pratikler",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "Hassas Veri İçin En İyi Pratikler",
-    "text": "Hassas Veri İçin En İyi Pratikler\n\n\n\n\n\n\nÖnemliKVKK / GDPR kapsamındaki verilerle çalışıyorsan\n\n\n\n\nİnterneti kapat. OpenRefine’ı temizlik için kullanıyorsan, açık olmasına gerek yok. Wifi’yi kapat ya da bilgisayarın ağ bağlantısını kes.\nReconciliation ve URL fetch özelliklerini kullanma. Bu özelliklere ihtiyacın varsa, önce veriyi anonimleştir.\nProje dosyaları yerelde saklanır. OpenRefine projeleri varsayılan olarak ~/openrefine-workspace/ (Mac/Linux) veya %APPDATA%\\OpenRefine\\ (Windows) içinde tutulur. Disk şifrelemen yoksa, bu klasörü düşün.\nİş bittiğinde projeyi sil. Sadece temizlenmiş CSV’yi sakla. OpenRefine içinde projeleri sağ üstten silebilirsin.\nKolonları gizleme yetmez. OpenRefine içinde “hide column” yapsan da veri dosyada durur. Gerçekten silmek için kolonu Edit columns → Reorder/remove ile kaldır."
-  },
-  {
-    "objectID": "01-kurulum-ve-guvenlik.html#hızlı-özet",
-    "href": "01-kurulum-ve-guvenlik.html#hızlı-özet",
-    "title": "Kurulum ve Veri Güvenliği",
-    "section": "Hızlı Özet",
-    "text": "Hızlı Özet\n\n\n\nÖzellik\nVeri çıkar mı?\n\n\n\n\nDosya yükleme, dönüşüm, facet, cluster, export\n❌ Hayır\n\n\nReconcile (Wikidata vs.)\n✅ Evet\n\n\nAdd column by fetching URLs\n✅ Evet\n\n\nAdd column from web service\n✅ Evet\n\n\nWikibase upload\n✅ Evet\n\n\nGoogle Sheets / Drive\n✅ Evet\n\n\nSürüm güncelleme kontrolü\n⚠️ Sadece sürüm bilgisi\n\n\n\nBu kısa kılavuzu kafanın bir köşesinde tut. Eğitimin geri kalanında sadece yerel özellikler kullanacağız — verin asla bilgisayarından çıkmayacak.\nSıradaki bölüm: veriyi yükleyip ilk bakışı atalım."
-  },
-  {
     "objectID": "bolumler/01-kurulum-ve-guvenlik.html",
     "href": "bolumler/01-kurulum-ve-guvenlik.html",
     "title": "Kurulum ve Veri Güvenliği",
