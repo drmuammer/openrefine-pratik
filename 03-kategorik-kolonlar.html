@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Kategorik Kolonları Standartlaştırma – OpenRefine ile Kirli Veri Temizleme</title>
+<title>Kategorik Kolonları Standartlaştırma – OpenRefine Eğitimi</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,28 +33,26 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04-sayisal-kolonlar.html" rel="next">
-<link href="./02-baslangic.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d7935b2c48bf64a83d69c388a0619262.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-58073aa1eaebb5a5b4ba3791642a31a3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d7935b2c48bf64a83d69c388a0619262.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e463fe4cac91f302a4b3b62c8a97ad20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -63,25 +61,26 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sonuç yok",
+    "search-matching-documents-text": "eşleşen belgeler",
+    "search-copy-link-title": "Aramak için bağlantıyı kopyalayın",
+    "search-hide-matches-text": "Ek eşleşmeleri gizle",
+    "search-more-match-text": "bu belgede bir tane daha eşleşme",
+    "search-more-matches-text": "bu belgede daha fazla eşleşme",
+    "search-clear-button-title": "Temizle",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "İptal et",
+    "search-submit-button-title": "Gönder",
+    "search-label": "Ara"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -247,40 +246,102 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">🧹 OpenRefine Eğitimi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ara"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Gezinmeyi değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Ana Sayfa</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bölümler" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Bölümler</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-bölümler">    
+        <li>
+    <a class="dropdown-item" href="./bolumler/01-kurulum-ve-guvenlik.html">
+ <span class="dropdown-text">Kurulum ve Veri Güvenliği</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/02-baslangic.html">
+ <span class="dropdown-text">Veriyi Tanıyalım</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/03-kategorik-kolonlar.html">
+ <span class="dropdown-text">Kategorik Kolonları Standartlaştırma</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/04-sayisal-kolonlar.html">
+ <span class="dropdown-text">Sayısal Kolonları Düzenleme</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/05-telefon.html">
+ <span class="dropdown-text">Telefon Numaraları (Regex Pratiği)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/06-tarih.html">
+ <span class="dropdown-text">Tarihleri Standartlaştırma</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/07-email-ve-yinelenenler.html">
+ <span class="dropdown-text">E-posta ve Yinelenen Kayıtlar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/08-bitiris.html">
+ <span class="dropdown-text">Export ve Tekrarlanabilirlik</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/drmuammer/openrefine-pratik"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://muammerbeslen.com"> <i class="bi bi-house" role="img" aria-label="Website">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Karanlık modu değiştir"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-kategorik-kolonlar.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Kategorik Kolonları Standartlaştırma</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Kategorik Kolonları Standartlaştırma</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">OpenRefine ile Kirli Veri Temizleme</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Ara"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -288,57 +349,68 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></span></a>
+ <span class="menu-text">🏠 Ana Sayfa</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">📚 Bölümler</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Bölümü değiştir">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kurulum ve Veri Güvenliği</span></span></a>
+  <a href="./bolumler/01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Kurulum ve Güvenlik</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-baslangic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Veriyi Tanıyalım</span></span></a>
+  <a href="./bolumler/02-baslangic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Veriyi Tanıyalım</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Kategorik Kolonları Standartlaştırma</span></span></a>
+  <a href="./bolumler/03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Kategorik Kolonlar</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sayısal Kolonları Düzenleme</span></span></a>
+  <a href="./bolumler/04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Sayısal Kolonlar</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-telefon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Telefon Numaraları (Regex Pratiği)</span></span></a>
+  <a href="./bolumler/05-telefon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Telefon Numaraları</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-tarih.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tarihleri Standartlaştırma</span></span></a>
+  <a href="./bolumler/06-tarih.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Tarihler</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">E-posta ve Yinelenen Kayıtlar</span></span></a>
+  <a href="./bolumler/07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. E-posta ve Yinelenenler</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-bitiris.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Export ve Tekrarlanabilirlik</span></span></a>
+  <a href="./bolumler/08-bitiris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Bitiriş</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -346,31 +418,31 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Bu Bölümde</h2>
+    <h2 id="toc-title">Bu Sayfada</h2>
    
   <ul>
-  <li><a href="#gender-cinsiyet" id="toc-gender-cinsiyet" class="nav-link active" data-scroll-target="#gender-cinsiyet"><span class="header-section-number">5</span> <code>gender</code> — Cinsiyet</a>
+  <li><a href="#gender-cinsiyet" id="toc-gender-cinsiyet" class="nav-link active" data-scroll-target="#gender-cinsiyet"><code>gender</code> — Cinsiyet</a>
   <ul class="collapse">
-  <li><a href="#mevcut-durumu-gör" id="toc-mevcut-durumu-gör" class="nav-link" data-scroll-target="#mevcut-durumu-gör"><span class="header-section-number">5.1</span> 1. Mevcut Durumu Gör</a></li>
-  <li><a href="#cluster-ile-toplu-birleştir" id="toc-cluster-ile-toplu-birleştir" class="nav-link" data-scroll-target="#cluster-ile-toplu-birleştir"><span class="header-section-number">5.2</span> 2. Cluster ile Toplu Birleştir</a></li>
-  <li><a href="#clustera-takılmayanları-hallet" id="toc-clustera-takılmayanları-hallet" class="nav-link" data-scroll-target="#clustera-takılmayanları-hallet"><span class="header-section-number">5.3</span> 3. Cluster’a Takılmayanları Hallet</a></li>
+  <li><a href="#mevcut-durumu-gör" id="toc-mevcut-durumu-gör" class="nav-link" data-scroll-target="#mevcut-durumu-gör">1. Mevcut Durumu Gör</a></li>
+  <li><a href="#cluster-ile-toplu-birleştir" id="toc-cluster-ile-toplu-birleştir" class="nav-link" data-scroll-target="#cluster-ile-toplu-birleştir">2. Cluster ile Toplu Birleştir</a></li>
+  <li><a href="#clustera-takılmayanları-hallet" id="toc-clustera-takılmayanları-hallet" class="nav-link" data-scroll-target="#clustera-takılmayanları-hallet">3. Cluster’a Takılmayanları Hallet</a></li>
   </ul></li>
-  <li><a href="#subscriber-abonelik" id="toc-subscriber-abonelik" class="nav-link" data-scroll-target="#subscriber-abonelik"><span class="header-section-number">6</span> <code>subscriber</code> — Abonelik</a></li>
-  <li><a href="#country-ülke" id="toc-country-ülke" class="nav-link" data-scroll-target="#country-ülke"><span class="header-section-number">7</span> <code>country</code> — Ülke</a>
+  <li><a href="#subscriber-abonelik" id="toc-subscriber-abonelik" class="nav-link" data-scroll-target="#subscriber-abonelik"><code>subscriber</code> — Abonelik</a></li>
+  <li><a href="#country-ülke" id="toc-country-ülke" class="nav-link" data-scroll-target="#country-ülke"><code>country</code> — Ülke</a>
   <ul class="collapse">
-  <li><a href="#önce-hızlı-temizlik" id="toc-önce-hızlı-temizlik" class="nav-link" data-scroll-target="#önce-hızlı-temizlik"><span class="header-section-number">7.1</span> 1. Önce Hızlı Temizlik</a></li>
-  <li><a href="#cluster" id="toc-cluster" class="nav-link" data-scroll-target="#cluster"><span class="header-section-number">7.2</span> 2. Cluster</a></li>
-  <li><a href="#kısaltmalar-için-manuel-eşleştirme" id="toc-kısaltmalar-için-manuel-eşleştirme" class="nav-link" data-scroll-target="#kısaltmalar-için-manuel-eşleştirme"><span class="header-section-number">7.3</span> 3. Kısaltmalar İçin Manuel Eşleştirme</a></li>
+  <li><a href="#önce-hızlı-temizlik" id="toc-önce-hızlı-temizlik" class="nav-link" data-scroll-target="#önce-hızlı-temizlik">1. Önce Hızlı Temizlik</a></li>
+  <li><a href="#cluster" id="toc-cluster" class="nav-link" data-scroll-target="#cluster">2. Cluster</a></li>
+  <li><a href="#kısaltmalar-için-manuel-eşleştirme" id="toc-kısaltmalar-için-manuel-eşleştirme" class="nav-link" data-scroll-target="#kısaltmalar-için-manuel-eşleştirme">3. Kısaltmalar İçin Manuel Eşleştirme</a></li>
   </ul></li>
-  <li><a href="#city-şehir" id="toc-city-şehir" class="nav-link" data-scroll-target="#city-şehir"><span class="header-section-number">8</span> <code>city</code> — Şehir</a>
+  <li><a href="#city-şehir" id="toc-city-şehir" class="nav-link" data-scroll-target="#city-şehir"><code>city</code> — Şehir</a>
   <ul class="collapse">
-  <li><a href="#boşlukları-temizle" id="toc-boşlukları-temizle" class="nav-link" data-scroll-target="#boşlukları-temizle"><span class="header-section-number">8.1</span> 1. Boşlukları Temizle</a></li>
-  <li><a href="#title-case" id="toc-title-case" class="nav-link" data-scroll-target="#title-case"><span class="header-section-number">8.2</span> 2. Title Case</a></li>
-  <li><a href="#cluster-1" id="toc-cluster-1" class="nav-link" data-scroll-target="#cluster-1"><span class="header-section-number">8.3</span> 3. Cluster</a></li>
-  <li><a href="#boş-hücre-ne-olacak" id="toc-boş-hücre-ne-olacak" class="nav-link" data-scroll-target="#boş-hücre-ne-olacak"><span class="header-section-number">8.4</span> 4. Boş Hücre Ne Olacak?</a></li>
+  <li><a href="#boşlukları-temizle" id="toc-boşlukları-temizle" class="nav-link" data-scroll-target="#boşlukları-temizle">1. Boşlukları Temizle</a></li>
+  <li><a href="#title-case" id="toc-title-case" class="nav-link" data-scroll-target="#title-case">2. Title Case</a></li>
+  <li><a href="#cluster-1" id="toc-cluster-1" class="nav-link" data-scroll-target="#cluster-1">3. Cluster</a></li>
+  <li><a href="#boş-hücre-ne-olacak" id="toc-boş-hücre-ne-olacak" class="nav-link" data-scroll-target="#boş-hücre-ne-olacak">4. Boş Hücre Ne Olacak?</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/03-kategorik-kolonlar.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -378,7 +450,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Kategorik Kolonları Standartlaştırma</span></h1>
+<h1 class="title">Kategorik Kolonları Standartlaştırma</h1>
 </div>
 
 
@@ -396,11 +468,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Bu bölümde dört kolonu sırayla temizleyeceğiz: <code>gender</code>, <code>subscriber</code>, <code>country</code>, <code>city</code>. Hepsi sınırlı sayıda olası değere sahip — yani <strong>kategorik</strong>. Mantığımız aynı: önce mevcut değerleri görelim (Text Facet), sonra varyantları birleştirelim.</p>
-<section id="gender-cinsiyet" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> <code>gender</code> — Cinsiyet</h1>
+<section id="gender-cinsiyet" class="level1">
+<h1><code>gender</code> — Cinsiyet</h1>
 <p>Veride <code>M</code>, <code>F</code>, <code>Male</code>, <code>Female</code>, <code>male</code>, <code>female</code>, <code>m</code> gibi varyantlar var. Hepsini <strong>Male</strong> ve <strong>Female</strong> olarak iki değere indireceğiz.</p>
-<section id="mevcut-durumu-gör" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="mevcut-durumu-gör"><span class="header-section-number">5.1</span> 1. Mevcut Durumu Gör</h2>
+<section id="mevcut-durumu-gör" class="level2">
+<h2 class="anchored" data-anchor-id="mevcut-durumu-gör">1. Mevcut Durumu Gör</h2>
 <p><code>gender</code> kolonunun başlığındaki ▼ üçgene tıkla:</p>
 <p><strong>Facet → Text facet</strong></p>
 <p>Sol panelde tüm benzersiz değerlerin listesi sayılarıyla beraber görünecek. Yaklaşık şuna benzer:</p>
@@ -412,8 +484,8 @@ female  1
 male    2
 m       1</code></pre>
 </section>
-<section id="cluster-ile-toplu-birleştir" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="cluster-ile-toplu-birleştir"><span class="header-section-number">5.2</span> 2. Cluster ile Toplu Birleştir</h2>
+<section id="cluster-ile-toplu-birleştir" class="level2">
+<h2 class="anchored" data-anchor-id="cluster-ile-toplu-birleştir">2. Cluster ile Toplu Birleştir</h2>
 <p><code>gender</code> ▼ → <strong>Edit cells → Cluster and edit…</strong></p>
 <p>Açılan pencerede:</p>
 <ul>
@@ -421,13 +493,13 @@ m       1</code></pre>
 <li><strong>Keying Function:</strong> <code>fingerprint</code></li>
 </ul>
 <p><code>Male</code>, <code>male</code>, <code>m</code>, <code>M</code> aynı kümede toplanır (fingerprint büyük/küçük harfi yok sayar). <code>Female</code>, <code>female</code>, <code>F</code> aynı şekilde.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Cluster nasıl çalışıyor?
+<span class="screen-reader-only">İpucu</span>Cluster nasıl çalışıyor?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -436,20 +508,20 @@ m       1</code></pre>
 </div>
 <p>Her grubun yanındaki <strong>New Cell Value</strong> kutusuna doğru yazımı gir (<code>Male</code>, <code>Female</code>), <strong>Merge selected</strong> kutusunu işaretle, <strong>Merge Selected &amp; Re-Cluster</strong> butonuna bas.</p>
 </section>
-<section id="clustera-takılmayanları-hallet" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="clustera-takılmayanları-hallet"><span class="header-section-number">5.3</span> 3. Cluster’a Takılmayanları Hallet</h2>
+<section id="clustera-takılmayanları-hallet" class="level2">
+<h2 class="anchored" data-anchor-id="clustera-takılmayanları-hallet">3. Cluster’a Takılmayanları Hallet</h2>
 <p>Cluster genelde tek harfli kodları (<code>M</code>, <code>F</code>) kaçırır çünkü string benzerliği zayıf kalır. Bu durumda Text Facet’e dön:</p>
 <ul>
 <li><code>M</code> değerinin yanındaki <strong>edit</strong> linkine tıkla → <code>Male</code> yaz → Apply.</li>
 <li><code>F</code> için aynısını yap → <code>Female</code> yaz → Apply.</li>
 </ul>
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Tek harfli kodlar neden cluster’a düşmez?
+<span class="screen-reader-only">Not</span>Tek harfli kodlar neden cluster’a düşmez?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -459,8 +531,8 @@ m       1</code></pre>
 <p>Bittiğinde Text Facet’te sadece iki değer kalmalı: <code>Female</code> ve <code>Male</code>.</p>
 </section>
 </section>
-<section id="subscriber-abonelik" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> <code>subscriber</code> — Abonelik</h1>
+<section id="subscriber-abonelik" class="level1">
+<h1><code>subscriber</code> — Abonelik</h1>
 <p>Veride <code>Yes</code>, <code>No</code>, <code>1</code>, <code>Y</code>, <code>N</code>, <code>n</code>, <code>yes</code>, <code>YES</code> karışık. <code>1</code> aslında “evet” anlamına geliyor (klasik 1/0 ikili kodlaması). Hepsini <code>Yes</code> ve <code>No</code> olarak standartlaştıralım.</p>
 <p><code>subscriber</code> ▼ → <strong>Facet → Text facet</strong></p>
 <p>Mevcut değerleri gör, sonra:</p>
@@ -468,13 +540,13 @@ m       1</code></pre>
 <li><code>1</code>, <code>Y</code>, <code>y</code>, <code>yes</code>, <code>YES</code> → her birini <strong>edit</strong> ile <code>Yes</code> yap</li>
 <li><code>N</code>, <code>n</code> → <code>No</code> yap</li>
 </ul>
-<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>“1” Yes mi, No mu?
+<span class="screen-reader-only">Uyarı</span>“1” Yes mi, No mu?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -483,25 +555,25 @@ m       1</code></pre>
 </div>
 <p>Cluster da kullanabilirsin (<code>yes</code> / <code>Yes</code> / <code>YES</code> cluster’a düşer), ama tek harfli kodları yine elle düzelteceksin.</p>
 </section>
-<section id="country-ülke" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> <code>country</code> — Ülke</h1>
+<section id="country-ülke" class="level1">
+<h1><code>country</code> — Ülke</h1>
 <p>Burada da sorun yazım çeşitliliği: <code>USA</code>, <code>United States</code>, <code>FR</code>, <code>France</code>, <code>JAPAN</code>, <code>Japan</code>, <code>México</code>, <code>Mexico</code> vs.</p>
-<section id="önce-hızlı-temizlik" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="önce-hızlı-temizlik"><span class="header-section-number">7.1</span> 1. Önce Hızlı Temizlik</h2>
+<section id="önce-hızlı-temizlik" class="level2">
+<h2 class="anchored" data-anchor-id="önce-hızlı-temizlik">1. Önce Hızlı Temizlik</h2>
 <p>Common Transforms ile başla:</p>
 <p><code>country</code> ▼ → <strong>Edit cells → Common transforms → Trim leading and trailing whitespace</strong></p>
 <p>Bu, <code>Berlin</code> (sonunda boşluk var) gibi değerlerdeki gereksiz boşlukları siler.</p>
 </section>
-<section id="cluster" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="cluster"><span class="header-section-number">7.2</span> 2. Cluster</h2>
+<section id="cluster" class="level2">
+<h2 class="anchored" data-anchor-id="cluster">2. Cluster</h2>
 <p><code>country</code> ▼ → <strong>Edit cells → Cluster and edit…</strong></p>
 <ul>
 <li><strong>fingerprint</strong> ile başla → <code>JAPAN</code> / <code>Japan</code>, <code>russia</code> / <code>Russia</code>, <code>ireland</code> / <code>Ireland</code> gibi büyük/küçük harf farkları yakalanır.</li>
 <li>Sonra <strong>ngram fingerprint</strong> ve <strong>metaphone3</strong> dene → kalanları yakalar.</li>
 </ul>
 </section>
-<section id="kısaltmalar-için-manuel-eşleştirme" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="kısaltmalar-için-manuel-eşleştirme"><span class="header-section-number">7.3</span> 3. Kısaltmalar İçin Manuel Eşleştirme</h2>
+<section id="kısaltmalar-için-manuel-eşleştirme" class="level2">
+<h2 class="anchored" data-anchor-id="kısaltmalar-için-manuel-eşleştirme">3. Kısaltmalar İçin Manuel Eşleştirme</h2>
 <p>Cluster <code>USA</code> ile <code>United States</code>’i otomatik eşleştiremez (farklı kelimeler). Text Facet’ten elle düzelt:</p>
 <ul>
 <li><code>FR</code> → <code>France</code></li>
@@ -514,27 +586,27 @@ m       1</code></pre>
 <p>İş bittiğinde Text Facet’te tek tek farklı ülke isimleri görmelisin, varyant kalmamalı.</p>
 </section>
 </section>
-<section id="city-şehir" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> <code>city</code> — Şehir</h1>
+<section id="city-şehir" class="level1">
+<h1><code>city</code> — Şehir</h1>
 <p><code>city</code> kolonunda hem boşluk hem büyük/küçük harf hem de tek bir boş hücre var. Strateji aynı:</p>
-<section id="boşlukları-temizle" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="boşlukları-temizle"><span class="header-section-number">8.1</span> 1. Boşlukları Temizle</h2>
+<section id="boşlukları-temizle" class="level2">
+<h2 class="anchored" data-anchor-id="boşlukları-temizle">1. Boşlukları Temizle</h2>
 <p><code>city</code> ▼ → <strong>Edit cells → Common transforms → Trim leading and trailing whitespace</strong></p>
 <p><code>Berlin</code>, <code>Warsaw</code>, <code>Milan</code> gibi değerler bu adımda düzelir.</p>
 <p>ID 32’deki Liam O’Brien kaydında şehir alanı sadece bir boşluktan ibaret. Trim sonrası bu hücre <strong>null</strong> (boş) olur.</p>
 </section>
-<section id="title-case" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="title-case"><span class="header-section-number">8.2</span> 2. Title Case</h2>
+<section id="title-case" class="level2">
+<h2 class="anchored" data-anchor-id="title-case">2. Title Case</h2>
 <p><code>city</code> ▼ → <strong>Edit cells → Common transforms → To titlecase</strong></p>
 <p><code>MUMBAI</code> → <code>Mumbai</code>, <code>chicago</code> → <code>Chicago</code>, <code>madrid</code> → <code>Madrid</code>, <code>mexico city</code> → <code>Mexico City</code>, <code>berlin</code> → <code>Berlin</code> olur.</p>
 </section>
-<section id="cluster-1" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="cluster-1"><span class="header-section-number">8.3</span> 3. Cluster</h2>
+<section id="cluster-1" class="level2">
+<h2 class="anchored" data-anchor-id="cluster-1">3. Cluster</h2>
 <p><code>city</code> ▼ → <strong>Edit cells → Cluster and edit…</strong></p>
 <p>Bu adıma çoğu zaten temizlenmiş gelecek, ama yine de fingerprint cluster bir-iki şey yakalayabilir.</p>
 </section>
-<section id="boş-hücre-ne-olacak" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="boş-hücre-ne-olacak"><span class="header-section-number">8.4</span> 4. Boş Hücre Ne Olacak?</h2>
+<section id="boş-hücre-ne-olacak" class="level2">
+<h2 class="anchored" data-anchor-id="boş-hücre-ne-olacak">4. Boş Hücre Ne Olacak?</h2>
 <p>Liam O’Brien’ın şehri boş kaldı. Üç seçeneğin var:</p>
 <ul>
 <li><strong>Boş bırak</strong> — en dürüstü. “Bilinmiyor” olduğunu kabul et.</li>
@@ -542,13 +614,13 @@ m       1</code></pre>
 <li><strong>Tahmin etme.</strong> Diğer alanlardan tahmin yürütüp doldurmak veriyi bozar.</li>
 </ul>
 <p>Önerim: <strong>boş bırak</strong>. Eksik veri, uydurma veriden iyidir.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Common Transforms cebinde olsun
+<span class="screen-reader-only">İpucu</span>Common Transforms cebinde olsun
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -561,7 +633,7 @@ m       1</code></pre>
 </section>
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Başa dön</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -600,12 +672,12 @@ m       1</code></pre>
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopyalandı");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopyalandı");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -648,7 +720,7 @@ m       1</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/drmuammer\.github\.io\/openrefine-pratik\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -662,6 +734,11 @@ m       1</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -975,30 +1052,30 @@ m       1</code></pre>
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./02-baslangic.html" class="pagination-link" aria-label="Veriyi Tanıyalım">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Veriyi Tanıyalım</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./04-sayisal-kolonlar.html" class="pagination-link" aria-label="Sayısal Kolonları Düzenleme">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sayısal Kolonları Düzenleme</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>OpenRefine Eğitimi</p>
+<p>© 2026 Muammer Beslen, MD · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/03-kategorik-kolonlar.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Quarto ile hazırlandı</p>
-</div>
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/drmuammer/openrefine-pratik">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://muammerbeslen.com">
+<p>muammerbeslen.com</p>
+</a>
+  </li>  
+</ul>
+    </div>
   </div>
 </footer>
 

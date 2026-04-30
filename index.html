@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sizin Adınız">
 
-<title>OpenRefine ile Kirli Veri Temizleme</title>
+<title>OpenRefine Eğitimi</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,27 +33,27 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-kurulum-ve-guvenlik.html" rel="next">
+<link href="./bolumler/01-kurulum-ve-guvenlik.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d7935b2c48bf64a83d69c388a0619262.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-58073aa1eaebb5a5b4ba3791642a31a3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d7935b2c48bf64a83d69c388a0619262.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e463fe4cac91f302a4b3b62c8a97ad20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -63,25 +62,26 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sonuç yok",
+    "search-matching-documents-text": "eşleşen belgeler",
+    "search-copy-link-title": "Aramak için bağlantıyı kopyalayın",
+    "search-hide-matches-text": "Ek eşleşmeleri gizle",
+    "search-more-match-text": "bu belgede bir tane daha eşleşme",
+    "search-more-matches-text": "bu belgede daha fazla eşleşme",
+    "search-clear-button-title": "Temizle",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "İptal et",
+    "search-submit-button-title": "Gönder",
+    "search-label": "Ara"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -247,40 +247,102 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">🧹 OpenRefine Eğitimi</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Ara"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Gezinmeyi değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Ana Sayfa</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bölümler" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Bölümler</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-bölümler">    
+        <li>
+    <a class="dropdown-item" href="./bolumler/01-kurulum-ve-guvenlik.html">
+ <span class="dropdown-text">Kurulum ve Veri Güvenliği</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/02-baslangic.html">
+ <span class="dropdown-text">Veriyi Tanıyalım</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/03-kategorik-kolonlar.html">
+ <span class="dropdown-text">Kategorik Kolonları Standartlaştırma</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/04-sayisal-kolonlar.html">
+ <span class="dropdown-text">Sayısal Kolonları Düzenleme</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/05-telefon.html">
+ <span class="dropdown-text">Telefon Numaraları (Regex Pratiği)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/06-tarih.html">
+ <span class="dropdown-text">Tarihleri Standartlaştırma</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/07-email-ve-yinelenenler.html">
+ <span class="dropdown-text">E-posta ve Yinelenen Kayıtlar</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./bolumler/08-bitiris.html">
+ <span class="dropdown-text">Export ve Tekrarlanabilirlik</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/drmuammer/openrefine-pratik"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://muammerbeslen.com"> <i class="bi bi-house" role="img" aria-label="Website">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Karanlık modu değiştir"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">🏠 Ana Sayfa</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">OpenRefine ile Kirli Veri Temizleme</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Ara"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -288,104 +350,88 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Önsöz</span></span></a>
+ <span class="menu-text">🏠 Ana Sayfa</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">📚 Bölümler</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Bölümü değiştir">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kurulum ve Veri Güvenliği</span></span></a>
+  <a href="./bolumler/01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Kurulum ve Güvenlik</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-baslangic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Veriyi Tanıyalım</span></span></a>
+  <a href="./bolumler/02-baslangic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Veriyi Tanıyalım</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Kategorik Kolonları Standartlaştırma</span></span></a>
+  <a href="./bolumler/03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Kategorik Kolonlar</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sayısal Kolonları Düzenleme</span></span></a>
+  <a href="./bolumler/04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Sayısal Kolonlar</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-telefon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Telefon Numaraları (Regex Pratiği)</span></span></a>
+  <a href="./bolumler/05-telefon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Telefon Numaraları</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-tarih.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tarihleri Standartlaştırma</span></span></a>
+  <a href="./bolumler/06-tarih.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Tarihler</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">E-posta ve Yinelenen Kayıtlar</span></span></a>
+  <a href="./bolumler/07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. E-posta ve Yinelenenler</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08-bitiris.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Export ve Tekrarlanabilirlik</span></span></a>
+  <a href="./bolumler/08-bitiris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Bitiriş</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Bu Bölümde</h2>
-   
-  <ul>
-  <li><a href="#hoş-geldin" id="toc-hoş-geldin" class="nav-link active" data-scroll-target="#hoş-geldin">Hoş Geldin</a>
-  <ul class="collapse">
-  <li><a href="#openrefine-nedir" id="toc-openrefine-nedir" class="nav-link" data-scroll-target="#openrefine-nedir"><span class="header-section-number">0.1</span> OpenRefine Nedir?</a></li>
-  <li><a href="#bu-eğitimde-ne-yapacağız" id="toc-bu-eğitimde-ne-yapacağız" class="nav-link" data-scroll-target="#bu-eğitimde-ne-yapacağız"><span class="header-section-number">0.2</span> Bu Eğitimde Ne Yapacağız?</a></li>
-  <li><a href="#ihtiyacın-olanlar" id="toc-ihtiyacın-olanlar" class="nav-link" data-scroll-target="#ihtiyacın-olanlar"><span class="header-section-number">0.3</span> İhtiyacın Olanlar</a></li>
-  <li><a href="#bu-eğitim-kimin-için" id="toc-bu-eğitim-kimin-için" class="nav-link" data-scroll-target="#bu-eğitim-kimin-için"><span class="header-section-number">0.4</span> Bu Eğitim Kimin İçin?</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">OpenRefine ile Kirli Veri Temizleme</h1>
-<p class="subtitle lead">Adım adım, panik yapmadan</p>
+<h1 class="title">OpenRefine Eğitimi</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sizin Adınız </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -395,70 +441,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="hoş-geldin" class="level1 unnumbered">
-<h1 class="unnumbered">Hoş Geldin</h1>
-<p>Veri analizinin en az sevilen ama en çok zaman alan kısmı <strong>veri temizleme</strong>’dir. Tablo açıyorsun, içeride bir kişinin adı üç farklı şekilde yazılmış, tarihler dört ayrı formatta, gelir kolonunda kimi <code>5500</code>, kimi <code>$5,500</code>, kimi de <code>5.500 USD</code> yazıyor. Bunları Excel’de elle düzeltmek mümkün ama sıkıcı, hata yapmaya açık ve en kötüsü: <strong>tekrarlanabilir değil</strong>. Yarın aynı tablo geldiğinde her şeyi baştan yaparsın.</p>
-<p>İşte <a href="https://openrefine.org/">OpenRefine</a> tam burada devreye giriyor.</p>
-<section id="openrefine-nedir" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="openrefine-nedir"><span class="header-section-number">0.1</span> OpenRefine Nedir?</h2>
-<p>Açık kaynaklı, ücretsiz bir veri temizleme aracı. Bilgisayarında çalışır, tarayıcı arayüzü kullanır ama hiçbir yere veri göndermez (bu konuyu sonraki bölümde detaylı konuşacağız). Excel’in yapamadığı şeyleri yapar:</p>
+<section id="openrefine-eğitimi" class="level1 hero-banner">
+<h1>🧹 OpenRefine Eğitimi</h1>
+<section id="adım-adım-panik-yapmadan-kirli-veri-temizleme" class="level3">
+<h3 class="anchored" data-anchor-id="adım-adım-panik-yapmadan-kirli-veri-temizleme">Adım adım, panik yapmadan kirli veri temizleme</h3>
+</section>
+</section>
+<section id="bu-eğitim-kimin-için" class="level2">
+<h2 class="anchored" data-anchor-id="bu-eğitim-kimin-için">👋 Bu Eğitim Kimin İçin?</h2>
+<p>Bu eğitim, <strong>kirli CSV dosyalarıyla cebelleşen</strong> herkes içindir. Hedefi: Excel’de iki saat sürecek, hata yapmaya açık, tekrarlanamaz temizlik işlerini OpenRefine ile yarım saatte ve <strong>tekrarlanabilir</strong> şekilde halletmeyi öğretmek.</p>
+<p>Hedef kitle:</p>
 <ul>
-<li><strong>Yazım varyantlarını gruplandırır</strong> (<code>İstanbul</code> / <code>istanbul</code> / <code>İSTANBUL</code> üçünü tek tıkla birleştirir).</li>
-<li><strong>Sütun bazında akıllı dönüşümler</strong> uygular (regex, GREL ifadeleri, tarih dönüşümleri).</li>
-<li><strong>Tüm yaptıklarını kaydeder</strong> — başka bir kirli dosyaya aynı işlemleri tek tıkla uygulayabilirsin.</li>
-<li><strong>Geri al / ileri al</strong> sınırsız çalışır. Yanlış yaptın? Sorun değil, geri dön.</li>
+<li>Veri analizi öğrenenler</li>
+<li>Akademik araştırmacılar, gazeteciler, tez yazanlar</li>
+<li>“Bana her hafta aynı pis tablo geliyor” diyen kurumsal çalışanlar</li>
+<li>Excel’in yetmediği noktada takılan herkes</li>
 </ul>
 </section>
-<section id="bu-eğitimde-ne-yapacağız" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="bu-eğitimde-ne-yapacağız"><span class="header-section-number">0.2</span> Bu Eğitimde Ne Yapacağız?</h2>
-<p>35 satırlık, içine bilinçli olarak her türlü pislik bulaştırılmış bir müşteri veri seti üzerinde çalışacağız. Veri içinde:</p>
+<section id="neden-openrefine" class="level2">
+<h2 class="anchored" data-anchor-id="neden-openrefine">🎯 Neden OpenRefine?</h2>
+<p>Veri temizleme analizinin <strong>kalitesini en çok belirleyen adımdır</strong>. “Garbage in, garbage out” — pis veri ile yapılan analiz pis sonuç verir. OpenRefine bu işi:</p>
+<ul>
+<li>✅ <strong>Hızlandırır</strong> — yazım varyantlarını tek tıkla gruplar (cluster)</li>
+<li>✅ <strong>Dürüst tutar</strong> — yaptığın her işlemi kaydeder, geri alabilirsin</li>
+<li>✅ <strong>Tekrarlanabilir kılar</strong> — operations.json ile aynı temizliği yarın gelen veriye uygulayabilirsin</li>
+<li>✅ <strong>Yerel çalışır</strong> — verin bilgisayarından çıkmaz (hassas veri için kritik)</li>
+<li>✅ <strong>Ücretsiz ve açık kaynak</strong></li>
+</ul>
+</section>
+<section id="içerik" class="level2">
+<h2 class="anchored" data-anchor-id="içerik">📚 İçerik</h2>
+<section id="kurulum-ve-veri-güvenliği" class="level3">
+<h3 class="anchored" data-anchor-id="kurulum-ve-veri-güvenliği">1. Kurulum ve Veri Güvenliği</h3>
+<p>OpenRefine nasıl kurulur, hangi özellikleri verini dış sunuculara gönderir, hassas veri ile nasıl güvenli çalışılır.</p>
+<p><a href="./bolumler/01-kurulum-ve-guvenlik.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="veriyi-tanıyalım" class="level3">
+<h3 class="anchored" data-anchor-id="veriyi-tanıyalım">2. Veriyi Tanıyalım</h3>
+<p>Veri setini yükle, ilk bakışta sorunları gör, OpenRefine arayüzünü tanı.</p>
+<p><a href="./bolumler/02-baslangic.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="kategorik-kolonları-standartlaştırma" class="level3">
+<h3 class="anchored" data-anchor-id="kategorik-kolonları-standartlaştırma">3. Kategorik Kolonları Standartlaştırma</h3>
+<p>Cinsiyet, abone, ülke, şehir kolonlarındaki yazım varyantlarını Text Facet ve Cluster ile birleştir.</p>
+<p><a href="./bolumler/03-kategorik-kolonlar.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="sayısal-kolonları-düzenleme" class="level3">
+<h3 class="anchored" data-anchor-id="sayısal-kolonları-düzenleme">4. Sayısal Kolonları Düzenleme</h3>
+<p>Puan ve gelir kolonlarını GREL ile temizle, locale farklarına dikkat et.</p>
+<p><a href="./bolumler/04-sayisal-kolonlar.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="telefon-numaraları-regex" class="level3">
+<h3 class="anchored" data-anchor-id="telefon-numaraları-regex">5. Telefon Numaraları (Regex)</h3>
+<p>Düzensiz telefon formatlarını tek hamlede regex ile standartlaştır.</p>
+<p><a href="./bolumler/05-telefon.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="tarihleri-standartlaştırma" class="level3">
+<h3 class="anchored" data-anchor-id="tarihleri-standartlaştırma">6. Tarihleri Standartlaştırma</h3>
+<p>5 farklı tarih formatını <code>toDate()</code> ile gerçek tarih tipine çevir.</p>
+<p><a href="./bolumler/06-tarih.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="e-posta-ve-yinelenen-kayıtlar" class="level3">
+<h3 class="anchored" data-anchor-id="e-posta-ve-yinelenen-kayıtlar">7. E-posta ve Yinelenen Kayıtlar</h3>
+<p>Geçersiz e-postaları regex ile yakala, duplicate’leri tespit edip sil.</p>
+<p><a href="./bolumler/07-email-ve-yinelenenler.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+<section id="bitiriş" class="level3">
+<h3 class="anchored" data-anchor-id="bitiriş">8. Bitiriş</h3>
+<p>Temiz veriyi export et, operations.json ile işlem geçmişini sakla, gelecek için tekrarlanabilir bir akış kur.</p>
+<p><a href="./bolumler/08-bitiris.html" class="btn-start"><strong>Başla →</strong></a></p>
+</section>
+</section>
+<section id="çalışma-veri-seti" class="level2">
+<h2 class="anchored" data-anchor-id="çalışma-veri-seti">📦 Çalışma Veri Seti</h2>
+<p>Eğitimde kullandığımız <a href="data/customers_dirty.csv"><code>customers_dirty.csv</code></a> dosyasında 35 satır, 13 kolon var. İçinde:</p>
 <ul>
 <li>Yazım, büyük/küçük harf, boşluk tutarsızlıkları</li>
-<li>Beş farklı tarih formatı</li>
-<li>Birden fazla para birimi ve sayı formatı</li>
+<li>5 farklı tarih formatı (<code>1985-03-12</code>, <code>12.05.1990</code>, <code>03-Mar-1992</code>, <code>1995</code>, <code>N/A</code> …)</li>
+<li>Birden fazla para birimi ve sayı formatı (<code>$5500</code>, <code>7.500 USD</code>, <code>3500 EUR</code>, <code>£3500</code> …)</li>
 <li>Bozuk telefon numaraları, eksik e-postalar</li>
-<li>Yinelenen kayıtlar</li>
-<li>Eksik veriler</li>
+<li>5 yinelenen kayıt çifti</li>
 </ul>
-<p>var. Sen bitirdiğinde elinde temizlenmiş, analize hazır bir tablo olacak — ve daha önemlisi, herhangi bir kirli CSV ile karşılaştığında ne yapacağını biliyor olacaksın.</p>
+<p>İsimler uluslararası: John Smith, Yuki Tanaka, François Dubois, Anna Schmidt, Carlos Reyes, Olga Petrova…</p>
 </section>
-<section id="ihtiyacın-olanlar" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="ihtiyacın-olanlar"><span class="header-section-number">0.3</span> İhtiyacın Olanlar</h2>
+<section id="ilgili-kaynaklar" class="level2">
+<h2 class="anchored" data-anchor-id="ilgili-kaynaklar">🌐 İlgili Kaynaklar</h2>
 <ul>
-<li>Bir bilgisayar (Windows, Mac, Linux fark etmez)</li>
-<li>Java (OpenRefine ile birlikte gelen sürüm yeterli)</li>
-<li>30-60 dakika boş zaman</li>
-<li>Sabır — ama söz veriyorum, çok eğlenceli</li>
+<li>🔐 <strong><a href="https://drmuammer.github.io/veri-seti-guvenligi/">Veri Güvenliği Rehberi</a></strong> — Klinik araştırmacılar için kimliksizleştirme ve güvenlik</li>
+<li>🌍 <strong><a href="https://openrefine.org/">OpenRefine resmi sitesi</a></strong> — Yazılımı buradan indir</li>
+<li>📖 <strong><a href="https://openrefine.org/docs/manual/grelfunctions">GREL fonksiyon referansı</a></strong> — Tüm GREL fonksiyonları</li>
 </ul>
 </section>
-<section id="bu-eğitim-kimin-için" class="level2" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="bu-eğitim-kimin-için"><span class="header-section-number">0.4</span> Bu Eğitim Kimin İçin?</h2>
-<ul>
-<li>Veri analizi öğrenenler için</li>
-<li>Excel’in yetmediği noktada takılan herkes için</li>
-<li>Akademik araştırmacılar, gazeteciler, veri gazetecileri için</li>
-<li>“Bana her hafta aynı pis CSV geliyor, bıktım” diyen herkes için</li>
-</ul>
-<p>Hadi başlayalım. İlk durağımız: kurulum ve <strong>veri güvenliği</strong> — çünkü kirli verinin içinde bazen kimsenin görmemesi gereken bilgiler olur.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Eğitim akışı
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Bölümleri sırayla takip etmeni öneririm. Her bölüm bir öncekinin üzerine bina ediyor. Ekranın bir yarısında bu eğitimi, diğer yarısında OpenRefine’ı açık tutarsan en iyi sonucu alırsın.</p>
-</div>
-</div>
+<section id="lisans-ve-atıf" class="level2">
+<h2 class="anchored" data-anchor-id="lisans-ve-atıf">📜 Lisans ve Atıf</h2>
+<p>Bu eğitim <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> altında paylaşılmaktadır. Kaynağı belirterek özgürce kullanabilir, dağıtabilir ve uyarlayabilirsiniz.</p>
+<p><strong>Önerilen atıf:</strong></p>
+<blockquote class="blockquote">
+<p>Beslen, M. (2026). <em>OpenRefine Eğitimi: Adım adım kirli veri temizleme rehberi</em>. <a href="https://drmuammer.github.io/openrefine-pratik/" class="uri">https://drmuammer.github.io/openrefine-pratik/</a></p>
+</blockquote>
+<p>Hata ya da öneri için <a href="https://github.com/drmuammer/openrefine-pratik/issues">GitHub Issues</a> üzerinden ulaşabilirsiniz.</p>
+<hr>
+<p><em>“Temiz veri, doğru kararın yarısıdır.”</em></p>
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Başa dön</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -497,12 +585,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Kopyalandı");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Kopyalandı");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -545,7 +633,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/drmuammer\.github\.io\/openrefine-pratik\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -559,6 +647,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -876,8 +969,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-kurulum-ve-guvenlik.html" class="pagination-link" aria-label="Kurulum ve Veri Güvenliği">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Kurulum ve Veri Güvenliği</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./bolumler/01-kurulum-ve-guvenlik.html" class="pagination-link" aria-label="1. Kurulum ve Güvenlik">
+        <span class="nav-page-text">1. Kurulum ve Güvenlik</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -885,14 +978,26 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>OpenRefine Eğitimi</p>
+<p>© 2026 Muammer Beslen, MD · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Quarto ile hazırlandı</p>
-</div>
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/drmuammer/openrefine-pratik">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://muammerbeslen.com">
+<p>muammerbeslen.com</p>
+</a>
+  </li>  
+</ul>
+    </div>
   </div>
 </footer>
 

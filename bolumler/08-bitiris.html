@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sayısal Kolonları Düzenleme – OpenRefine Eğitimi</title>
+<title>Export ve Tekrarlanabilirlik – OpenRefine Eğitimi</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,27 +61,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-e463fe4cac91f302a4b3b62c8a97ad20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../bolumler/07-email-ve-yinelenenler.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-23bbe8b5e4efc1e257f6d59dce478b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e463fe4cac91f302a4b3b62c8a97ad20.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-5feaabed66f5ac1224eebc6339d715e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -284,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">🧹 OpenRefine Eğitimi</span>
     </a>
   </div>
@@ -295,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Ana Sayfa</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -304,35 +305,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-bölümler">    
         <li>
-    <a class="dropdown-item" href="./bolumler/01-kurulum-ve-guvenlik.html">
+    <a class="dropdown-item" href="../bolumler/01-kurulum-ve-guvenlik.html">
  <span class="dropdown-text">Kurulum ve Veri Güvenliği</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/02-baslangic.html">
+    <a class="dropdown-item" href="../bolumler/02-baslangic.html">
  <span class="dropdown-text">Veriyi Tanıyalım</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/03-kategorik-kolonlar.html">
+    <a class="dropdown-item" href="../bolumler/03-kategorik-kolonlar.html">
  <span class="dropdown-text">Kategorik Kolonları Standartlaştırma</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/04-sayisal-kolonlar.html">
+    <a class="dropdown-item" href="../bolumler/04-sayisal-kolonlar.html">
  <span class="dropdown-text">Sayısal Kolonları Düzenleme</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/05-telefon.html">
+    <a class="dropdown-item" href="../bolumler/05-telefon.html">
  <span class="dropdown-text">Telefon Numaraları (Regex Pratiği)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/06-tarih.html">
+    <a class="dropdown-item" href="../bolumler/06-tarih.html">
  <span class="dropdown-text">Tarihleri Standartlaştırma</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/07-email-ve-yinelenenler.html">
+    <a class="dropdown-item" href="../bolumler/07-email-ve-yinelenenler.html">
  <span class="dropdown-text">E-posta ve Yinelenen Kayıtlar</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./bolumler/08-bitiris.html">
+    <a class="dropdown-item" href="../bolumler/08-bitiris.html">
  <span class="dropdown-text">Export ve Tekrarlanabilirlik</span></a>
   </li>  
     </ul>
@@ -361,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Sayısal Kolonları Düzenleme</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bolumler/01-kurulum-ve-guvenlik.html">📚 Bölümler</a></li><li class="breadcrumb-item"><a href="../bolumler/08-bitiris.html">8. Bitiriş</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Kenar çubuğunu değiştir" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ara" onclick="window.quartoOpenSearch();">
@@ -383,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🏠 Ana Sayfa</span></a>
   </div>
 </li>
@@ -398,49 +399,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/01-kurulum-ve-guvenlik.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Kurulum ve Güvenlik</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/02-baslangic.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/02-baslangic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Veriyi Tanıyalım</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/03-kategorik-kolonlar.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. Kategorik Kolonlar</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/04-sayisal-kolonlar.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Sayısal Kolonlar</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/05-telefon.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/05-telefon.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Telefon Numaraları</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/06-tarih.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/06-tarih.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Tarihler</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/07-email-ve-yinelenenler.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7. E-posta ve Yinelenenler</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bolumler/08-bitiris.html" class="sidebar-item-text sidebar-link">
+  <a href="../bolumler/08-bitiris.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">8. Bitiriş</span></a>
   </div>
 </li>
@@ -456,29 +457,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Bu Sayfada</h2>
    
   <ul>
-  <li><a href="#score-puan" id="toc-score-puan" class="nav-link active" data-scroll-target="#score-puan"><code>score</code> — Puan</a>
+  <li><a href="#son-kontrol-listesi" id="toc-son-kontrol-listesi" class="nav-link active" data-scroll-target="#son-kontrol-listesi">Son Kontrol Listesi</a></li>
+  <li><a href="#csv-olarak-export" id="toc-csv-olarak-export" class="nav-link" data-scroll-target="#csv-olarak-export">CSV Olarak Export</a></li>
+  <li><a href="#işlemleri-sakla-tekrarlanabilirlik" id="toc-işlemleri-sakla-tekrarlanabilirlik" class="nav-link" data-scroll-target="#işlemleri-sakla-tekrarlanabilirlik">İşlemleri Sakla — Tekrarlanabilirlik</a>
   <ul class="collapse">
-  <li><a href="#virgülleri-noktaya-çevir" id="toc-virgülleri-noktaya-çevir" class="nav-link" data-scroll-target="#virgülleri-noktaya-çevir">1. Virgülleri Noktaya Çevir</a></li>
-  <li><a href="#sayıya-çevir" id="toc-sayıya-çevir" class="nav-link" data-scroll-target="#sayıya-çevir">2. Sayıya Çevir</a></li>
-  <li><a href="#kontrol" id="toc-kontrol" class="nav-link" data-scroll-target="#kontrol">3. Kontrol</a></li>
+  <li><a href="#operasyon-geçmişini-çıkarmak" id="toc-operasyon-geçmişini-çıkarmak" class="nav-link" data-scroll-target="#operasyon-geçmişini-çıkarmak">Operasyon Geçmişini Çıkarmak</a></li>
+  <li><a href="#aynı-işlemleri-yeni-veriye-uygulama" id="toc-aynı-işlemleri-yeni-veriye-uygulama" class="nav-link" data-scroll-target="#aynı-işlemleri-yeni-veriye-uygulama">Aynı İşlemleri Yeni Veriye Uygulama</a></li>
   </ul></li>
-  <li><a href="#income-gelir" id="toc-income-gelir" class="nav-link" data-scroll-target="#income-gelir"><code>income</code> — Gelir</a>
-  <ul class="collapse">
-  <li><a href="#önce-nan-ve-para-birimi-outlierlarını-hallet" id="toc-önce-nan-ve-para-birimi-outlierlarını-hallet" class="nav-link" data-scroll-target="#önce-nan-ve-para-birimi-outlierlarını-hallet">1. Önce <code>nan</code> ve Para Birimi Outlier’larını Hallet</a></li>
-  <li><a href="#para-birimi-eklerini-tek-hamlede-temizle" id="toc-para-birimi-eklerini-tek-hamlede-temizle" class="nav-link" data-scroll-target="#para-birimi-eklerini-tek-hamlede-temizle">2. Para Birimi Eklerini Tek Hamlede Temizle</a></li>
-  <li><a href="#sayıya-çevir-1" id="toc-sayıya-çevir-1" class="nav-link" data-scroll-target="#sayıya-çevir-1">3. Sayıya Çevir</a></li>
-  <li><a href="#kontrol-1" id="toc-kontrol-1" class="nav-link" data-scroll-target="#kontrol-1">4. Kontrol</a></li>
-  </ul></li>
+  <li><a href="#öğrendiğin-beceriler" id="toc-öğrendiğin-beceriler" class="nav-link" data-scroll-target="#öğrendiğin-beceriler">Öğrendiğin Beceriler</a></li>
+  <li><a href="#daha-ileri-konular" id="toc-daha-ileri-konular" class="nav-link" data-scroll-target="#daha-ileri-konular">Daha İleri Konular</a></li>
+  <li><a href="#son-söz" id="toc-son-söz" class="nav-link" data-scroll-target="#son-söz">Son Söz</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/04-sayisal-kolonlar.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/bolumler/08-bitiris.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bolumler/01-kurulum-ve-guvenlik.html">📚 Bölümler</a></li><li class="breadcrumb-item"><a href="../bolumler/08-bitiris.html">8. Bitiriş</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Sayısal Kolonları Düzenleme</h1>
+<h1 class="title">Export ve Tekrarlanabilirlik</h1>
 </div>
 
 
@@ -495,187 +493,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Şimdi iki sayısal kolonu temizleyeceğiz: önce kolay olan <code>score</code>, sonra zorlu olan <code>income</code>. Bu bölümde <strong>GREL</strong> (General Refine Expression Language — OpenRefine’ın kendi formül dili) ile tanışacağız.</p>
+<p>Tebrikler! 🎉 Veri temizlemenin baştan sona bir döngüsünü tamamladın. Şimdi sıra <strong>temiz veriyi dışarı aktarmakta</strong> ve daha da önemlisi, <strong>işlemleri başka bir veri setinde yeniden kullanabilmekte</strong>.</p>
+<section id="son-kontrol-listesi" class="level1">
+<h1>Son Kontrol Listesi</h1>
+<p>Export’tan önce her kolonu hızlıca kontrol et:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Kolon</th>
+<th>Kontrol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>id</code></td>
+<td>Satır sayısı 30 mu?</td>
+</tr>
+<tr class="even">
+<td><code>full_name</code></td>
+<td>Title Case mi?</td>
+</tr>
+<tr class="odd">
+<td><code>email</code></td>
+<td>Hâlâ GEÇERSİZ var mı? (Custom facet ile bak)</td>
+</tr>
+<tr class="even">
+<td><code>phone</code></td>
+<td>Hepsi tek formatta mı?</td>
+</tr>
+<tr class="odd">
+<td><code>city</code></td>
+<td>Tüm değerler standartlaştı mı?</td>
+</tr>
+<tr class="even">
+<td><code>country</code></td>
+<td>Sadece tam ülke isimleri var mı?</td>
+</tr>
+<tr class="odd">
+<td><code>birth_date</code></td>
+<td>Yeşil mi (tarih tipi)? Timeline facet kontrol et</td>
+</tr>
+<tr class="even">
+<td><code>registration_date</code></td>
+<td>Yeşil mi?</td>
+</tr>
+<tr class="odd">
+<td><code>gender</code></td>
+<td>Sadece <code>Male</code> / <code>Female</code>?</td>
+</tr>
+<tr class="even">
+<td><code>subscriber</code></td>
+<td>Sadece <code>Yes</code> / <code>No</code>?</td>
+</tr>
+<tr class="odd">
+<td><code>income</code></td>
+<td>Yeşil mi (sayı tipi)? Numeric facet kontrol et</td>
+</tr>
+<tr class="even">
+<td><code>score</code></td>
+<td>Yeşil mi?</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">İpucu</span>Önce facet aç, sonra export et
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Her kategorik kolonu Text Facet ile bir kez kontrol etmek 30 saniye sürer ve gözden kaçan bir varyantı yakalar. Export ettikten sonra fark etmek istemediğin türden hatalardır.</p>
+</div>
+</div>
+</section>
+<section id="csv-olarak-export" class="level1">
+<h1>CSV Olarak Export</h1>
+<p>Sağ üstte <strong>Export</strong> butonuna tıkla. Bir menü açılır:</p>
+<ul>
+<li><strong>Comma-separated value (CSV)</strong> — En yaygın, Excel/Python/R hepsinde açılır.</li>
+<li><strong>Tab-separated value (TSV)</strong> — Tab ile ayrılır, virgüllü içeriklerde daha güvenli.</li>
+<li><strong>Excel (.xls / .xlsx)</strong> — Doğrudan Excel formatı.</li>
+<li><strong>HTML table</strong> — Web sayfasına gömmek için.</li>
+<li><strong>Templating…</strong> — JSON veya özel formatlar için.</li>
+</ul>
+<p>CSV ile başla. <code>customers_clean.csv</code> olarak indir.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Not</span>GREL nedir?
+<span class="screen-reader-only">Not</span>Tarih formatı export’ta
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>OpenRefine’a özel, JavaScript’e benzer bir mini dil. Tek satırlık dönüşümler yazıp her hücreye uygulayabilirsin. Üç temel kavram:</p>
-<ul>
-<li><code>value</code> — şu anki hücrenin değeri.</li>
-<li><code>value.replace("a", "b")</code> — değerin içindeki tüm <code>a</code>’ları <code>b</code> ile değiştirir.</li>
-<li><code>if(koşul, doğruysa, yanlışsa)</code> — koşullu mantık.</li>
-</ul>
-<p>Tüm GREL özellikleri için: <a href="https://openrefine.org/docs/manual/grelfunctions">OpenRefine GREL dokümanı</a>.</p>
-</div>
-</div>
-<section id="score-puan" class="level1">
-<h1><code>score</code> — Puan</h1>
-<p>Veride çoğu puan <code>4.5</code>, <code>3.8</code> gibi nokta ondalıklı. Ama bazıları <strong>virgül</strong> ondalıklı (<code>"4,2"</code>, <code>"3,5"</code>) ve birkaç hücre boş. Hedef: hepsini noktalı ondalık yapıp <strong>sayı tipine</strong> çevirmek.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Uyarı</span>Locale farkı
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Türkiye, Almanya, Fransa gibi ülkelerde ondalık ayraç olarak <strong>virgül</strong> (<code>4,2</code>) kullanılır. ABD ve İngiltere’de <strong>nokta</strong> (<code>4.5</code>) kullanılır. CSV’lerde bu fark büyük baş ağrısıdır. OpenRefine sadece nokta-ondalık’ı sayı olarak tanır, dolayısıyla virgülleri noktaya çevirmemiz gerekiyor.</p>
-</div>
-</div>
-<section id="virgülleri-noktaya-çevir" class="level2">
-<h2 class="anchored" data-anchor-id="virgülleri-noktaya-çevir">1. Virgülleri Noktaya Çevir</h2>
-<p><code>score</code> ▼ → <strong>Edit cells → Transform…</strong></p>
-<p>Açılan kutuya şunu yaz:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>value<span class="op">.</span><span class="fu">replace</span>(<span class="st">","</span><span class="op">,</span> <span class="st">"."</span>)</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Bu kod ne yapıyor?</strong></p>
-<ul>
-<li><code>value</code> — şu anki hücrenin içeriği (örneğin <code>"4,2"</code>).</li>
-<li><code>.replace(",", ".")</code> — string içindeki tüm virgülleri nokta yapar.</li>
-<li>Sonuç: <code>"4,2"</code> → <code>"4.2"</code>.</li>
-</ul>
-<p>Önizleme penceresinde sağ tarafta yeni değerleri göreceksin.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">İpucu</span>Hata mesajı görürsen panik yapma
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Boş hücreler için OpenRefine <em>“replace expects three strings…”</em> gibi bir uyarı verebilir. Bu uyarı sadece o satırlar için, ve kutunun altındaki <strong>On error: keep original</strong> seçeneği işaretli olduğu sürece sorun değil. Boş hücre boş kalır.</p>
-<p>Daha temiz görmek istersen şu alternatif ifadeyi kullanabilirsin:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">isBlank</span>(value)<span class="op">,</span> value<span class="op">,</span> value<span class="op">.</span><span class="fu">replace</span>(<span class="st">","</span><span class="op">,</span> <span class="st">"."</span>))</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Bu önce hücre boş mu diye kontrol eder, boşsa dokunmaz, doluysa replace yapar. Sonuç aynı, sadece hata mesajı görünmez.</p>
-</div>
-</div>
-<p><strong>OK</strong> bas. Tüm virgüller noktaya dönüşür.</p>
-</section>
-<section id="sayıya-çevir" class="level2">
-<h2 class="anchored" data-anchor-id="sayıya-çevir">2. Sayıya Çevir</h2>
-<p>Şimdi değerler hâlâ string (metin) tipinde. Sayıya çevirelim:</p>
-<p><code>score</code> ▼ → <strong>Edit cells → Common transforms → To number</strong></p>
-<p>Hücreler <strong>yeşile</strong> dönüp <strong>sağa yaslandığında</strong> dönüşüm başarılıdır.</p>
-</section>
-<section id="kontrol" class="level2">
-<h2 class="anchored" data-anchor-id="kontrol">3. Kontrol</h2>
-<p><code>score</code> ▼ → <strong>Facet → Numeric facet</strong></p>
-<p>Açılan histogram’da puanların 2.5 - 5.0 arasında dağılması lazım. Boş hücreler “Blank” sayacında görünür (üç hücre — ID 7, 20, 28).</p>
-</section>
-</section>
-<section id="income-gelir" class="level1">
-<h1><code>income</code> — Gelir</h1>
-<p>Bu kolon en zorlu olanı. Veride şu varyantlar var:</p>
-<ul>
-<li><code>$5500</code> (USD prefix sembolü)</li>
-<li><code>5500</code> (sade sayı)</li>
-<li><code>2500 USD</code> (USD kod ekli)</li>
-<li><code>7.500 USD</code> (period ile binlik ayraç + USD kod)</li>
-<li><code>5.800 USD</code> (period binlik)</li>
-<li><code>12.500</code> (period binlik, kod yok)</li>
-<li><code>3500 EUR</code> (Euro kodu)</li>
-<li><code>9500€</code> (Euro sembolü)</li>
-<li><code>£3500</code> (Pound)</li>
-<li><code>nan</code> (geçersiz)</li>
-</ul>
-<p>Stratejimiz: önce her şeyi USD baz alarak temizle, farklı para birimlerini ele al, sonra sayıya çevir.</p>
-<section id="önce-nan-ve-para-birimi-outlierlarını-hallet" class="level2">
-<h2 class="anchored" data-anchor-id="önce-nan-ve-para-birimi-outlierlarını-hallet">1. Önce <code>nan</code> ve Para Birimi Outlier’larını Hallet</h2>
-<p>Text Facet ile farklı değerleri görelim:</p>
-<p><code>income</code> ▼ → <strong>Facet → Text facet</strong></p>
-<p><code>nan</code> değerinin yanındaki <strong>edit</strong> linkine tıkla, kutuyu boşalt, Apply. Hücre null olur.</p>
-<p>Şimdi farklı para birimi olan satırları bul (3 row var): - <code>3500 EUR</code>, <code>9500€</code> — Euro - <code>£3500</code> — Pound</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Önemli</span>Para birimi dönüşümü = veri kararı
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Farklı para birimlerini USD’ye çevirmek <strong>kur kabul etmek</strong> demektir. Gerçek hayatta:</p>
-<ul>
-<li>Hangi günün kuru? Kayıt günü mü, bugün mü?</li>
-<li>Resmi kur mu, piyasa kuru mu?</li>
-</ul>
-<p>Bu kararı veriyi sahibine sormadan vermek tehlikeli. <strong>Bu eğitim için</strong> sabit kabul ediyoruz: 1 EUR ≈ 1.1 USD, 1 GBP ≈ 1.25 USD.</p>
-<ul>
-<li><code>3500 EUR</code> → <code>3850</code></li>
-<li><code>9500€</code> → <code>10450</code></li>
-<li><code>£3500</code> → <code>4375</code></li>
-</ul>
-<p>Text Facet’ten her birini elle düzelt.</p>
+<p>Tarih kolonları varsayılan olarak ISO 8601 (<code>2020-01-15T00:00:00Z</code>) formatında çıkar. Eğer sadece <code>2020-01-15</code> istiyorsan, export öncesi şu transformu uygula:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>value<span class="op">.</span><span class="fu">toString</span>(<span class="st">"yyyy-MM-dd"</span>)</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Bu kolonu string’e çevirir ama saat bilgisini atlar. <strong>Tarih tipinin avantajını kaybederiz</strong> ama görsel olarak temiz bir CSV elde ederiz.</p>
 </div>
 </div>
 </section>
-<section id="para-birimi-eklerini-tek-hamlede-temizle" class="level2">
-<h2 class="anchored" data-anchor-id="para-birimi-eklerini-tek-hamlede-temizle">2. Para Birimi Eklerini Tek Hamlede Temizle</h2>
-<p>Şimdi geriye sadece USD değerleri kaldı. Hepsindeki USD ekleri ve binlik nokta ayraçlarını silelim:</p>
-<p><code>income</code> ▼ → <strong>Edit cells → Transform…</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>value<span class="op">.</span><span class="fu">replace</span>(<span class="st">"$"</span><span class="op">,</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="st">"USD"</span><span class="op">,</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="st">"."</span><span class="op">,</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">replace</span>(<span class="st">" "</span><span class="op">,</span> <span class="st">""</span>)</span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Bu kod ne yapıyor?</strong></p>
-<p><code>replace</code> fonksiyonlarını birbirine zincirledik. Sırayla:</p>
+<section id="işlemleri-sakla-tekrarlanabilirlik" class="level1">
+<h1>İşlemleri Sakla — Tekrarlanabilirlik</h1>
+<p>Şimdi en sevdiğim özellik geliyor. Yaptığın <strong>tüm temizlik adımlarını JSON olarak dışarı alıp</strong>, başka bir kirli CSV geldiğinde tek tıkla aynı temizliği uygulayabilirsin.</p>
+<section id="operasyon-geçmişini-çıkarmak" class="level2">
+<h2 class="anchored" data-anchor-id="operasyon-geçmişini-çıkarmak">Operasyon Geçmişini Çıkarmak</h2>
+<p>Sol üstte <strong>Undo / Redo</strong> sekmesine tıkla.</p>
+<p>Listede tüm yaptığın işlemler görünür: cluster, transform, common transform, vb. Liste sayfasının altında <strong>Extract…</strong> butonu var, ona tıkla.</p>
+<p>Açılan pencerede tüm işlemlerin JSON formatında listesini göreceksin. Onay kutuları işaretli olanlar dışa aktarılacak. Şuna benzer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"op"</span><span class="fu">:</span> <span class="st">"core/text-transform"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"engineConfig"</span><span class="fu">:</span> <span class="fu">{</span><span class="er">...</span><span class="fu">},</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"columnName"</span><span class="fu">:</span> <span class="st">"score"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"expression"</span><span class="fu">:</span> <span class="st">"grel:value.replace(</span><span class="ch">\"</span><span class="st">,</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">.</span><span class="ch">\"</span><span class="st">)"</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"onError"</span><span class="fu">:</span> <span class="st">"keep-original"</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="er">...</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"op"</span><span class="fu">:</span> <span class="st">"core/mass-edit"</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"columnName"</span><span class="fu">:</span> <span class="st">"gender"</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"expression"</span><span class="fu">:</span> <span class="st">"value"</span><span class="fu">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"edits"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span><span class="dt">"from"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"M"</span><span class="ot">,</span> <span class="st">"m"</span><span class="ot">]</span><span class="fu">,</span> <span class="dt">"to"</span><span class="fu">:</span> <span class="st">"Male"</span><span class="fu">,</span> <span class="er">...</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="er">...</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">...</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Panoya Kopyala" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Bu JSON’u kopyala ve <strong><code>operations.json</code></strong> gibi bir adla kaydet.</p>
+</section>
+<section id="aynı-işlemleri-yeni-veriye-uygulama" class="level2">
+<h2 class="anchored" data-anchor-id="aynı-işlemleri-yeni-veriye-uygulama">Aynı İşlemleri Yeni Veriye Uygulama</h2>
+<p>Yarın aynı kaynaktan yeni bir kirli CSV geldi. Aynı temizliği baştan yapmak yerine:</p>
 <ol type="1">
-<li><code>.replace("$", "")</code> — Dolar sembolünü siler. <code>$5500</code> → <code>5500</code>.</li>
-<li><code>.replace("USD", "")</code> — USD kodunu siler. <code>2500 USD</code> → <code>2500</code>.</li>
-<li><code>.replace(".", "")</code> — Binlik ayraç olan noktayı siler. <code>7.500</code> → <code>7500</code>.</li>
-<li><code>.replace(" ", "")</code> — Geriye kalan boşlukları siler. <code>2500</code> → <code>2500</code>.</li>
+<li>Yeni projeyi oluştur (yeni CSV ile).</li>
+<li><strong>Undo / Redo</strong> → <strong>Apply…</strong> butonuna bas.</li>
+<li>Kaydettiğin <code>operations.json</code> içeriğini yapıştır.</li>
+<li><strong>Perform Operations</strong> bas.</li>
 </ol>
-<p>Sıra çok önemli — <code>replace</code>’ler soldan sağa çalışır.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Uyarı</span>Sıra hatası nelere yol açar?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Bu adımı atlayıp doğrudan <strong>To number</strong> yaparsan, OpenRefine <code>12.500</code> değerini “<strong>on iki nokta beş</strong>” olarak okur ve <code>12.5</code> yapar. Yani <strong>35.000</strong> dolarlık gelir aniden 35 dolara döner. Mutlaka önce binlik noktayı sil, sonra sayıya çevir.</p>
-</div>
-</div>
-<p><strong>OK</strong> bas.</p>
-</section>
-<section id="sayıya-çevir-1" class="level2">
-<h2 class="anchored" data-anchor-id="sayıya-çevir-1">3. Sayıya Çevir</h2>
-<p><code>income</code> ▼ → <strong>Edit cells → Common transforms → To number</strong></p>
-<p>Yeşil renge dönmeli. Sağa yaslı ve hizalı görünüm.</p>
-</section>
-<section id="kontrol-1" class="level2">
-<h2 class="anchored" data-anchor-id="kontrol-1">4. Kontrol</h2>
-<p><code>income</code> ▼ → <strong>Facet → Numeric facet</strong></p>
-<p>Histogram açılır. Veride en küçük gelir 1800 (Liam O’Brien, intern), en yüksek 11000 (Michael White, doktor). 1800-11000 arasında bir dağılım görüyorsan dönüşüm temiz.</p>
+<p>Tüm temizlik <strong>otomatik</strong> uygulanır. 30 dakikalık iş 5 saniyede biter.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">İpucu</span>Numeric facet süper kullanışlı
+<span class="screen-reader-only">İpucu</span>Tekrarlanabilirlik = veri analizi disiplini
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Histogram’ın iki ucundaki kaydırıcılarla aralık seçebilirsin. Mesela “10000’den büyük gelirler” diye filtreleyip o satırları görmek istersen — sol kaydırıcıyı 10000’e çek, sadece o satırlar tabloda görünür.</p>
-<p>Aykırı değerleri (outlier) bulmak için bulunmaz fırsat.</p>
+<p>Bu özellik OpenRefine’ın Excel’e karşı en büyük avantajıdır. Excel’de elle yapılan her temizlik, yarın gelecek veriyle tekrar yapılması gereken iştir. OpenRefine’da bir kez yapıyorsun, sonsuza kadar kullanıyorsun.</p>
+<p>Veri gazeteciliği, akademik araştırma, kurumsal raporlama — tüm bu alanlarda <strong>tekrarlanabilirlik</strong> profesyonelliğin işareti.</p>
 </div>
 </div>
-<p>İki sayısal kolonu da hallettik. Bir sonraki bölümde <strong>regex</strong> ile telefon numaralarına geçeceğiz — bu işin biraz daha eğlenceli kısmı.</p>
-
-
 </section>
+</section>
+<section id="öğrendiğin-beceriler" class="level1">
+<h1>Öğrendiğin Beceriler</h1>
+<p>Bu eğitimde şunları pratik ettin:</p>
+<p><strong>Temel araçlar</strong></p>
+<ul>
+<li>Text Facet ile kategorik değer dağılımı görmek</li>
+<li>Cluster &amp; edit (fingerprint, ngram) ile yazım varyantlarını birleştirmek</li>
+<li>Common transforms (trim, titlecase, lowercase, to number, to date)</li>
+<li>Numeric facet ve Timeline facet ile dağılım görselleştirmek</li>
+<li>Custom text facet ile dinamik etiketleme</li>
+</ul>
+<p><strong>GREL ifadeleri</strong></p>
+<ul>
+<li><code>value.replace(eski, yeni)</code> ile metin değişimi</li>
+<li>Zincirleme replace ile çoklu temizlik</li>
+<li><code>if(koşul, doğru, yanlış)</code> ile koşullu mantık</li>
+<li><code>value.toDate(...)</code> ile tarih çevirme</li>
+<li><code>value.length()</code>, <code>substring()</code>, <code>match(/regex/)</code></li>
+<li><code>cells["başka_kolon"].value</code> ile kolonlar arası referans</li>
+</ul>
+<p><strong>Stratejik düşünme</strong></p>
+<ul>
+<li>Hangi sırayla temizlik yapılacağı (kategorik → sayısal → tarih → duplicate)</li>
+<li>Eksik veriyi tahminle doldurmak yerine boş bırakmak</li>
+<li>Para birimi/tarih formatı gibi belirsizliklerde varsayımları açık yapmak</li>
+<li>Duplicate temizliğinde tutma/silme kararı</li>
+</ul>
+<p><strong>Veri güvenliği farkındalığı</strong></p>
+<ul>
+<li>OpenRefine’ın yerel çalıştığı, varsayılanda veri göndermediği</li>
+<li>Reconcile, URL fetch gibi özelliklerin verinin dışarı çıkmasına neden olduğu</li>
+<li>Hassas veri için en iyi pratikler</li>
+</ul>
+</section>
+<section id="daha-ileri-konular" class="level1">
+<h1>Daha İleri Konular</h1>
+<p>Bu eğitim seni başlangıç seviyesinden orta seviyeye taşıdı. İleri konular:</p>
+<ul>
+<li><strong>Reconciliation:</strong> Wikidata gibi servislerle eşleştirme (veri güvenliği uyarılarını hatırla)</li>
+<li><strong>Records mode:</strong> Hiyerarşik veri (ana satır + alt satırlar) için</li>
+<li><strong>GREL ileri seviye:</strong> <code>forEach</code>, <code>forNonBlank</code>, JSON parsing</li>
+<li><strong>Python/Jython/Clojure:</strong> GREL’in yetmediği yerlerde tam programlama dili</li>
+<li><strong>Add column based on this column:</strong> Mevcut kolondan yeni kolon türetmek</li>
+<li><strong>Split / Join columns:</strong> Kolon bölme ve birleştirme</li>
+</ul>
+<p>Bu konuların hepsi resmi dokümantasyonda detaylı: <a href="https://openrefine.org/docs/manual/">openrefine.org/docs/manual</a>.</p>
+</section>
+<section id="son-söz" class="level1">
+<h1>Son Söz</h1>
+<p>Veri temizlemek sıkıcı görünür ama analizinin <strong>kalitesini en çok belirleyen adımdır</strong>. “Garbage in, garbage out” — pis veri ile yapılan analiz pis sonuç verir. OpenRefine bu işi hızlandırır, dürüst tutar ve tekrarlanabilir kılar.</p>
+<p>Eline kirli bir veri geldiğinde artık panik olmadan oturup şu refleksi göstereceksin:</p>
+<ol type="1">
+<li>Önce gözat, sorunları listele.</li>
+<li>Kategorikleri standartlaştır (facet + cluster).</li>
+<li>Sayısalları temizle (GREL replace + to number).</li>
+<li>Tarihleri çevir (to date + multi-format).</li>
+<li>Geçerlilik kontrolleri (custom facet).</li>
+<li>Duplicate’leri en sona bırak.</li>
+<li>Operations.json’u sakla, geleceğe yatırım yap.</li>
+</ol>
+<p>Bol temiz veriler! 🧹</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Not</span>Geri bildirim
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bu eğitimi geliştirmek için her türlü öneriye açığım. GitHub repo’sunda <strong>Issue</strong> açabilirsin ya da pull request gönderebilirsin.</p>
+</div>
+</div>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Başa dön</a></main> <!-- /main -->
@@ -1097,6 +1150,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../bolumler/07-email-ve-yinelenenler.html" class="pagination-link" aria-label="7. E-posta ve Yinelenenler">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">7. E-posta ve Yinelenenler</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1105,7 +1167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/04-sayisal-kolonlar.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/drmuammer/openrefine-pratik/edit/main/bolumler/08-bitiris.qmd" class="toc-action"><i class="bi bi-github"></i>Bu sayfayı düzenle</a></li><li><a href="https://github.com/drmuammer/openrefine-pratik/issues/new" class="toc-action"><i class="bi empty"></i>Sorun bildir</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -1127,5 +1189,5 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
