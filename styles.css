@@ -324,3 +324,57 @@ blockquote p:last-child {
   margin-top: 3rem;
   padding-top: 1rem;
 }
+
+/* ============================================
+   BÖLÜM KARTLARI (ana sayfa)
+   ============================================ */
+
+.bolum-listesi section.level3 {
+  background: white;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.75rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-width 0.2s ease;
+}
+
+.bolum-listesi section.level3:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(20, 184, 166, 0.18);
+  border-left-width: 6px;
+}
+
+.bolum-listesi section.level3 h3 {
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary-dark);
+}
+
+.bolum-listesi section.level3 p {
+  margin-bottom: 0.5rem;
+}
+
+/* Kart içindeki "Başla →" butonunu sade metin link'ine dönüştür */
+.bolum-listesi .btn-start {
+  background: none !important;
+  color: var(--color-primary-dark) !important;
+  padding: 0 !important;
+  margin: 0;
+  border-bottom: none !important;
+  font-weight: 600;
+  box-shadow: none !important;
+  display: inline;
+}
+
+.bolum-listesi .btn-start:hover {
+  color: var(--color-primary) !important;
+  transform: none;
+  box-shadow: none !important;
+}
+
+/* Karanlık mod */
+[data-bs-theme="dark"] .bolum-listesi section.level3 {
+  background: var(--color-bg-mid);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
