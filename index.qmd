@@ -32,7 +32,10 @@ Veri temizleme analizinin **kalitesini en çok belirleyen adımdır**. "Garbage 
 
 ## 📚 İçerik
 
+::: {.bolum-listesi}
+
 ### 1. Kurulum ve Veri Güvenliği
+
 
 OpenRefine nasıl kurulur, hangi özellikleri verini dış sunuculara gönderir, hassas veri ile nasıl güvenli çalışılır.
 
@@ -79,6 +82,8 @@ Geçersiz e-postaları regex ile yakala, duplicate'leri tespit edip sil.
 Temiz veriyi export et, operations.json ile işlem geçmişini sakla, gelecek için tekrarlanabilir bir akış kur.
 
 [**Başla →**](bolumler/08-bitiris.qmd){.btn-start}
+
+:::
 
 ## 📦 Çalışma Veri Seti
 
